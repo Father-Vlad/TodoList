@@ -15,6 +15,8 @@ namespace TodoList.Core.ViewModels
         private readonly IMvxNavigationService _navigationService;
         ITaskService _taskService;
 
+
+
         public override async Task Initialize()
         {
             await base.Initialize();
