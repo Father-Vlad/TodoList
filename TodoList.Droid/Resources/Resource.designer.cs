@@ -6734,6 +6734,9 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f090061
 			public const int image = 2131296353;
 			
+			// aapt resource value: 0x7f0900b4
+			public const int imageButton1 = 2131296436;
+			
 			// aapt resource value: 0x7f0900ad
 			public const int info = 2131296429;
 			
@@ -6761,14 +6764,14 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f090063
 			public const int list_item = 2131296355;
 			
-			// aapt resource value: 0x7f0900b6
-			public const int masked = 2131296438;
+			// aapt resource value: 0x7f0900b7
+			public const int masked = 2131296439;
 			
 			// aapt resource value: 0x7f0900a6
 			public const int media_actions = 2131296422;
 			
-			// aapt resource value: 0x7f0900b4
-			public const int message = 2131296436;
+			// aapt resource value: 0x7f0900b5
+			public const int message = 2131296437;
 			
 			// aapt resource value: 0x7f090033
 			public const int middle = 2131296307;
@@ -7022,8 +7025,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f090016
 			public const int view_offset_helper = 2131296278;
 			
-			// aapt resource value: 0x7f0900b5
-			public const int visible = 2131296437;
+			// aapt resource value: 0x7f0900b6
+			public const int visible = 2131296438;
 			
 			// aapt resource value: 0x7f09003e
 			public const int withText = 2131296318;

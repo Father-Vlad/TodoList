@@ -14,9 +14,9 @@
 		<Button
 			android:text="+"
 			android:backgroundTint = "#508080"
-			android:textSize = "15dp"
-			android:layout_width="50dp"
-			android:layout_height="50dp"
+			android:textSize = "20dp"
+			android:layout_width="60dp"
+			android:layout_height="60dp"
 			android:id="@+id/button_1"
 			android:layout_gravity = "right"
 			local:MvxBind = "Click NextActivityCommand"
