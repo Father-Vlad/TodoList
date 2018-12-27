@@ -16,6 +16,7 @@ namespace TodoList.Core.ViewModels
         private readonly IMvxNavigationService _navigationService;
         private ITaskService _taskService;
         private int _goalId;
+        private bool _saveEnableStatus = false;
 
         public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService)
         {
@@ -51,6 +52,24 @@ namespace TodoList.Core.ViewModels
             }
         }
 
+        public bool SaveEnableStatus
+        {
+            get
+            {
+                if (GoalName == null | GoalName == string.Empty)
+                {
+                    return _saveEnableStatus = false;
+                }
+                return _saveEnableStatus = true;
+            }
+
+            set
+            {
+                _saveEnableStatus = value;
+                RaisePropertyChanged(() => SaveEnableStatus);
+            }
+        }
+
         public string GoalName
         {
             get
@@ -62,6 +81,7 @@ namespace TodoList.Core.ViewModels
             {
                 _goalName = value;
                 RaisePropertyChanged(() => GoalName);
+                RaisePropertyChanged(() => SaveEnableStatus);
             }
         }
 
@@ -118,12 +138,8 @@ namespace TodoList.Core.ViewModels
 
         private async Task SaveMethod()
         {
-            if (GoalName != null)
-            {
-                Goal goal = new Goal(GoalId, GoalName, GoalDescription, GoalStatus);
-
-                _taskService.InsertGoal(goal);
-            }
+            Goal goal = new Goal(GoalId, GoalName, GoalDescription, GoalStatus);
+            _taskService.InsertGoal(goal);
             await _navigationService.Close(this);
         }
 

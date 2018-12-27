@@ -68,6 +68,7 @@
     <Compile Include="Holder\RecyclerHolder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Gothic.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
