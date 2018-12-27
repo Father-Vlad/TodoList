@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+	android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	>
+	<include
+		layout="@layout/ToolbarLayout" />
+	<MvvmCross.Droid.Support.V4.MvxSwipeRefreshLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#ffff" 
+		local:MvxBind = "Refreshing IsRefreshing; RefreshCommand ReloadCommand">
+		<mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
+			android:id="@+id/recycler_view_main"  
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scrollbars="vertical"
+			local:MvxItemTemplate="@layout/itemlayout"
+			local:MvxBind="ItemsSource Goals"
+		/>
+	</MvvmCross.Droid.Support.V4.MvxSwipeRefreshLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+	<Toolbar
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:title = "To-do List"
+		android:titleTextColor = "#ffff"
+		android:minHeight="?attr/actionBarSize"
+		android:background="?android:attr/colorPrimary"
+		android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
+		<Button
+			android:text="+"
+			android:backgroundTint = "#508080"
+			android:textSize = "15dp"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:id="@+id/button_1"
+			android:layout_gravity = "right"
+			local:MvxBind = "Click NextActivityCommand"
+		/>
+	</Toolbar>
+</FrameLayout>
