@@ -14,9 +14,7 @@ namespace TodoList.Core.ViewModels
         private MvxCommand _reloadCommand;
         private readonly IMvxNavigationService _navigationService;
         ITaskService _taskService;
-
-
-
+               
         public override async Task Initialize()
         {
             await base.Initialize();
@@ -42,6 +40,10 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
+                if (true)
+                {
+
+                }
                 return _goals;
             }
             set
