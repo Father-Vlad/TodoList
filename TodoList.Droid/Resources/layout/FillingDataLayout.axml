@@ -15,6 +15,9 @@
 		android:hint = "Enter your Goal Name"
 		android:textColor = "#000000"
 		android:lines = "1"
+		android:textSize="30dp"
+		android:padding = "10dp"
+		android:background = "@layout/RoundedBorderEditText"
 		local:MvxBind="Text GoalName; Enabled TitleEnableStatus"
 	/>
 	<EditText
@@ -22,10 +25,12 @@
 		android:lines = "5"
 		android:id = "@+id/edit_text_goal_description"
 		android:layout_width ="match_parent"
-		android:layout_marginTop ="10dp"
-		android:layout_marginBottom ="10dp"
+		android:layout_margin="5dp"
+		android:padding = "10dp"
 		android:hint="Enter your Description"
 		android:textColor = "#000000"
+		android:textSize="30dp"
+		android:background = "@layout/RoundedBorderEditText"
 		local:MvxBind="Text GoalDescription"
 	/>
 	<LinearLayout
@@ -56,6 +61,7 @@
 			android:layout_width ="0dp"
 			android:text = "Save"
 			android:layout_weight ="50"
+			android:background = "@layout/RoundedBorderButton"
 			local:MvxBind="Click SaveCommand; Enabled SaveEnableStatus"
 		/>
 		<Button
@@ -63,6 +69,7 @@
 			android:layout_width ="0dp"
 			android:text = "Delete"
 			android:layout_weight ="50"
+			android:background = "@layout/RoundedBorderButton"
 			local:MvxBind="Click DeleteCommand"
 		/>
 	</LinearLayout>
