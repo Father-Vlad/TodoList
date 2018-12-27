@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:local="http://schemas.android.com/apk/res-auto"
+	android:id = "@+id/filling_data_layout_main"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,6 +36,7 @@
 	/>
 	<LinearLayout
 		android:orientation="horizontal"
+		android:id = "@+id/filling_data_layout_toggle"
 		android:layout_width="match_parent"
 	    android:layout_height="wrap_content">
 		<ToggleButton
@@ -53,6 +55,7 @@
 	</LinearLayout>
 	<LinearLayout
 		android:orientation="horizontal"
+		android:id = "@+id/filling_data_layout_bottom"
 		android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 		android:weightSum = "100">
