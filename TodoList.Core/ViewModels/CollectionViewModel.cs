@@ -40,10 +40,6 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
-                if (true)
-                {
-
-                }
                 return _goals;
             }
             set
