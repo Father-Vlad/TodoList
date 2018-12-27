@@ -62,6 +62,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Services\DataBaseConnectionService.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="SplashScreen.cs" />
     <Compile Include="Views\FillingDataView.cs" />
     <Compile Include="Views\MainActivityView.cs" />
     <Compile Include="Adapter\RecyclerAdapter.cs" />
@@ -150,6 +151,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\RoundedBorderEditText.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SplashScreen.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

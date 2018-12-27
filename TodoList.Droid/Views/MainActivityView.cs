@@ -8,7 +8,7 @@ using TodoList.Core.ViewModels;
 
 namespace TodoList.Droid.Views
 {
-    [Activity(Label ="To-do List", MainLauncher = true)]
+    [Activity]
     public class MainActivityView : MvxAppCompatActivity<CollectionViewModel>
     {
         private RecyclerAdapter _recyclerAdapter;

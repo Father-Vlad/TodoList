@@ -6385,26 +6385,26 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f02006a
-			public const int avd_hide_password_1 = 2130837610;
-			
 			// aapt resource value: 0x7f02006b
-			public const int avd_hide_password_2 = 2130837611;
+			public const int avd_hide_password_1 = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int avd_hide_password_3 = 2130837612;
+			public const int avd_hide_password_2 = 2130837612;
+			
+			// aapt resource value: 0x7f02006d
+			public const int avd_hide_password_3 = 2130837613;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f02006d
-			public const int avd_show_password_1 = 2130837613;
-			
 			// aapt resource value: 0x7f02006e
-			public const int avd_show_password_2 = 2130837614;
+			public const int avd_show_password_1 = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int avd_show_password_3 = 2130837615;
+			public const int avd_show_password_2 = 2130837615;
+			
+			// aapt resource value: 0x7f020070
+			public const int avd_show_password_3 = 2130837616;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -6451,11 +6451,11 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f020063
 			public const int notification_icon_background = 2130837603;
 			
-			// aapt resource value: 0x7f020068
-			public const int notification_template_icon_bg = 2130837608;
-			
 			// aapt resource value: 0x7f020069
-			public const int notification_template_icon_low_bg = 2130837609;
+			public const int notification_template_icon_bg = 2130837609;
+			
+			// aapt resource value: 0x7f02006a
+			public const int notification_template_icon_low_bg = 2130837610;
 			
 			// aapt resource value: 0x7f020064
 			public const int notification_tile_bg = 2130837604;
@@ -6464,10 +6464,13 @@ namespace TodoList.Droid
 			public const int notify_panel_notification_icon_bg = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int tooltip_frame_dark = 2130837606;
+			public const int Splash = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int tooltip_frame_light = 2130837607;
+			public const int tooltip_frame_dark = 2130837607;
+			
+			// aapt resource value: 0x7f020068
+			public const int tooltip_frame_light = 2130837608;
 			
 			static Drawable()
 			{
@@ -7292,16 +7295,19 @@ namespace TodoList.Droid
 			public const int select_dialog_singlechoice_material = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int support_simple_spinner_dropdown_item = 2130968639;
+			public const int SplashScreen = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int ToolBarLayout = 2130968640;
+			public const int support_simple_spinner_dropdown_item = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int ToolBarSecondLayout = 2130968641;
+			public const int ToolBarLayout = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int tooltip = 2130968642;
+			public const int ToolBarSecondLayout = 2130968642;
+			
+			// aapt resource value: 0x7f040043
+			public const int tooltip = 2130968643;
 			
 			static Layout()
 			{
@@ -8370,6 +8376,9 @@ namespace TodoList.Droid
 			
 			// aapt resource value: 0x7f0a0172
 			public const int Theme_Design_NoActionBar = 2131362162;
+			
+			// aapt resource value: 0x7f0a0185
+			public const int Theme_Splash = 2131362181;
 			
 			// aapt resource value: 0x7f0a010b
 			public const int ThemeOverlay_AppCompat = 2131362059;
