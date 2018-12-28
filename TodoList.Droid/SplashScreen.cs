@@ -4,7 +4,7 @@ using MvvmCross.Platforms.Android.Views;
 
 namespace TodoList.Droid
 {
-    [Activity(Label = "To-do List", MainLauncher = true, Theme = "@style/Theme.Splash", NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "@string/app_name", MainLauncher = true, Theme = "@style/Theme.Splash", NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {
         public SplashScreen()
