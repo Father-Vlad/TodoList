@@ -23,14 +23,7 @@ namespace TodoList.Droid.Views
             _layoutManager = new LinearLayoutManager(this);
             _recyclerView.SetLayoutManager(_layoutManager);
             _recyclerAdapter = new RecyclerAdapter((IMvxAndroidBindingContext)this.BindingContext);
-            _recyclerAdapter.ItemClick += _recyclerAdapter_ItemClick;
             _recyclerView.Adapter = _recyclerAdapter;
-
-        }
-
-        private void _recyclerAdapter_ItemClick(object sender, int e)
-        {
-            this.ViewModel.FillingDataActivityCommand.Execute(this.ViewModel.Goals[e]);
         }
     }
 }

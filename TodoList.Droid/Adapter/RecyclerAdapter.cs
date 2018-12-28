@@ -9,8 +9,6 @@ namespace TodoList.Droid.Views
 {
     public class RecyclerAdapter : MvxRecyclerAdapter
     {
-        public event EventHandler<int> ItemClick;
-
         public RecyclerAdapter(IMvxAndroidBindingContext bindingContext)
             : base(bindingContext)
         {
@@ -20,13 +18,10 @@ namespace TodoList.Droid.Views
         {
             var itemBindingContext = new MvxAndroidBindingContext(parent.Context, this.BindingContext.LayoutInflaterHolder);
             var view = this.InflateViewForHolder(parent, viewType, itemBindingContext);
-            var recyclerHolderView = new RecyclerHolder(view, itemBindingContext, OnClick);
-            return recyclerHolderView;
-        }
-        private void OnClick(int obj)
-        {
-            if (ItemClick != null)
-                ItemClick(this, obj);
+            return new RecyclerHolder(view, itemBindingContext)
+            {
+                Click = ItemClick,
+            };
         }
     }
 }
