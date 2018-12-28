@@ -12,9 +12,9 @@
 		android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
 		<ImageButton
 			android:src="@drawable/abc_ic_ab_back_material"
-			android:layout_width="60dp"
-			android:layout_height="60dp"
-			android:backgroundTint = "#508080"
+			android:layout_width="@dimen/toolbar_button_60"
+			android:layout_height="@dimen/toolbar_button_60"
+			android:backgroundTint = "@color/colorButtonBackground"
 			android:id="@+id/imageButton1" 
 			local:MvxBind = "Click SendBackCommand"
 		/>
@@ -23,8 +23,8 @@
 			android:layout_height="match_parent"
 			android:text = "Write TODO sample..."
 			android:layout_marginLeft = "50dp"
-			android:textColor= "#ffff"
-			android:textSize = "20dp"
+			android:textColor= "@color/colorWhite"
+			android:textSize = "@dimen/text_size_20"
 		/>
 	</Toolbar>
 </FrameLayout>

@@ -6,17 +6,17 @@
 	<Toolbar
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:title = "To-do List"
-		android:titleTextColor = "#ffff"
+		android:title = "@string/text_title"
+		android:titleTextColor = "@color/colorWhite"
 		android:minHeight="?attr/actionBarSize"
 		android:background="?android:attr/colorPrimary"
 		android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
 		<Button
 			android:text="+"
-			android:backgroundTint = "#508080"
-			android:textSize = "20dp"
-			android:layout_width="60dp"
-			android:layout_height="60dp"
+			android:backgroundTint = "@color/colorButtonBackground"
+			android:textSize = "@dimen/text_size_20"
+			android:layout_width="@dimen/toolbar_button_60"
+			android:layout_height="@dimen/toolbar_button_60"
 			android:id="@+id/button_1"
 			android:layout_gravity = "right"
 			local:MvxBind = "Click FillingDataActivityCommand"

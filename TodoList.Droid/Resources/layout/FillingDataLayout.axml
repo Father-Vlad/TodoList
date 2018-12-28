@@ -5,33 +5,33 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:background = "#99E2E5">
+	android:background = "@color/colorBackground">
 	<include
 		layout="@layout/toolbarfillingdatalayout"
 	/>
 	<EditText
 		android:layout_height = "wrap_content"
 		android:layout_width ="match_parent"
-		android:id = "@+id/edit_text_goal_name"
-		android:layout_margin ="10dp"
-		android:hint = "Enter your Goal Name"
-		android:textColor = "#000000"
 		android:lines = "1"
-		android:textSize="30dp"
-		android:padding = "10dp"
+		android:id = "@+id/edit_text_goal_name"
+		android:layout_margin ="@dimen/padding_margin_10"
+		android:hint = "@string/goal_name_hint"
+		android:textColor = "@color/colorBlack"
+		android:textSize="@dimen/text_size_30"
+		android:padding = "@dimen/padding_margin_10"
 		android:background = "@drawable/RoundedBorderEditText"
 		local:MvxBind="Text GoalName; Enabled GoalNameEnableStatus"
 	/>
 	<EditText
 		android:layout_height = "wrap_content"
+		android:layout_width ="match_parent"
 		android:lines = "5"
 		android:id = "@+id/edit_text_goal_description"
-		android:layout_width ="match_parent"
-		android:layout_margin="5dp"
-		android:padding = "10dp"
-		android:hint="Enter your Description"
-		android:textColor = "#000000"
-		android:textSize="30dp"
+		android:layout_margin="@dimen/padding_margin_5"
+		android:padding = "@dimen/padding_margin_10"
+		android:hint="@string/goal_description_hint"
+		android:textColor = "@color/colorBlack"
+		android:textSize="@dimen/text_size_30"
 		android:background = "@drawable/RoundedBorderEditText"
 		local:MvxBind="Text GoalDescription"
 	/>
@@ -43,15 +43,15 @@
 		<ToggleButton
 			android:layout_height = "wrap_content"
 			android:layout_width ="wrap_content"
+			android:textOff="@string/text_off"
+			android:textOn="@string/text_on" 
 			local:MvxBind="Checked GoalStatus"
-			android:textOff="Off"
-			android:textOn="On" 
 		/>
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text = "Done"
-			android:textColor = "#000000"
+			android:text = "@string/text_done"
+			android:textColor = "@color/colorBlack"
 		/>
 	</LinearLayout>
 	<LinearLayout
@@ -63,7 +63,7 @@
 		<Button
 			android:layout_height ="wrap_content"
 			android:layout_width ="0dp"
-			android:text = "Save"
+			android:text = "@string/text_save"
 			android:layout_weight ="50"
 			android:background = "@drawable/RoundedBorderButton"
 			local:MvxBind="Click SaveDataCommand; Enabled SaveButtonEnableStatus"
@@ -71,7 +71,7 @@
 		<Button
 			android:layout_height ="wrap_content"
 			android:layout_width ="0dp"
-			android:text = "Delete"
+			android:text = "@string/text_delete"
 			android:layout_weight ="50"
 			android:background = "@drawable/RoundedBorderButton"
 			local:MvxBind="Click DeleteDataCommand"
