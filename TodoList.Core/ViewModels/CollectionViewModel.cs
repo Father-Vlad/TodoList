@@ -3,7 +3,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
-using TodoList.Core.Services;
+using TodoList.Core.Models;
 
 namespace TodoList.Core.ViewModels
 {

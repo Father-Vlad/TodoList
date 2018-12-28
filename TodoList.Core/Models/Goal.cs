@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace TodoList.Core.Services
+namespace TodoList.Core.Models
 {
     [Table("Goal")]
     public class Goal

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TodoList.Core.Services;
+using TodoList.Core.Models;
 
 namespace TodoList.Core.Interfaces
 {

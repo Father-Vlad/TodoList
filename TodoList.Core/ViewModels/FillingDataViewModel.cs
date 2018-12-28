@@ -3,7 +3,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
-using TodoList.Core.Services;
+using TodoList.Core.Models;
 
 namespace TodoList.Core.ViewModels
 {
@@ -124,7 +124,6 @@ namespace TodoList.Core.ViewModels
 
         private async Task BackMethod()
         {
-
             await _navigationService.Close(this);
         }
 
@@ -154,9 +153,7 @@ namespace TodoList.Core.ViewModels
         private async Task DeleteMethod()
         {
             var position = GoalId;
-
             _taskService.DeleteGoal(position);
-
             await _navigationService.Close(this);
         }
 

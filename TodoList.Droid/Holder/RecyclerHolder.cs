@@ -4,7 +4,7 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using System;
-using TodoList.Core.Services;
+using TodoList.Core.Models;
 
 namespace TodoList.Droid.Views
 {
