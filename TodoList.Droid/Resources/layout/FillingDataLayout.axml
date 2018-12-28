@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
 	android:background = "#99E2E5">
 	<include
-		layout="@layout/ToolbarSecondLayout" />
+		layout="@layout/toolbarfillingdatalayout"
+	/>
 	<EditText
 		android:layout_height = "wrap_content"
 		android:layout_width ="match_parent"
@@ -19,7 +20,7 @@
 		android:textSize="30dp"
 		android:padding = "10dp"
 		android:background = "@layout/RoundedBorderEditText"
-		local:MvxBind="Text GoalName; Enabled TitleEnableStatus"
+		local:MvxBind="Text GoalName; Enabled GoalNameEnableStatus"
 	/>
 	<EditText
 		android:layout_height = "wrap_content"
@@ -65,7 +66,7 @@
 			android:text = "Save"
 			android:layout_weight ="50"
 			android:background = "@layout/RoundedBorderButton"
-			local:MvxBind="Click SaveCommand; Enabled SaveEnableStatus"
+			local:MvxBind="Click SaveDataCommand; Enabled SaveButtonEnableStatus"
 		/>
 		<Button
 			android:layout_height ="wrap_content"
@@ -73,7 +74,7 @@
 			android:text = "Delete"
 			android:layout_weight ="50"
 			android:background = "@layout/RoundedBorderButton"
-			local:MvxBind="Click DeleteCommand"
+			local:MvxBind="Click DeleteDataCommand"
 		/>
 	</LinearLayout>
 </LinearLayout>

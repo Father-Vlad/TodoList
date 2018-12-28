@@ -16,7 +16,7 @@
 			android:layout_height="60dp"
 			android:backgroundTint = "#508080"
 			android:id="@+id/imageButton1" 
-			local:MvxBind = "Click BackCommand"
+			local:MvxBind = "Click SendBackCommand"
 		/>
 		<TextView
 			android:layout_width="match_parent"

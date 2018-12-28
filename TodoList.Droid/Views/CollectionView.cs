@@ -9,7 +9,7 @@ using TodoList.Core.ViewModels;
 namespace TodoList.Droid.Views
 {
     [Activity]
-    public class MainActivityView : MvxAppCompatActivity<CollectionViewModel>
+    public class CollectionView : MvxAppCompatActivity<CollectionViewModel>
     {
         private RecyclerAdapter _recyclerAdapter;
         private RecyclerView.LayoutManager _layoutManager;
@@ -18,7 +18,7 @@ namespace TodoList.Droid.Views
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.MainActivityViewLayout);
+            SetContentView(Resource.Layout.CollectionLayout);
             _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.recycler_view_main);
             _layoutManager = new LinearLayoutManager(this);
             _recyclerView.SetLayoutManager(_layoutManager);
@@ -30,7 +30,7 @@ namespace TodoList.Droid.Views
 
         private void _recyclerAdapter_ItemClick(object sender, int e)
         {
-            this.ViewModel.NextActivityCommand.Execute(this.ViewModel.Goals[e]);
+            this.ViewModel.FillingDataActivityCommand.Execute(this.ViewModel.Goals[e]);
         }
     }
 }

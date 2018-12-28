@@ -11,7 +11,7 @@ namespace TodoList.Core.ViewModels
     {
         private bool _isRefreshing;
         private MvxObservableCollection<Goal> _goals;
-        private MvxCommand _reloadCommand;
+        private MvxCommand _updateDataCommand;
         private readonly IMvxNavigationService _navigationService;
         ITaskService _taskService;
                
@@ -25,7 +25,7 @@ namespace TodoList.Core.ViewModels
             _taskService = taskService;
             _navigationService = navigationService;
             Goals = new MvxObservableCollection<Goal>();
-            NextActivityCommand = new MvxAsyncCommand<Goal>(NewGoalMethod);
+            FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
         }
 
         public override void ViewAppearing()
@@ -49,22 +49,22 @@ namespace TodoList.Core.ViewModels
             }
         }
 
-        public IMvxCommand<Goal> NextActivityCommand { get; set; }
+        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
 
-        public async Task NewGoalMethod(Goal goal)
+        public async Task CreateNewGoal(Goal goal)
         {
             var result = await _navigationService.Navigate<FillingDataViewModel, Goal>(goal);
         }
 
-        public MvxCommand ReloadCommand
+        public MvxCommand UpdateDataCommand
         {
             get
             {
-                return _reloadCommand = _reloadCommand ?? new MvxCommand(ReloadCommandMethod);
+                return _updateDataCommand = _updateDataCommand ?? new MvxCommand(UpdateDataFromDB);
             }
         }
 
-        private void ReloadCommandMethod()
+        private void UpdateDataFromDB()
         {
             IsRefreshing = true;
             var list = _taskService.GetAllGoals();

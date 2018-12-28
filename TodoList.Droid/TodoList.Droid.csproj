@@ -64,7 +64,7 @@
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Views\FillingDataView.cs" />
-    <Compile Include="Views\MainActivityView.cs" />
+    <Compile Include="Views\CollectionView.cs" />
     <Compile Include="Adapter\RecyclerAdapter.cs" />
     <Compile Include="Holder\RecyclerHolder.cs" />
   </ItemGroup>
@@ -122,12 +122,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\MainActivityViewLayout.axml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\ToolBarLayout.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CollectionLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\itemlayout.axml">
@@ -136,11 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\FillingDataLayout.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\ToolBarSecondLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -159,6 +149,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\SplashScreen.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ToolBarFillingDataLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ToolBarCollectionLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

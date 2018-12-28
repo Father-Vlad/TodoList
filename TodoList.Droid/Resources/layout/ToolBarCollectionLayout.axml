@@ -19,7 +19,7 @@
 			android:layout_height="60dp"
 			android:id="@+id/button_1"
 			android:layout_gravity = "right"
-			local:MvxBind = "Click NextActivityCommand"
+			local:MvxBind = "Click FillingDataActivityCommand"
 		/>
 	</Toolbar>
 </FrameLayout>
