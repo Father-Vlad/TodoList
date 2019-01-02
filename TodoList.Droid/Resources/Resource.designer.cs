@@ -5360,44 +5360,44 @@ namespace TodoList.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f080066
-			public const int abc_background_cache_hint_selector_material_dark = 2131230822;
-			
 			// aapt resource value: 0x7f080067
-			public const int abc_background_cache_hint_selector_material_light = 2131230823;
+			public const int abc_background_cache_hint_selector_material_dark = 2131230823;
 			
 			// aapt resource value: 0x7f080068
-			public const int abc_btn_colored_borderless_text_material = 2131230824;
+			public const int abc_background_cache_hint_selector_material_light = 2131230824;
 			
 			// aapt resource value: 0x7f080069
-			public const int abc_btn_colored_text_material = 2131230825;
+			public const int abc_btn_colored_borderless_text_material = 2131230825;
 			
 			// aapt resource value: 0x7f08006a
-			public const int abc_color_highlight_material = 2131230826;
+			public const int abc_btn_colored_text_material = 2131230826;
 			
 			// aapt resource value: 0x7f08006b
-			public const int abc_hint_foreground_material_dark = 2131230827;
+			public const int abc_color_highlight_material = 2131230827;
 			
 			// aapt resource value: 0x7f08006c
-			public const int abc_hint_foreground_material_light = 2131230828;
+			public const int abc_hint_foreground_material_dark = 2131230828;
+			
+			// aapt resource value: 0x7f08006d
+			public const int abc_hint_foreground_material_light = 2131230829;
 			
 			// aapt resource value: 0x7f080017
 			public const int abc_input_method_navigation_guard = 2131230743;
 			
-			// aapt resource value: 0x7f08006d
-			public const int abc_primary_text_disable_only_material_dark = 2131230829;
-			
 			// aapt resource value: 0x7f08006e
-			public const int abc_primary_text_disable_only_material_light = 2131230830;
+			public const int abc_primary_text_disable_only_material_dark = 2131230830;
 			
 			// aapt resource value: 0x7f08006f
-			public const int abc_primary_text_material_dark = 2131230831;
+			public const int abc_primary_text_disable_only_material_light = 2131230831;
 			
 			// aapt resource value: 0x7f080070
-			public const int abc_primary_text_material_light = 2131230832;
+			public const int abc_primary_text_material_dark = 2131230832;
 			
 			// aapt resource value: 0x7f080071
-			public const int abc_search_url_text = 2131230833;
+			public const int abc_primary_text_material_light = 2131230833;
+			
+			// aapt resource value: 0x7f080072
+			public const int abc_search_url_text = 2131230834;
 			
 			// aapt resource value: 0x7f080018
 			public const int abc_search_url_text_normal = 2131230744;
@@ -5408,29 +5408,29 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f08001a
 			public const int abc_search_url_text_selected = 2131230746;
 			
-			// aapt resource value: 0x7f080072
-			public const int abc_secondary_text_material_dark = 2131230834;
-			
 			// aapt resource value: 0x7f080073
-			public const int abc_secondary_text_material_light = 2131230835;
+			public const int abc_secondary_text_material_dark = 2131230835;
 			
 			// aapt resource value: 0x7f080074
-			public const int abc_tint_btn_checkable = 2131230836;
+			public const int abc_secondary_text_material_light = 2131230836;
 			
 			// aapt resource value: 0x7f080075
-			public const int abc_tint_default = 2131230837;
+			public const int abc_tint_btn_checkable = 2131230837;
 			
 			// aapt resource value: 0x7f080076
-			public const int abc_tint_edittext = 2131230838;
+			public const int abc_tint_default = 2131230838;
 			
 			// aapt resource value: 0x7f080077
-			public const int abc_tint_seek_thumb = 2131230839;
+			public const int abc_tint_edittext = 2131230839;
 			
 			// aapt resource value: 0x7f080078
-			public const int abc_tint_spinner = 2131230840;
+			public const int abc_tint_seek_thumb = 2131230840;
 			
 			// aapt resource value: 0x7f080079
-			public const int abc_tint_switch_track = 2131230841;
+			public const int abc_tint_spinner = 2131230841;
+			
+			// aapt resource value: 0x7f08007a
+			public const int abc_tint_switch_track = 2131230842;
 			
 			// aapt resource value: 0x7f08001b
 			public const int accent_material_dark = 2131230747;
@@ -5498,6 +5498,9 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f080064
 			public const int colorButtonBackground = 2131230820;
 			
+			// aapt resource value: 0x7f080065
+			public const int colorLoginBackground = 2131230821;
+			
 			// aapt resource value: 0x7f08005e
 			public const int colorPrimary = 2131230814;
 			
@@ -5546,8 +5549,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f080001
 			public const int com_facebook_button_send_background_color_pressed = 2131230721;
 			
-			// aapt resource value: 0x7f08007a
-			public const int com_facebook_button_text_color = 2131230842;
+			// aapt resource value: 0x7f08007b
+			public const int com_facebook_button_text_color = 2131230843;
 			
 			// aapt resource value: 0x7f08000e
 			public const int com_facebook_device_auth_text = 2131230734;
@@ -5564,8 +5567,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f080002
 			public const int com_facebook_messenger_blue = 2131230722;
 			
-			// aapt resource value: 0x7f08007b
-			public const int com_facebook_send_button_text_color = 2131230843;
+			// aapt resource value: 0x7f08007c
+			public const int com_facebook_send_button_text_color = 2131230844;
 			
 			// aapt resource value: 0x7f080012
 			public const int com_smart_login_code = 2131230738;
@@ -5573,8 +5576,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f080053
 			public const int design_bottom_navigation_shadow_color = 2131230803;
 			
-			// aapt resource value: 0x7f08007c
-			public const int design_error = 2131230844;
+			// aapt resource value: 0x7f08007d
+			public const int design_error = 2131230845;
 			
 			// aapt resource value: 0x7f080054
 			public const int design_fab_shadow_end_color = 2131230804;
@@ -5600,8 +5603,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f08005b
 			public const int design_snackbar_background_color = 2131230811;
 			
-			// aapt resource value: 0x7f08007d
-			public const int design_tint_password_toggle = 2131230845;
+			// aapt resource value: 0x7f08007e
+			public const int design_tint_password_toggle = 2131230846;
 			
 			// aapt resource value: 0x7f080029
 			public const int dim_foreground_disabled_material_dark = 2131230761;
@@ -5630,8 +5633,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f080031
 			public const int highlighted_text_material_light = 2131230769;
 			
-			// aapt resource value: 0x7f080065
-			public const int ic_launcher_background = 2131230821;
+			// aapt resource value: 0x7f080066
+			public const int ic_launcher_background = 2131230822;
 			
 			// aapt resource value: 0x7f080032
 			public const int material_blue_grey_800 = 2131230770;
@@ -5726,11 +5729,11 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f08004d
 			public const int switch_thumb_disabled_material_light = 2131230797;
 			
-			// aapt resource value: 0x7f08007e
-			public const int switch_thumb_material_dark = 2131230846;
-			
 			// aapt resource value: 0x7f08007f
-			public const int switch_thumb_material_light = 2131230847;
+			public const int switch_thumb_material_dark = 2131230847;
+			
+			// aapt resource value: 0x7f080080
+			public const int switch_thumb_material_light = 2131230848;
 			
 			// aapt resource value: 0x7f08004e
 			public const int switch_thumb_normal_material_dark = 2131230798;
@@ -6255,11 +6258,14 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0b00ad
 			public const int notification_top_pad_large_text = 2131427501;
 			
-			// aapt resource value: 0x7f0b00b0
-			public const int padding_margin_10 = 2131427504;
-			
 			// aapt resource value: 0x7f0b00b1
-			public const int padding_margin_5 = 2131427505;
+			public const int padding_margin_10 = 2131427505;
+			
+			// aapt resource value: 0x7f0b00b0
+			public const int padding_margin_20 = 2131427504;
+			
+			// aapt resource value: 0x7f0b00b2
+			public const int padding_margin_5 = 2131427506;
 			
 			// aapt resource value: 0x7f0b00af
 			public const int text_size_20 = 2131427503;
@@ -6267,8 +6273,11 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0b00ae
 			public const int text_size_30 = 2131427502;
 			
-			// aapt resource value: 0x7f0b00b2
-			public const int toolbar_button_60 = 2131427506;
+			// aapt resource value: 0x7f0b00b4
+			public const int toolbar_button_50 = 2131427508;
+			
+			// aapt resource value: 0x7f0b00b3
+			public const int toolbar_button_60 = 2131427507;
 			
 			// aapt resource value: 0x7f0b006c
 			public const int tooltip_corner_radius = 2131427436;
@@ -6800,8 +6809,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c004a
 			public const int SYM = 2131492938;
 			
-			// aapt resource value: 0x7f0c00c0
-			public const int action0 = 2131493056;
+			// aapt resource value: 0x7f0c00c5
+			public const int action0 = 2131493061;
 			
 			// aapt resource value: 0x7f0c008a
 			public const int action_bar = 2131493002;
@@ -6824,17 +6833,17 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0068
 			public const int action_bar_title = 2131492968;
 			
-			// aapt resource value: 0x7f0c00bd
-			public const int action_container = 2131493053;
+			// aapt resource value: 0x7f0c00c2
+			public const int action_container = 2131493058;
 			
 			// aapt resource value: 0x7f0c008b
 			public const int action_context_bar = 2131493003;
 			
-			// aapt resource value: 0x7f0c00c4
-			public const int action_divider = 2131493060;
+			// aapt resource value: 0x7f0c00c9
+			public const int action_divider = 2131493065;
 			
-			// aapt resource value: 0x7f0c00be
-			public const int action_image = 2131493054;
+			// aapt resource value: 0x7f0c00c3
+			public const int action_image = 2131493059;
 			
 			// aapt resource value: 0x7f0c0003
 			public const int action_menu_divider = 2131492867;
@@ -6851,11 +6860,11 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c006a
 			public const int action_mode_close_button = 2131492970;
 			
-			// aapt resource value: 0x7f0c00bf
-			public const int action_text = 2131493055;
+			// aapt resource value: 0x7f0c00c4
+			public const int action_text = 2131493060;
 			
-			// aapt resource value: 0x7f0c00cd
-			public const int actions = 2131493069;
+			// aapt resource value: 0x7f0c00d2
+			public const int actions = 2131493074;
 			
 			// aapt resource value: 0x7f0c006b
 			public const int activity_chooser_view_content = 2131492971;
@@ -6899,11 +6908,14 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0071
 			public const int buttonPanel = 2131492977;
 			
-			// aapt resource value: 0x7f0c00d1
-			public const int button_1 = 2131493073;
+			// aapt resource value: 0x7f0c00d5
+			public const int button_1 = 2131493077;
 			
-			// aapt resource value: 0x7f0c00c1
-			public const int cancel_action = 2131493057;
+			// aapt resource value: 0x7f0c00c0
+			public const int button_continue = 2131493056;
+			
+			// aapt resource value: 0x7f0c00c6
+			public const int cancel_action = 2131493062;
 			
 			// aapt resource value: 0x7f0c009e
 			public const int cancel_button = 2131493022;
@@ -6923,8 +6935,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0081
 			public const int checkbox = 2131492993;
 			
-			// aapt resource value: 0x7f0c00c9
-			public const int chronometer = 2131493065;
+			// aapt resource value: 0x7f0c00ce
+			public const int chronometer = 2131493070;
 			
 			// aapt resource value: 0x7f0c005c
 			public const int clip_horizontal = 2131492956;
@@ -7022,8 +7034,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0043
 			public const int end = 2131492931;
 			
-			// aapt resource value: 0x7f0c00cf
-			public const int end_padder = 2131493071;
+			// aapt resource value: 0x7f0c00d4
+			public const int end_padder = 2131493076;
 			
 			// aapt resource value: 0x7f0c0050
 			public const int enterAlways = 2131492944;
@@ -7040,8 +7052,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0080
 			public const int expanded_menu = 2131492992;
 			
-			// aapt resource value: 0x7f0c00d0
-			public const int fblogin = 2131493072;
+			// aapt resource value: 0x7f0c00bd
+			public const int facebook_login_button = 2131493053;
 			
 			// aapt resource value: 0x7f0c005e
 			public const int fill = 2131492958;
@@ -7079,8 +7091,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0070
 			public const int icon = 2131492976;
 			
-			// aapt resource value: 0x7f0c00ce
-			public const int icon_group = 2131493070;
+			// aapt resource value: 0x7f0c00d3
+			public const int icon_group = 2131493075;
 			
 			// aapt resource value: 0x7f0c004d
 			public const int ifRoom = 2131492941;
@@ -7088,11 +7100,11 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c006d
 			public const int image = 2131492973;
 			
-			// aapt resource value: 0x7f0c00d3
-			public const int imageButton1 = 2131493075;
+			// aapt resource value: 0x7f0c00d7
+			public const int imageButton1 = 2131493079;
 			
-			// aapt resource value: 0x7f0c00ca
-			public const int info = 2131493066;
+			// aapt resource value: 0x7f0c00cf
+			public const int info = 2131493071;
 			
 			// aapt resource value: 0x7f0c002c
 			public const int inline = 2131492908;
@@ -7124,17 +7136,17 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c006f
 			public const int list_item = 2131492975;
 			
-			// aapt resource value: 0x7f0c00d6
-			public const int masked = 2131493078;
+			// aapt resource value: 0x7f0c00da
+			public const int masked = 2131493082;
 			
-			// aapt resource value: 0x7f0c00c3
-			public const int media_actions = 2131493059;
+			// aapt resource value: 0x7f0c00c8
+			public const int media_actions = 2131493064;
 			
-			// aapt resource value: 0x7f0c00d4
-			public const int message = 2131493076;
+			// aapt resource value: 0x7f0c00d8
+			public const int message = 2131493080;
 			
-			// aapt resource value: 0x7f0c00bc
-			public const int messenger_send_button = 2131493052;
+			// aapt resource value: 0x7f0c00c1
+			public const int messenger_send_button = 2131493057;
 			
 			// aapt resource value: 0x7f0c0044
 			public const int middle = 2131492932;
@@ -7160,14 +7172,14 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0023
 			public const int normal = 2131492899;
 			
-			// aapt resource value: 0x7f0c00cc
-			public const int notification_background = 2131493068;
+			// aapt resource value: 0x7f0c00d1
+			public const int notification_background = 2131493073;
 			
-			// aapt resource value: 0x7f0c00c6
-			public const int notification_main_column = 2131493062;
+			// aapt resource value: 0x7f0c00cb
+			public const int notification_main_column = 2131493067;
 			
-			// aapt resource value: 0x7f0c00c5
-			public const int notification_main_column_container = 2131493061;
+			// aapt resource value: 0x7f0c00ca
+			public const int notification_main_column_container = 2131493066;
 			
 			// aapt resource value: 0x7f0c0025
 			public const int open_graph = 2131492901;
@@ -7187,6 +7199,9 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c005b
 			public const int pin = 2131492955;
 			
+			// aapt resource value: 0x7f0c00be
+			public const int profile_picture_view = 2131493054;
+			
 			// aapt resource value: 0x7f0c009c
 			public const int progress_bar = 2131493020;
 			
@@ -7205,11 +7220,11 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0030
 			public const int right = 2131492912;
 			
-			// aapt resource value: 0x7f0c00cb
-			public const int right_icon = 2131493067;
+			// aapt resource value: 0x7f0c00d0
+			public const int right_icon = 2131493072;
 			
-			// aapt resource value: 0x7f0c00c7
-			public const int right_side = 2131493063;
+			// aapt resource value: 0x7f0c00cc
+			public const int right_side = 2131493068;
 			
 			// aapt resource value: 0x7f0c000c
 			public const int save_image_matrix = 2131492876;
@@ -7319,8 +7334,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0059
 			public const int start = 2131492953;
 			
-			// aapt resource value: 0x7f0c00c2
-			public const int status_bar_latest_event_content = 2131493058;
+			// aapt resource value: 0x7f0c00c7
+			public const int status_bar_latest_event_content = 2131493063;
 			
 			// aapt resource value: 0x7f0c0084
 			public const int submenuarrow = 2131492996;
@@ -7352,14 +7367,20 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c00ba
 			public const int text_view = 2131493050;
 			
+			// aapt resource value: 0x7f0c00bc
+			public const int text_view_login = 2131493052;
+			
+			// aapt resource value: 0x7f0c00bf
+			public const int text_view_user_name = 2131493055;
+			
 			// aapt resource value: 0x7f0c0014
 			public const int textinput_counter = 2131492884;
 			
 			// aapt resource value: 0x7f0c0015
 			public const int textinput_error = 2131492885;
 			
-			// aapt resource value: 0x7f0c00c8
-			public const int time = 2131493064;
+			// aapt resource value: 0x7f0c00cd
+			public const int time = 2131493069;
 			
 			// aapt resource value: 0x7f0c001c
 			public const int title = 2131492892;
@@ -7370,8 +7391,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c007d
 			public const int title_template = 2131492989;
 			
-			// aapt resource value: 0x7f0c00d2
-			public const int toolbar_fillind_data = 2131493074;
+			// aapt resource value: 0x7f0c00d6
+			public const int toolbar_fillind_data = 2131493078;
 			
 			// aapt resource value: 0x7f0c002d
 			public const int top = 2131492909;
@@ -7412,8 +7433,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0016
 			public const int view_offset_helper = 2131492886;
 			
-			// aapt resource value: 0x7f0c00d5
-			public const int visible = 2131493077;
+			// aapt resource value: 0x7f0c00d9
+			public const int visible = 2131493081;
 			
 			// aapt resource value: 0x7f0c004f
 			public const int withText = 2131492943;
@@ -7628,91 +7649,94 @@ namespace TodoList.Droid
 			public const int itemlayout = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int messenger_button_send_blue_large = 2130968624;
+			public const int LoginLayout = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int messenger_button_send_blue_round = 2130968625;
+			public const int messenger_button_send_blue_large = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int messenger_button_send_blue_small = 2130968626;
+			public const int messenger_button_send_blue_round = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int messenger_button_send_white_large = 2130968627;
+			public const int messenger_button_send_blue_small = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int messenger_button_send_white_round = 2130968628;
+			public const int messenger_button_send_white_large = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int messenger_button_send_white_small = 2130968629;
+			public const int messenger_button_send_white_round = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int notification_action = 2130968630;
+			public const int messenger_button_send_white_small = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int notification_action_tombstone = 2130968631;
+			public const int notification_action = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int notification_media_action = 2130968632;
+			public const int notification_action_tombstone = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int notification_media_cancel_action = 2130968633;
+			public const int notification_media_action = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int notification_template_big_media = 2130968634;
+			public const int notification_media_cancel_action = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int notification_template_big_media_custom = 2130968635;
+			public const int notification_template_big_media = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int notification_template_big_media_narrow = 2130968636;
+			public const int notification_template_big_media_custom = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int notification_template_big_media_narrow_custom = 2130968637;
+			public const int notification_template_big_media_narrow = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int notification_template_custom_big = 2130968638;
+			public const int notification_template_big_media_narrow_custom = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int notification_template_icon_group = 2130968639;
+			public const int notification_template_custom_big = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int notification_template_lines_media = 2130968640;
+			public const int notification_template_icon_group = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int notification_template_media = 2130968641;
+			public const int notification_template_lines_media = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int notification_template_media_custom = 2130968642;
+			public const int notification_template_media = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int notification_template_part_chronometer = 2130968643;
+			public const int notification_template_media_custom = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int notification_template_part_time = 2130968644;
+			public const int notification_template_part_chronometer = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int select_dialog_item_material = 2130968645;
+			public const int notification_template_part_time = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int select_dialog_multichoice_material = 2130968646;
+			public const int select_dialog_item_material = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int select_dialog_singlechoice_material = 2130968647;
+			public const int select_dialog_multichoice_material = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int SplashScreen = 2130968648;
+			public const int select_dialog_singlechoice_material = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int support_simple_spinner_dropdown_item = 2130968649;
+			public const int SplashScreen = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int ToolBarCollectionLayout = 2130968650;
+			public const int support_simple_spinner_dropdown_item = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int ToolBarFillingDataLayout = 2130968651;
+			public const int ToolBarCollectionLayout = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int tooltip = 2130968652;
+			public const int ToolBarFillingDataLayout = 2130968652;
+			
+			// aapt resource value: 0x7f04004d
+			public const int tooltip = 2130968653;
 			
 			static Layout()
 			{
@@ -7836,11 +7860,11 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0a0028
 			public const int abc_toolbar_collapse_description = 2131361832;
 			
-			// aapt resource value: 0x7f0a0044
-			public const int action_settings = 2131361860;
-			
 			// aapt resource value: 0x7f0a0043
-			public const int app_name = 2131361859;
+			public const int action_settings = 2131361859;
+			
+			// aapt resource value: 0x7f0a0042
+			public const int app_name = 2131361858;
 			
 			// aapt resource value: 0x7f0a0036
 			public const int appbar_scrolling_view_behavior = 2131361846;
@@ -7926,14 +7950,11 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0a0041
 			public const int facebook_app_id = 2131361857;
 			
-			// aapt resource value: 0x7f0a0042
-			public const int fb_login_protocol_scheme = 2131361858;
-			
-			// aapt resource value: 0x7f0a0046
-			public const int goal_description_hint = 2131361862;
-			
 			// aapt resource value: 0x7f0a0045
-			public const int goal_name_hint = 2131361861;
+			public const int goal_description_hint = 2131361861;
+			
+			// aapt resource value: 0x7f0a0044
+			public const int goal_name_hint = 2131361860;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int messenger_send_button_text = 2131361792;
@@ -7959,23 +7980,26 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0a003e
 			public const int status_bar_notification_info_overflow = 2131361854;
 			
-			// aapt resource value: 0x7f0a004b
-			public const int text_delete = 2131361867;
-			
-			// aapt resource value: 0x7f0a0049
-			public const int text_done = 2131361865;
-			
-			// aapt resource value: 0x7f0a0047
-			public const int text_off = 2131361863;
+			// aapt resource value: 0x7f0a004a
+			public const int text_delete = 2131361866;
 			
 			// aapt resource value: 0x7f0a0048
-			public const int text_on = 2131361864;
-			
-			// aapt resource value: 0x7f0a004a
-			public const int text_save = 2131361866;
+			public const int text_done = 2131361864;
 			
 			// aapt resource value: 0x7f0a004c
-			public const int text_title = 2131361868;
+			public const int text_login = 2131361868;
+			
+			// aapt resource value: 0x7f0a0046
+			public const int text_off = 2131361862;
+			
+			// aapt resource value: 0x7f0a0047
+			public const int text_on = 2131361863;
+			
+			// aapt resource value: 0x7f0a0049
+			public const int text_save = 2131361865;
+			
+			// aapt resource value: 0x7f0a004b
+			public const int text_title = 2131361867;
 			
 			// aapt resource value: 0x7f0a0040
 			public const int view_scroll_translation_autohide_behavior = 2131361856;

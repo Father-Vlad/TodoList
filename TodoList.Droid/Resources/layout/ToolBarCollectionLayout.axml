@@ -11,12 +11,6 @@
 		android:minHeight="?attr/actionBarSize"
 		android:background="?android:attr/colorPrimary"
 		android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
-		<com.facebook.login.widget.LoginButton
-			android:id="@+id/fblogin"  
-			android:layout_width="@dimen/toolbar_button_60"  
-			android:layout_height="@dimen/toolbar_button_60"  
-			android:layout_gravity="center_horizontal"
-		/>
 		<Button
 			android:text="+"
 			android:backgroundTint = "@color/colorButtonBackground"

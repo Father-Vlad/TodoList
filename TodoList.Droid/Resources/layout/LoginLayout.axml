@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@color/colorLoginBackground">
+	<TextView
+		android:id="@+id/text_view_login"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/padding_margin_20"
+		android:text="@string/text_login"
+		android:textSize = "@dimen/text_size_30"
+		android:textColor="@android:color/white"
+		android:gravity="center"
+	/>
+	<com.facebook.login.widget.LoginButton
+		android:id="@+id/facebook_login_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginTop="@dimen/padding_margin_20"
+		android:layout_marginBottom="@dimen/padding_margin_20"
+	/>
+	<com.facebook.login.widget.ProfilePictureView
+		android:id="@+id/profile_picture_view"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/padding_margin_20"
+		android:layout_marginBottom="@dimen/padding_margin_20"
+		android:layout_gravity="center"
+	/>
+	<TextView
+		android:id="@+id/text_view_user_name"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="User Name"
+		android:textSize = "@dimen/text_size_30"
+		android:textColor="@android:color/white"
+		android:gravity="center"
+	/>
+	<Button
+		android:id="@+id/button_continue"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="80dp"
+		android:text="continue"
+		android:gravity="center"
+		android:layout_gravity="center_horizontal"
+		android:background="@drawable/roundedborderbutton"
+		local:MvxBind="Click CollectionActivityCommand"
+	/>
+</LinearLayout>

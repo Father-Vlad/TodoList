@@ -70,6 +70,7 @@
     <Compile Include="Views\CollectionView.cs" />
     <Compile Include="Adapter\RecyclerAdapter.cs" />
     <Compile Include="Holder\RecyclerHolder.cs" />
+    <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\MyProfileTracker.cs" />
     <Compile Include="Views\OnProfileChangedEventArgs.cs" />
   </ItemGroup>
@@ -187,6 +188,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\integers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LoginLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
