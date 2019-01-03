@@ -69,11 +69,11 @@ namespace TodoList.Droid.Views
             _mFBCallManager.OnActivityResult(requestCode, (int)resultCode, data);
         }
 
-        /*protected override void OnDestroy()
+        protected override void OnDestroy()
         {
             _mprofileTracker.StopTracking();
             base.OnDestroy();
-        }*/
+        }
 
         public void OnCancel()
         {
@@ -81,12 +81,16 @@ namespace TodoList.Droid.Views
 
         public void OnError(FacebookException error)
         {
+            if (error.Message == "net::ERR_NAME_NOT_RESOLVED")
+            {
+                Toast.MakeText(this, "No internet connection", ToastLength.Short).Show();
+            }
         }
 
         public void OnSuccess(Java.Lang.Object result)
         {
             LoginResult loginResult = result as LoginResult;
-            //this.ViewModel.UserId = loginResult.AccessToken.UserId;
+            this.ViewModel.UserId = loginResult.AccessToken.UserId;
             Console.WriteLine(loginResult.AccessToken.UserId);
         }
     }

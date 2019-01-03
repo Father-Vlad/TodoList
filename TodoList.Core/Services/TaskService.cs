@@ -14,6 +14,7 @@ namespace TodoList.Core.Services
         {
             _sqlConnection = connection.GetDataBaseConnection();
             _sqlConnection.CreateTable<Goal>();
+            _sqlConnection.CreateTable<User>();
         }
 
         public List<Goal> GetAllGoals()
@@ -37,6 +38,23 @@ namespace TodoList.Core.Services
         public void DeleteGoal(int goalId)
         {
             _sqlConnection.Delete<Goal>(goalId);
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return (from data in _sqlConnection.Table<User>() select data).ToList();
+        }
+
+        public void InsertUser(User user)
+        {
+            if (user.Id != 0)
+            {
+                _sqlConnection.Update(user);
+            }
+            if (user.Id == 0)
+            {
+                _sqlConnection.Insert(user);
+            }
         }
 
         //public Goal GetGoalData(int goalId)

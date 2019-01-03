@@ -11,5 +11,7 @@ namespace TodoList.Core.Interfaces
         //Goal GetGoalData(int goalId);
         //void UpdateGoal(Goal goal);
         //void DeleteAllGoals();
+        List<User> GetAllUsers();
+        void InsertUser(User user);
     }
 }

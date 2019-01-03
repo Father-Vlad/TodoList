@@ -20,7 +20,6 @@ namespace TodoList.Core.Models
         }
         public Goal()
         {
-
         }
     }
 }
