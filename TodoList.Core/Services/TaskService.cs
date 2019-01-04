@@ -57,6 +57,11 @@ namespace TodoList.Core.Services
             }
         }
 
+        public List<Goal> GetUserGoal(string currentUserId)
+        {
+            return (from data in _sqlConnection.Table<Goal>() where data.UserId == currentUserId select data).ToList();
+        }
+
         //public Goal GetGoalData(int goalId)
         //{
         //    return _sqlConnection.Table<Goal>().FirstOrDefault(x => x.Id == goalId);

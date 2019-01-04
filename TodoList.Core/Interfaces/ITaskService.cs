@@ -8,6 +8,7 @@ namespace TodoList.Core.Interfaces
         List<Goal> GetAllGoals();
         void InsertGoal(Goal goal);
         void DeleteGoal(int goalId);
+        List<Goal> GetUserGoal(string currentUserId);
         //Goal GetGoalData(int goalId);
         //void UpdateGoal(Goal goal);
         //void DeleteAllGoals();

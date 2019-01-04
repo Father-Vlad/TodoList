@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
+using TodoList.Core.Services;
 
 namespace TodoList.Core.ViewModels
 {
@@ -17,6 +18,7 @@ namespace TodoList.Core.ViewModels
         private ITaskService _taskService;
         private int _goalId;
         private bool _saveButtonEnableStatus = false;
+        private string _userId;
 
         public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService)
         {
@@ -136,7 +138,7 @@ namespace TodoList.Core.ViewModels
 
         private async Task SaveDataToDB()
         {
-            Goal goal = new Goal(GoalId, GoalName, GoalDescription, GoalStatus);
+            Goal goal = new Goal(GoalId, GoalName, GoalDescription, GoalStatus, UserId);
             _taskService.InsertGoal(goal);
             await _navigationService.Close(this);
         }
@@ -146,6 +148,21 @@ namespace TodoList.Core.ViewModels
             get
             {
                 return new MvxAsyncCommand(DeleteDataFromDB);
+            }
+        }
+
+        public string UserId
+        {
+            get
+            {
+                _userId = CurrentUser.UserId;
+                return _userId;
+            }
+
+            set
+            {
+                _userId = value;
+                RaisePropertyChanged(() => UserId);
             }
         }
 

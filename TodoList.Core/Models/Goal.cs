@@ -10,13 +10,15 @@ namespace TodoList.Core.Models
         public string GoalName { get; set; }
         public string GoalDescription { get; set; }
         public bool GoalStatus { get; set; }
+        public string UserId { get; set; }
 
-        public Goal(int id, string goalName, string goalDescription, bool goalStatus)
+        public Goal(int id, string goalName, string goalDescription, bool goalStatus, string userId)
         {
             Id = id;
             GoalName = goalName;
             GoalDescription = goalDescription;
             GoalStatus = goalStatus;
+            UserId = userId;
         }
         public Goal()
         {

@@ -39,6 +39,7 @@
 		android:textSize = "@dimen/text_size_30"
 		android:textColor="@android:color/white"
 		android:gravity="center"
+		local:MvxBind="Text UserFullName"
 	/>
 	<Button
 		android:id="@+id/button_continue"
@@ -49,6 +50,6 @@
 		android:gravity="center"
 		android:layout_gravity="center_horizontal"
 		android:background="@drawable/roundedborderbutton"
-		local:MvxBind="Click CollectionActivityCommand"
+		local:MvxBind="Click CollectionActivityCommand; Enabled ContinueButtonEnableStatus"
 	/>
 </LinearLayout>

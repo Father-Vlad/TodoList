@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
+using TodoList.Core.Services;
 
 namespace TodoList.Core.ViewModels
 {
@@ -31,7 +32,7 @@ namespace TodoList.Core.ViewModels
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-            var list = _taskService.GetAllGoals();
+            var list = _taskService.GetUserGoal(CurrentUser.UserId);
             Goals = new MvxObservableCollection<Goal>(list);
             RaisePropertyChanged(() => Goals);
         }
@@ -67,7 +68,7 @@ namespace TodoList.Core.ViewModels
         private void UpdateDataFromDB()
         {
             IsRefreshing = true;
-            var list = _taskService.GetAllGoals();
+            var list = _taskService.GetUserGoal(CurrentUser.UserId);
             Goals = new MvxObservableCollection<Goal>(list);
             IsRefreshing = false;
         }

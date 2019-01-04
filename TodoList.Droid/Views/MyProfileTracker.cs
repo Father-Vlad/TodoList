@@ -5,16 +5,12 @@ namespace TodoList.Droid.Views
 {
     public class MyProfileTracker : ProfileTracker
     {
-        public event EventHandler<OnProfileChangedEventArgs> mOnProfileChanged;
+        public event EventHandler<OnProfileChangedEventArgs> MyOnProfileChanged;
         protected override void OnCurrentProfileChanged(Profile oldProfile, Profile newProfile)
         {
-            //if(mOnProfileChanged == null)
-            //{
-            //    mOnProfileChanged.Invoke(this, new OnProfileChangedEventArgs(oldProfile));
-            //}
-            if (mOnProfileChanged != null)
+            if (MyOnProfileChanged != null)
             {
-                mOnProfileChanged.Invoke(this, new OnProfileChangedEventArgs(newProfile));
+                MyOnProfileChanged.Invoke(this, new OnProfileChangedEventArgs(newProfile));
             }
         }
     }
