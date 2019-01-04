@@ -87,8 +87,9 @@ namespace TodoList.Droid.Views
 
         public void OnSuccess(Java.Lang.Object result)
         {
-            LoginResult loginResult = result as LoginResult;
-            CurrentUser.UserId = loginResult.AccessToken.UserId.ToString();
+            Toast.MakeText(this, "Success", ToastLength.Short).Show();
+            //LoginResult loginResult = result as LoginResult;
+            //CurrentUser.CurrentUserId = loginResult.AccessToken.UserId.ToString();
         }
     }
 }

@@ -2,18 +2,18 @@
 {
     public class CurrentUser
     {
-        private static string s_userId;
+        private static string _currentUserId = string.Empty;
 
-        public static string UserId
+        public static string CurrentUserId
         {
             get
             {
-                return s_userId;
+                return _currentUserId;
             }
 
             set
             {
-                s_userId = value;
+                _currentUserId = value;
             }
         }
     }

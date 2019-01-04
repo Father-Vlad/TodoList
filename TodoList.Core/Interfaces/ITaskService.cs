@@ -5,6 +5,7 @@ namespace TodoList.Core.Interfaces
 {
     public interface ITaskService
     {
+        //For Goals
         List<Goal> GetAllGoals();
         void InsertGoal(Goal goal);
         void DeleteGoal(int goalId);
@@ -12,7 +13,14 @@ namespace TodoList.Core.Interfaces
         //Goal GetGoalData(int goalId);
         //void UpdateGoal(Goal goal);
         //void DeleteAllGoals();
+
+        //For Users
         List<User> GetAllUsers();
+        User GetUser(string currentUserId);
         void InsertUser(User user);
+
+        //For LastUser
+        LastUser GetLastUser();
+        void InsertLastUser(LastUser user);
     }
 }

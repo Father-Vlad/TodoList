@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
+using TodoList.Core.Services;
 
 namespace TodoList.Core.ViewModels
 {
@@ -26,6 +27,22 @@ namespace TodoList.Core.ViewModels
 
         public IMvxCommand CollectionActivityCommand { get; set; }
 
+        public override void ViewAppearing()
+        {
+            LastUser lastUser = _taskService.GetLastUser();
+            if (lastUser != null)
+            {
+                CurrentUser.CurrentUserId = lastUser.UserId;
+            }
+            User user = _taskService.GetUser(CurrentUser.CurrentUserId);
+            if (user != null)
+            {
+                UserId = user.UserId;
+                UserFirstName = user.UserFirstName;
+                UserLastName = user.UserLastName;
+                RaisePropertyChanged(() => UserFullName);
+            }
+        }
         public async Task CreateNewGoal()
         {
             var result = await _navigationService.Navigate<CollectionViewModel>();
@@ -36,16 +53,19 @@ namespace TodoList.Core.ViewModels
             UserId = userId;
             UserFirstName = userFirstName;
             UserLastName = userLastName;
-            UserFullName = string.Format($"{UserFirstName} {UserLastName}");
-            User user = new User(0, UserId, UserFirstName, UserLastName);
+            RaisePropertyChanged(() => UserFullName);
+            User user = new User(UserId, UserFirstName, UserLastName);
+            LastUser lastUser = new LastUser(user.UserId);
             _taskService.InsertUser(user);
+            _taskService.InsertLastUser(lastUser);
+            CurrentUser.CurrentUserId = lastUser.UserId;
         }
 
         public bool ContinueButtonEnableStatus
         {
             get
             {
-                if (UserId == null | UserId == string.Empty)
+                if (UserId == null || UserId == string.Empty)
                 {
                     return _continueButtonStatus = false;
                 }
@@ -106,6 +126,10 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
+                if (UserFirstName != string.Empty && UserFirstName != null)
+                {
+                    _userFullName = string.Format($"{UserFirstName} {UserLastName}");
+                }
                 return _userFullName;
             }
             set

@@ -155,7 +155,7 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
-                _userId = CurrentUser.UserId;
+                _userId = CurrentUser.CurrentUserId;
                 return _userId;
             }
 

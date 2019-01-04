@@ -15,11 +15,18 @@ namespace TodoList.Core.Services
             _sqlConnection = connection.GetDataBaseConnection();
             _sqlConnection.CreateTable<Goal>();
             _sqlConnection.CreateTable<User>();
+            _sqlConnection.CreateTable<LastUser>();
         }
 
+        //For Goals
         public List<Goal> GetAllGoals()
         {
             return (from data in _sqlConnection.Table<Goal>() select data).ToList();
+        }
+
+        public List<Goal> GetUserGoal(string currentUserId)
+        {
+            return (from data in _sqlConnection.Table<Goal>() where data.UserId == currentUserId select data).ToList();
         }
 
         public void InsertGoal(Goal goal)
@@ -40,9 +47,15 @@ namespace TodoList.Core.Services
             _sqlConnection.Delete<Goal>(goalId);
         }
 
+        //For Users
         public List<User> GetAllUsers()
         {
             return (from data in _sqlConnection.Table<User>() select data).ToList();
+        }
+
+        public User GetUser(string currentUserId)
+        {
+            return _sqlConnection.Table<User>().FirstOrDefault(x => x.UserId == currentUserId);
         }
 
         public void InsertUser(User user)
@@ -57,11 +70,19 @@ namespace TodoList.Core.Services
             }
         }
 
-        public List<Goal> GetUserGoal(string currentUserId)
+        //For CurrentUser
+        public LastUser GetLastUser()
         {
-            return (from data in _sqlConnection.Table<Goal>() where data.UserId == currentUserId select data).ToList();
+            return _sqlConnection.Table<LastUser>().FirstOrDefault(x => x.Id == (int)0);
         }
 
+        public void InsertLastUser(LastUser user)
+        {
+            _sqlConnection.Update(user);
+        }
+        
+        
+        
         //public Goal GetGoalData(int goalId)
         //{
         //    return _sqlConnection.Table<Goal>().FirstOrDefault(x => x.Id == goalId);

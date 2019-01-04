@@ -11,9 +11,8 @@ namespace TodoList.Core.Models
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }
 
-        public User(int id, string userId, string userFirstName, string userLastName)
+        public User(string userId, string userFirstName, string userLastName)
         {
-            Id = id;
             UserId = userId;
             UserFirstName = userFirstName;
             UserLastName = userLastName;
