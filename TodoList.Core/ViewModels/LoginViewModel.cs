@@ -51,6 +51,11 @@ namespace TodoList.Core.ViewModels
             var result = await _navigationService.Navigate<CollectionViewModel>();
         }
 
+        public string GetCurrentUserId()
+        {
+            return _taskService.GetLastUser();
+        }
+
         public void CreateNewUser(string userId, string userName)
         {
             WelcomeText = _strLogin;

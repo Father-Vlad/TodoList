@@ -37,6 +37,7 @@ namespace TodoList.Droid.Views
             Typeface newTypeface = Typeface.CreateFromAsset(Assets, "Gothic.ttf");
             _textViewWelcome.SetTypeface(newTypeface, TypefaceStyle.Normal);
             _profilePictureView = FindViewById<ProfilePictureView>(Resource.Id.profile_picture_view);
+            _profilePictureView.ProfileId = this.ViewModel.GetCurrentUserId();
         }
 
         void MyProfileTracker_mOnProfileChanged(object sender, OnProfileChangedEventArgs e)
