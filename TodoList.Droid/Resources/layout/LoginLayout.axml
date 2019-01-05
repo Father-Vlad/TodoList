@@ -39,7 +39,7 @@
 		android:textSize = "@dimen/text_size_30"
 		android:textColor="@android:color/white"
 		android:gravity="center"
-		local:MvxBind="Text UserFullName"
+		local:MvxBind="Text UserName"
 	/>
 	<Button
 		android:id="@+id/button_continue"

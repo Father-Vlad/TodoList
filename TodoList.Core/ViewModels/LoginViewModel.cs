@@ -11,54 +11,53 @@ namespace TodoList.Core.ViewModels
     public class LoginViewModel : MvxViewModel
     {
         private string _userId = string.Empty;
-        private string _userFirstName;
-        private string _userLastName;
-        private string _userFullName = "User Name";
+        private string _userName = "User Name";
         private bool _continueButtonStatus = false;
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _taskService;
+        public IMvxCommand CollectionActivityCommand { get; set; }
 
         public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService)
         {
             _navigationService = navigationService;
             _taskService = taskService;
-            CollectionActivityCommand = new MvxAsyncCommand(CreateNewGoal);
+            CollectionActivityCommand = new MvxAsyncCommand(LookAtCurrentGoals);
         }
-
-        public IMvxCommand CollectionActivityCommand { get; set; }
 
         public override void ViewAppearing()
         {
-            LastUser lastUser = _taskService.GetLastUser();
-            if (lastUser != null)
+            CurrentUser.CurrentUserId = _taskService.GetLastUser() ?? string.Empty;
+            if (CurrentUser.CurrentUserId == string.Empty)
             {
-                CurrentUser.CurrentUserId = lastUser.UserId;
+                return;
             }
             User user = _taskService.GetUser(CurrentUser.CurrentUserId);
             if (user != null)
             {
                 UserId = user.UserId;
-                UserFirstName = user.UserFirstName;
-                UserLastName = user.UserLastName;
-                RaisePropertyChanged(() => UserFullName);
+                UserName = user.UserName;
             }
         }
-        public async Task CreateNewGoal()
+
+        public async Task LookAtCurrentGoals()
         {
             var result = await _navigationService.Navigate<CollectionViewModel>();
         }
 
-        public void CreateNewUser(string userId, string userFirstName, string userLastName)
+        public void CreateNewUser(string userId, string userName)
         {
             UserId = userId;
-            UserFirstName = userFirstName;
-            UserLastName = userLastName;
-            RaisePropertyChanged(() => UserFullName);
-            User user = new User(UserId, UserFirstName, UserLastName);
-            LastUser lastUser = new LastUser(user.UserId);
+            UserName = userName;
+            User user = new User(UserId, UserName);
             _taskService.InsertUser(user);
-            _taskService.InsertLastUser(lastUser);
-            CurrentUser.CurrentUserId = lastUser.UserId;
+            _taskService.InsertOrReplaceLastUser(new LastUser(user.UserId));
+            CurrentUser.CurrentUserId = _taskService.GetLastUser();
+        }
+
+        public void LogOut()
+        {
+            UserId = string.Empty;
+            UserName = "User Name";
         }
 
         public bool ContinueButtonEnableStatus
@@ -94,48 +93,16 @@ namespace TodoList.Core.ViewModels
             }
         }
 
-        public string UserFirstName
+        public string UserName
         {
             get
             {
-                return _userFirstName;
-            }
-
-            set
-            {
-                _userFirstName = value;
-                RaisePropertyChanged(() => UserFirstName);
-            }
-        }
-
-        public string UserLastName
-        {
-            get
-            {
-                return _userLastName;
-            }
-
-            set
-            {
-                _userLastName = value;
-                RaisePropertyChanged(() => UserLastName);
-            }
-        }
-
-        public string UserFullName
-        {
-            get
-            {
-                if (UserFirstName != string.Empty && UserFirstName != null)
-                {
-                    _userFullName = string.Format($"{UserFirstName} {UserLastName}");
-                }
-                return _userFullName;
+                return _userName;
             }
             set
             {
-                _userFullName = value;
-                RaisePropertyChanged(() => UserFullName);
+                _userName = value;
+                RaisePropertyChanged(() => UserName);
             }
         }
     }

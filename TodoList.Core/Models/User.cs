@@ -8,14 +8,12 @@ namespace TodoList.Core.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string UserId { get; set; }
-        public string UserFirstName { get; set; }
-        public string UserLastName { get; set; }
+        public string UserName { get; set; }
 
-        public User(string userId, string userFirstName, string userLastName)
+        public User(string userId, string userName)
         {
             UserId = userId;
-            UserFirstName = userFirstName;
-            UserLastName = userLastName;
+            UserName = userName;
         }
         public User()
         {

@@ -71,14 +71,14 @@ namespace TodoList.Core.Services
         }
 
         //For CurrentUser
-        public LastUser GetLastUser()
+        public string GetLastUser()
         {
-            return _sqlConnection.Table<LastUser>().FirstOrDefault(x => x.Id == (int)0);
+            return _sqlConnection.Table<LastUser>().FirstOrDefault(x => x.Id == 0)?.UserId;
         }
 
-        public void InsertLastUser(LastUser user)
+        public void InsertOrReplaceLastUser(LastUser user)
         {
-            _sqlConnection.Update(user);
+            _sqlConnection.InsertOrReplace(user);
         }
         
         

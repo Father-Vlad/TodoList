@@ -45,7 +45,7 @@ namespace TodoList.Droid.Views
             {
                 try
                 {
-                    this.ViewModel.CreateNewUser(e.mProfile.Id, e.mProfile.FirstName.ToString(), e.mProfile.LastName.ToString());
+                    this.ViewModel.CreateNewUser(e.mProfile.Id, e.mProfile.Name.ToString());
                     _profilePictureView.ProfileId = e.mProfile.Id;
                 }
                 catch (Java.Lang.Exception ex)
@@ -55,8 +55,7 @@ namespace TodoList.Droid.Views
             }
             if (e.mProfile == null)
             {
-                this.ViewModel.UserFullName = "User Name";
-                this.ViewModel.UserId = string.Empty;
+                this.ViewModel.LogOut();
                 _profilePictureView.ProfileId = null;
             }
         }

@@ -20,7 +20,7 @@ namespace TodoList.Core.Interfaces
         void InsertUser(User user);
 
         //For LastUser
-        LastUser GetLastUser();
-        void InsertLastUser(LastUser user);
+        string GetLastUser();
+        void InsertOrReplaceLastUser(LastUser user);
     }
 }
