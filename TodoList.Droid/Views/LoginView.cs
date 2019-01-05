@@ -57,6 +57,7 @@ namespace TodoList.Droid.Views
             {
                 this.ViewModel.LogOut();
                 _profilePictureView.ProfileId = null;
+                Toast.MakeText(this, "Logged Out", ToastLength.Short).Show();
             }
         }
 
@@ -87,8 +88,6 @@ namespace TodoList.Droid.Views
         public void OnSuccess(Java.Lang.Object result)
         {
             Toast.MakeText(this, "Success", ToastLength.Short).Show();
-            //LoginResult loginResult = result as LoginResult;
-            //CurrentUser.CurrentUserId = loginResult.AccessToken.UserId.ToString();
         }
     }
 }

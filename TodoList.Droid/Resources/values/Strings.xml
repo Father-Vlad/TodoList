@@ -11,6 +11,4 @@
   <string name="text_save">Save</string>
   <string name="text_delete">Delete</string>
   <string name="text_title">To-do List</string>
-  <string name="text_login">Welcome to To-do List app. Please login to continue.</string>
-
 </resources>

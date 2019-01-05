@@ -10,15 +10,21 @@ namespace TodoList.Core.ViewModels
 {
     public class LoginViewModel : MvxViewModel
     {
+        private readonly string _strLogin = "You are \nlogged in \nas:";
+        private readonly string _strLoggedOut = "Welcome to To-do List app. Please login to continue.";
+        private readonly string _strUserName = "User Name";
         private string _userId = string.Empty;
-        private string _userName = "User Name";
+        private string _userName;
         private bool _continueButtonStatus = false;
+        private string _welcomeText;
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _taskService;
         public IMvxCommand CollectionActivityCommand { get; set; }
 
         public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService)
         {
+            UserName = _strUserName;
+            WelcomeText = _strLoggedOut;
             _navigationService = navigationService;
             _taskService = taskService;
             CollectionActivityCommand = new MvxAsyncCommand(LookAtCurrentGoals);
@@ -31,6 +37,7 @@ namespace TodoList.Core.ViewModels
             {
                 return;
             }
+            WelcomeText = _strLogin;
             User user = _taskService.GetUser(CurrentUser.CurrentUserId);
             if (user != null)
             {
@@ -46,6 +53,7 @@ namespace TodoList.Core.ViewModels
 
         public void CreateNewUser(string userId, string userName)
         {
+            WelcomeText = _strLogin;
             UserId = userId;
             UserName = userName;
             User user = new User(UserId, UserName);
@@ -57,7 +65,8 @@ namespace TodoList.Core.ViewModels
         public void LogOut()
         {
             UserId = string.Empty;
-            UserName = "User Name";
+            UserName = _strUserName;
+            WelcomeText = _strLoggedOut;
         }
 
         public bool ContinueButtonEnableStatus
@@ -75,6 +84,20 @@ namespace TodoList.Core.ViewModels
             {
                 _continueButtonStatus = value;
                 RaisePropertyChanged(() => ContinueButtonEnableStatus);
+            }
+        }
+
+        public string WelcomeText
+        {
+            get
+            {
+                return _welcomeText;
+            }
+
+            set
+            {
+                _welcomeText = value;
+                RaisePropertyChanged(() => WelcomeText);
             }
         }
 

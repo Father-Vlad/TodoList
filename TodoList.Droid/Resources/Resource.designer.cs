@@ -7986,9 +7986,6 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0a0048
 			public const int text_done = 2131361864;
 			
-			// aapt resource value: 0x7f0a004c
-			public const int text_login = 2131361868;
-			
 			// aapt resource value: 0x7f0a0046
 			public const int text_off = 2131361862;
 			
