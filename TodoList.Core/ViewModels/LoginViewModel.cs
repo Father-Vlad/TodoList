@@ -10,9 +10,9 @@ namespace TodoList.Core.ViewModels
 {
     public class LoginViewModel : MvxViewModel
     {
-        private readonly string _strLogin = "You are \nlogged in \nas:";
+        private readonly string _strLogin = "\nWelcome\n";
         private readonly string _strLoggedOut = "Welcome to To-do List app. Please login to continue.";
-        private readonly string _strUserName = "User Name";
+        private readonly string _strUserName = "What is your name";
         private string _userId = string.Empty;
         private string _userName;
         private bool _continueButtonStatus = false;
