@@ -16,8 +16,19 @@
 		android:gravity="center"
 		local:MvxBind="Text WelcomeText"
 	/>
-	<com.facebook.login.widget.LoginButton
+	<Button
 		android:id="@+id/facebook_login_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="Continue with Facebook"
+		android:textColor="@color/colorWhite"
+		android:textAllCaps="false"
+		android:layout_gravity="center"
+		android:background="#3b5998"
+	/>
+	<com.facebook.login.widget.LoginButton
+		android:id="@+id/facebook_login_button2"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
