@@ -82,7 +82,7 @@ namespace TodoList.Droid.Views
             var fbResponse = await request.GetResponseAsync();
             var json = fbResponse.GetResponseText();
             var fbUser = JsonConvert.DeserializeObject(json);
-            var name = fbUser;
+            //var name = fbUser;
             //var id = fbUser["id"];
             //var picture = fbUser["picture"]["data"]["url"];
             ;
