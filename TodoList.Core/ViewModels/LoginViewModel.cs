@@ -17,6 +17,9 @@ namespace TodoList.Core.ViewModels
         private string _userName;
         private bool _continueButtonStatus = false;
         private string _welcomeText;
+        private string _url = "   Continue with Facebook";
+        private string _urlId;
+        private bool _vMProperty = false;
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _taskService;
         public IMvxCommand CollectionActivityCommand { get; set; }
@@ -43,6 +46,53 @@ namespace TodoList.Core.ViewModels
             {
                 UserId = user.UserId;
                 UserName = user.UserName;
+            }
+        }
+
+        public bool VMProperty
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(UrlId))
+                {
+                    return _vMProperty = false;
+                }
+                return _vMProperty = true;
+            }
+
+            set
+            {
+                _vMProperty = value;
+                RaisePropertyChanged(() => VMProperty);
+            }
+        }
+
+        public string Url
+        {
+            get
+            {
+                return _url;
+            }
+
+            set
+            {
+                _url = value;
+                RaisePropertyChanged(() => Url);
+            }
+        }
+
+        public string UrlId
+        {
+            get
+            {
+                return _urlId;
+            }
+
+            set
+            {
+                _urlId = value;
+                RaisePropertyChanged(() => UrlId);
+                RaisePropertyChanged(() => VMProperty);
             }
         }
 

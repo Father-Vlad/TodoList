@@ -17,23 +17,17 @@
 		local:MvxBind="Text WelcomeText"
 	/>
 	<Button
-		android:id="@+id/facebook_login_button"
+		android:drawableLeft="@drawable/com_facebook_button_icon_white"
+		android:background="@drawable/roundedloginbuttonxml"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:gravity="center"
-		android:text="Continue with Facebook"
-		android:textColor="@color/colorWhite"
+		android:layout_gravity="center"
+		android:gravity="right|center"
 		android:textAllCaps="false"
-		android:layout_gravity="center"
-		android:background="#3b5998"
-	/>
-	<com.facebook.login.widget.LoginButton
-		android:id="@+id/facebook_login_button2"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:layout_marginTop="@dimen/padding_margin_20"
-		android:layout_marginBottom="@dimen/padding_margin_20"
+		android:textColor="@android:color/white"
+		android:paddingHorizontal="@dimen/padding_margin_10"
+		android:id="@+id/facebook_login_button"
+		local:MvxBind="Text Url"
 	/>
 	<com.facebook.login.widget.ProfilePictureView
 		android:id="@+id/profile_picture_view"
@@ -42,6 +36,7 @@
 		android:layout_marginTop="@dimen/padding_margin_20"
 		android:layout_marginBottom="@dimen/padding_margin_20"
 		android:layout_gravity="center"
+		local:MvxBind = "ProfileId UrlId; Visible VMProperty"
 	/>
 	<TextView
 		android:id="@+id/text_view_user_name"
