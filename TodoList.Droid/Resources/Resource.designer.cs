@@ -7059,7 +7059,7 @@ namespace TodoList.Droid
 			public const int image = 2131492973;
 			
 			// aapt resource value: 0x7f0c00d8
-			public const int imageButton1 = 2131493080;
+			public const int image_back_button = 2131493080;
 			
 			// aapt resource value: 0x7f0c00da
 			public const int image_continue_button = 2131493082;

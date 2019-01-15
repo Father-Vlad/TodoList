@@ -15,7 +15,7 @@
 			android:layout_width="@dimen/toolbar_button_60"
 			android:layout_height="@dimen/toolbar_button_60"
 			android:backgroundTint = "@color/colorButtonBackground"
-			android:id="@+id/imageButton1" 
+			android:id="@+id/image_back_button" 
 			local:MvxBind = "Click SendBackCommand"
 		/>
 		<TextView

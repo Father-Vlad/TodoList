@@ -1,9 +1,7 @@
-﻿using Android.App;
-using Android.OS;
+﻿using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
-using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -19,7 +17,13 @@ namespace TodoList.Droid.Views
         private RecyclerView.LayoutManager _layoutManager;
         private MvxRecyclerView _recyclerView;
 
-        protected override int FragmentId => Resource.Layout.CollectionLayout;
+        protected override int FragmentId
+        {
+            get
+            {
+                return Resource.Layout.CollectionLayout;
+            }
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -31,16 +35,5 @@ namespace TodoList.Droid.Views
             _recyclerView.Adapter = _recyclerAdapter;
             return view;
         }
-
-        /*protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-
-            _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.recycler_view_main);
-            _layoutManager = new LinearLayoutManager(this);
-            _recyclerView.SetLayoutManager(_layoutManager);
-            _recyclerAdapter = new RecyclerAdapter((IMvxAndroidBindingContext)this.BindingContext);
-            _recyclerView.Adapter = _recyclerAdapter;
-        }*/
     }
 }
