@@ -15,14 +15,14 @@ namespace TodoList.Core.ViewModels
         private readonly string _strUserName = "What is your name";
         private string _userId = string.Empty;
         private string _userName;
-        private bool _continueButtonStatus = false;
+        private bool _continueButtonStatus = true;
         private string _welcomeText;
         private string _url = "   Continue with Facebook";
         private string _urlId;
         private bool _vMProperty = false;
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _taskService;
-        public IMvxCommand CollectionActivityCommand { get; set; }
+        public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
 
         public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService)
         {
@@ -30,7 +30,7 @@ namespace TodoList.Core.ViewModels
             WelcomeText = _strLoggedOut;
             _navigationService = navigationService;
             _taskService = taskService;
-            CollectionActivityCommand = new MvxAsyncCommand(LookAtCurrentGoals);
+            NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
         }
 
         public override void ViewAppearing()
@@ -128,10 +128,10 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
-                if (UserId == null || UserId == string.Empty)
+                /*if (UserId == null || UserId == string.Empty)
                 {
                     return _continueButtonStatus = false;
-                }
+                }*/
                 return _continueButtonStatus = true;
             }
 

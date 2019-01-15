@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 	android:background="@color/colorLoginBackground">
+	<include
+		layout="@layout/toolbarloginlayout"
+	/>
 	<TextView
 		android:id="@+id/text_view_login"
 		android:layout_width="match_parent"
@@ -57,6 +60,6 @@
 		android:gravity="center"
 		android:layout_gravity="center_horizontal"
 		android:background="@drawable/roundedborderbutton"
-		local:MvxBind="Click CollectionActivityCommand; Enabled ContinueButtonEnableStatus"
+		local:MvxBind="Click NavigateToCollectionFragmentCommand; Enabled ContinueButtonEnableStatus"
 	/>
 </LinearLayout>
