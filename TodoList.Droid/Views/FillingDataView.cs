@@ -48,8 +48,11 @@ namespace TodoList.Droid.Views
 
         private void HideKeyboard()
         {
-            InputMethodManager imm = (InputMethodManager)Activity.GetSystemService(Context.InputMethodService);
-            imm.HideSoftInputFromWindow(Activity.CurrentFocus.WindowToken, 0);
+            if (Activity.CurrentFocus != null)
+            {
+                InputMethodManager imm = (InputMethodManager)Activity.GetSystemService(Context.InputMethodService);
+                imm.HideSoftInputFromWindow(Activity.CurrentFocus.WindowToken, 0);
+            }
         }
         public override void OnDestroyView()
         {

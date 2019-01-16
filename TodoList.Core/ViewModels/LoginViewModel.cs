@@ -1,10 +1,12 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
 using TodoList.Core.Services;
+using Xamarin.Auth;
 
 namespace TodoList.Core.ViewModels
 {
@@ -22,10 +24,12 @@ namespace TodoList.Core.ViewModels
         private bool _vMProperty = false;
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _taskService;
-        public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
+        private readonly ILoginService _loginService;
 
-        public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService)
+        public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
         {
+            _loginService = loginService;
+            _loginService.OnLoggedInHandler = new Action(() => NavigateToCollectionFragmentCommand.Execute());
             UserName = _strUserName;
             WelcomeText = _strLoggedOut;
             _navigationService = navigationService;
@@ -33,6 +37,10 @@ namespace TodoList.Core.ViewModels
             NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
         }
 
+        public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
+
+        public IMvxCommand LoginFacebookCommand => new MvxCommand(_loginService.LoginFacebook);
+        
         public override void ViewAppearing()
         {
             CurrentUser.CurrentUserId = _taskService.GetLastUser() ?? string.Empty;
@@ -46,6 +54,14 @@ namespace TodoList.Core.ViewModels
             {
                 UserId = user.UserId;
                 UserName = user.UserName;
+            }
+        }
+
+        public OAuth2Authenticator Authenticator
+        {
+            get
+            {
+                return _loginService.Authenticator();
             }
         }
 
