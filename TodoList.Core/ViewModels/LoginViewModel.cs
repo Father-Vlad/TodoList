@@ -5,23 +5,21 @@ using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
-using TodoList.Core.Services;
 using Xamarin.Auth;
 
 namespace TodoList.Core.ViewModels
 {
     public class LoginViewModel : MvxViewModel
     {
-        private readonly string _strLogin = "\nWelcome\n";
-        private readonly string _strLoggedOut = "Welcome to To-do List app. Please login to continue.";
-        private readonly string _strUserName = "What is your name";
-        private string _userId = string.Empty;
+        private readonly string _strLoginWelcomeText = "Please login to continue.";
+        private readonly string _strLogInButtonText = "   Continue with Facebook";
+        private readonly string _strLoggedOutButtonText = "   Logged out";
+        private string _userId;
         private string _userName;
-        private bool _continueButtonStatus = true;
+        private bool _continueButtonStatus;
         private string _welcomeText;
-        private string _url = "   Continue with Facebook";
-        private string _urlId;
-        private bool _vMProperty = false;
+        private string _loginButtonText;
+        private bool _ProfilePictureViewVisibleStatus = false;
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _taskService;
         private readonly ILoginService _loginService;
@@ -29,132 +27,51 @@ namespace TodoList.Core.ViewModels
         public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
         {
             _loginService = loginService;
-            _loginService.OnLoggedInHandler = new Action(() => NavigateToCollectionFragmentCommand.Execute());
-            UserName = _strUserName;
-            WelcomeText = _strLoggedOut;
+            _loginService.OnLoggedInHandler = new Action(() => FillingLoginUserDataCommand.Execute());
+            _loginService.OnLoggedOutHandler = new Action(() => DeleteLoginUserDataCommand.Execute());
             _navigationService = navigationService;
             _taskService = taskService;
             NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
+            FillingLoginUserDataCommand = new MvxAsyncCommand(FillingLoginUserData);
+            DeleteLoginUserDataCommand = new MvxAsyncCommand(DeleteLoginUserData);
         }
+
+        public IMvxCommand FillingLoginUserDataCommand { get; set; }
+
+        public IMvxCommand DeleteLoginUserDataCommand { get; set; }
 
         public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
 
         public IMvxCommand LoginFacebookCommand => new MvxCommand(_loginService.LoginFacebook);
-        
-        public override void ViewAppearing()
-        {
-            CurrentUser.CurrentUserId = _taskService.GetLastUser() ?? string.Empty;
-            if (CurrentUser.CurrentUserId == string.Empty)
-            {
-                return;
-            }
-            WelcomeText = _strLogin;
-            User user = _taskService.GetUser(CurrentUser.CurrentUserId);
-            if (user != null)
-            {
-                UserId = user.UserId;
-                UserName = user.UserName;
-            }
-        }
 
-        public OAuth2Authenticator Authenticator
-        {
-            get
-            {
-                return _loginService.Authenticator();
-            }
-        }
-
-        public bool VMProperty
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(UrlId))
-                {
-                    return _vMProperty = false;
-                }
-                return _vMProperty = true;
-            }
-
-            set
-            {
-                _vMProperty = value;
-                RaisePropertyChanged(() => VMProperty);
-            }
-        }
-
-        public string Url
-        {
-            get
-            {
-                return _url;
-            }
-
-            set
-            {
-                _url = value;
-                RaisePropertyChanged(() => Url);
-            }
-        }
-
-        public string UrlId
-        {
-            get
-            {
-                return _urlId;
-            }
-
-            set
-            {
-                _urlId = value;
-                RaisePropertyChanged(() => UrlId);
-                RaisePropertyChanged(() => VMProperty);
-            }
-        }
+        public IMvxCommand LogoutFacebookCommand => new MvxCommand(_loginService.LogoutFacebook);
 
         public async Task LookAtCurrentGoals()
         {
             var result = await _navigationService.Navigate<CollectionViewModel>();
         }
 
-        public string GetCurrentUserId()
+        public async Task FillingLoginUserData()
         {
-            return _taskService.GetLastUser();
+            User user = _loginService.CurrentUser;
+            var list = _taskService.GetAllUsers();
+            CreateNewUser(user);
+            UserId = user.UserId;
+            UserName = user.UserName;
         }
 
-        public void CreateNewUser(string userId, string userName)
-        {
-            WelcomeText = _strLogin;
-            UserId = userId;
-            UserName = userName;
-            User user = new User(UserId, UserName);
-            _taskService.InsertUser(user);
-            _taskService.InsertOrReplaceLastUser(new LastUser(user.UserId));
-            CurrentUser.CurrentUserId = _taskService.GetLastUser();
-        }
-
-        public void LogOut()
+        public async Task DeleteLoginUserData()
         {
             UserId = string.Empty;
-            UserName = _strUserName;
-            WelcomeText = _strLoggedOut;
+            UserName = string.Empty;
         }
 
-        public bool ContinueButtonEnableStatus
+        public void CreateNewUser(User user)
         {
-            get
+            var findUser = _taskService.GetUser(user.UserId);
+            if (findUser == null)
             {
-                /*if (UserId == null || UserId == string.Empty)
-                {
-                    return _continueButtonStatus = false;
-                }*/
-                return _continueButtonStatus = true;
-            }
-
-            set
-            {
-                _continueButtonStatus = value;
-                RaisePropertyChanged(() => ContinueButtonEnableStatus);
+                _taskService.InsertUser(user);
             }
         }
 
@@ -162,7 +79,11 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
-                return _welcomeText;
+                if (string.IsNullOrEmpty(UserId))
+                {
+                    return _welcomeText = _strLoginWelcomeText;
+                }
+                return _welcomeText = string.Empty;
             }
 
             set
@@ -182,8 +103,7 @@ namespace TodoList.Core.ViewModels
             set
             {
                 _userId = value;
-                RaisePropertyChanged(() => UserId);
-                RaisePropertyChanged(() => ContinueButtonEnableStatus);
+                RaiseAllPropertiesChanged();
             }
         }
 
@@ -193,10 +113,73 @@ namespace TodoList.Core.ViewModels
             {
                 return _userName;
             }
+
             set
             {
                 _userName = value;
                 RaisePropertyChanged(() => UserName);
+            }
+        }
+
+        public string LoginButtonText
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(UserId))
+                {
+                    return _loginButtonText = _strLogInButtonText;
+                }
+                return _loginButtonText = _strLoggedOutButtonText;
+            }
+
+            set
+            {
+                _loginButtonText = value;
+                RaisePropertyChanged(() => LoginButtonText);
+            }
+        }
+
+        public bool ProfilePictureViewVisibleStatus
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(UserId))
+                {
+                    return _ProfilePictureViewVisibleStatus = false;
+                }
+                return _ProfilePictureViewVisibleStatus = true;
+            }
+
+            set
+            {
+                _ProfilePictureViewVisibleStatus = value;
+                RaisePropertyChanged(() => ProfilePictureViewVisibleStatus);
+            }
+        }
+
+        public bool ContinueButtonEnableStatus
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(UserId))
+                {
+                    return _continueButtonStatus = false;
+                }
+                return _continueButtonStatus = true;
+            }
+
+            set
+            {
+                _continueButtonStatus = value;
+                RaisePropertyChanged(() => ContinueButtonEnableStatus);
+            }
+        }
+
+        public OAuth2Authenticator Authenticator
+        {
+            get
+            {
+                return _loginService.Authenticator();
             }
         }
     }

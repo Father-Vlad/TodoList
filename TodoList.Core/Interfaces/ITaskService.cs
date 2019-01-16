@@ -18,9 +18,5 @@ namespace TodoList.Core.Interfaces
         List<User> GetAllUsers();
         User GetUser(string currentUserId);
         void InsertUser(User user);
-
-        //For LastUser
-        string GetLastUser();
-        void InsertOrReplaceLastUser(LastUser user);
     }
 }

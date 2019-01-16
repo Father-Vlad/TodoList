@@ -16,7 +16,7 @@ namespace TodoList.Droid.Views
             SetContentView(Resource.Layout.MainLayout);
             if (bundle == null)
             {
-                ViewModel.ShowLoginViewModelCommand.Execute(null);
+                ViewModel.ShowCurrentViewModelCommand.Execute(null);
             }
         }
     }

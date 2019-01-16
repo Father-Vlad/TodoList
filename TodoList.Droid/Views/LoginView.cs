@@ -1,4 +1,5 @@
-﻿using Android.Graphics;
+﻿using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -29,17 +30,27 @@ namespace TodoList.Droid.Views
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             FacebookSdk.SdkInitialize(this.Context);
             _facebookLoginButton = view.FindViewById<Button>(Resource.Id.facebook_login_button);
-            _facebookLoginButton.Click += delegate { LoginFacebook(); };
+            _facebookLoginButton.Click += delegate { LoggedInOrOutFacebook(); };
             _textViewWelcome = view.FindViewById<TextView>(Resource.Id.text_view_login);
             Typeface newTypeface = Typeface.CreateFromAsset(view.Context.Assets, "Gothic.ttf");
             _textViewWelcome.SetTypeface(newTypeface, TypefaceStyle.Normal);
             return view;
         }
 
-        private void LoginFacebook()
+        private void LoggedInOrOutFacebook()
         {
-            this.ViewModel.LoginFacebookCommand.Execute();
-            StartActivity(this.ViewModel.Authenticator.GetUI(View.Context));
+            if (string.IsNullOrEmpty(this.ViewModel.UserId))
+            {
+                this.ViewModel.LoginFacebookCommand.Execute();
+                StartActivityForResult(this.ViewModel.Authenticator.GetUI(View.Context), 0);
+                return;
+            }
+            this.ViewModel.LogoutFacebookCommand.Execute();
+        }
+        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            //Toast.MakeText(this.Context, "Authorized", ToastLength.Short).Show();
         }
     }
 }

@@ -69,33 +69,5 @@ namespace TodoList.Core.Services
                 _sqlConnection.Insert(user);
             }
         }
-
-        //For CurrentUser
-        public string GetLastUser()
-        {
-            return _sqlConnection.Table<LastUser>().FirstOrDefault(x => x.Id == 0)?.UserId;
-        }
-
-        public void InsertOrReplaceLastUser(LastUser user)
-        {
-            _sqlConnection.InsertOrReplace(user);
-        }
-        
-        
-        
-        //public Goal GetGoalData(int goalId)
-        //{
-        //    return _sqlConnection.Table<Goal>().FirstOrDefault(x => x.Id == goalId);
-        //}
-
-        //public void UpdateGoal(Goal goal)
-        //{
-        //    _sqlConnection.Update(goal);
-        //}
-
-        //public void DeleteAllGoals()
-        //{
-        //    _sqlConnection.DeleteAll<Goal>();
-        //}
     }
 }

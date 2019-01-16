@@ -10,23 +10,21 @@ namespace TodoList.Core.Services
 {
     public class LoginService : ILoginService
     {
-        private readonly string _FacebookClientId = "1838603119596376";
-        private readonly string _FacebookAuthorizeUrl = "https://m.facebook.com/dialog/oauth/";
-        private readonly string _FacebookRedirectUrl = "https://www.facebook.com/connect/login_success.html";
-        private readonly string _FacebookRequestUrl = "https://graph.facebook.com/me?fields=id,name,picture,email";
+        private readonly string _facebookClientId = "1838603119596376";
+        private readonly string _facebookAuthorizeUrl = "https://m.facebook.com/dialog/oauth/";
+        private readonly string _facebookRedirectUrl = "https://www.facebook.com/connect/login_success.html";
+        private readonly string _facebookRequestUrl = "https://graph.facebook.com/me?fields=id,name,picture,email";
+        private readonly string _serviceId = "FacebookLastUser";
         private OAuth2Authenticator _auth;
         private Account _currentUserAccount;
         private User _currentUser;
 
         public Action OnLoggedInHandler { get; set; }
-        public LoginService()
-        {
-
-        }
+        public Action OnLoggedOutHandler { get; set; }
 
         public void LoginFacebook()
         {
-            _auth = new OAuth2Authenticator(clientId: _FacebookClientId, scope: string.Empty, authorizeUrl: new Uri(_FacebookAuthorizeUrl), redirectUrl: new Uri(_FacebookRedirectUrl))
+            _auth = new OAuth2Authenticator(clientId: _facebookClientId, scope: string.Empty, authorizeUrl: new Uri(_facebookAuthorizeUrl), redirectUrl: new Uri(_facebookRedirectUrl))
             {
                 AllowCancel = true
             };
@@ -35,10 +33,11 @@ namespace TodoList.Core.Services
 
         public void LogoutFacebook()
         {
-            var data = AccountStore.Create().FindAccountsForService("FacebookLastUser").FirstOrDefault();
+            var data = AccountStore.Create().FindAccountsForService(_serviceId).FirstOrDefault();
             if (data != null)
             {
-                AccountStore.Create().Delete(data, "FacebookLastUser");
+                AccountStore.Create().Delete(data, _serviceId);
+                OnLoggedOutHandler();
             }
         }
 
@@ -47,8 +46,8 @@ namespace TodoList.Core.Services
             if (e.IsAuthenticated)
             {
                 Account loggedInAccount = e.Account;
-                AccountStore.Create().Save(loggedInAccount, "FacebookLastUser");
-                var request = new OAuth2Request("GET", new Uri(_FacebookRequestUrl), null, e.Account);
+                AccountStore.Create().Save(loggedInAccount, _serviceId);
+                var request = new OAuth2Request("GET", new Uri(_facebookRequestUrl), null, e.Account);
                 var response = await request.GetResponseAsync();
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
@@ -82,7 +81,7 @@ namespace TodoList.Core.Services
                 return _currentUser;
             }
 
-            private set
+            set
             {
                 _currentUser = value;
             }
