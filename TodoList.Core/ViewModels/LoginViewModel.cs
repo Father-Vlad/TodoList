@@ -48,7 +48,7 @@ namespace TodoList.Core.ViewModels
 
         public async Task LookAtCurrentGoals()
         {
-            var result = await _navigationService.Navigate<CollectionViewModel>();
+            var result = await _navigationService.Navigate<ViewPagerViewModel>();
         }
 
         public async Task FillingLoginUserData()

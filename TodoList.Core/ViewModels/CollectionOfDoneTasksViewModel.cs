@@ -4,42 +4,22 @@ using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
-using TodoList.Core.Services;
 
 namespace TodoList.Core.ViewModels
 {
-    public class CollectionViewModel : MvxViewModel
+    public class CollectionOfDoneTasksViewModel : MvxViewModel
     {
         private bool _isRefreshLayoutRefreshing;
         private MvxObservableCollection<Goal> _goals;
         private MvxCommand _updateDataCommand;
-        private readonly IMvxNavigationService _navigationService;
         private ITaskService _taskService;
         private ILoginService _loginService;
 
-        public IMvxCommand LogoutCommand { get; set; }
-        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
-
-        public CollectionViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
+        public CollectionOfDoneTasksViewModel(ITaskService taskService, ILoginService loginService)
         {
             _taskService = taskService;
-            _navigationService = navigationService;
-            _navigationService.BeforeClose += _navigationService_BeforeClose;
             _loginService = loginService;
             Goals = new MvxObservableCollection<Goal>();
-            FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
-            LogoutCommand = new MvxAsyncCommand(Logout);
-        }
-
-        private async Task Logout()
-        {
-            _loginService.LogoutFacebook();
-            await _navigationService.Close(this);
-        }
-
-        private void _navigationService_BeforeClose(object sender, MvvmCross.Navigation.EventArguments.IMvxNavigateEventArgs e)
-        {
-            _navigationService.Navigate<LoginViewModel>();
         }
 
         public override void ViewAppearing()
@@ -64,11 +44,6 @@ namespace TodoList.Core.ViewModels
             }
         }
         
-        public async Task CreateNewGoal(Goal goal)
-        {
-            var result = await _navigationService.Navigate<FillingDataViewModel, Goal>(goal);
-        }
-
         public MvxCommand UpdateDataCommand
         {
             get

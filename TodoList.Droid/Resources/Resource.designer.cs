@@ -6836,6 +6836,9 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c004b
 			public const int always = 2131492939;
 			
+			// aapt resource value: 0x7f0c00dd
+			public const int appBar_layout_main = 2131493085;
+			
 			// aapt resource value: 0x7f0c0064
 			public const int async = 2131492964;
 			
@@ -6946,6 +6949,9 @@ namespace TodoList.Droid
 			
 			// aapt resource value: 0x7f0c00aa
 			public const int coordinator = 2131493034;
+			
+			// aapt resource value: 0x7f0c00dc
+			public const int coordinator_layout_main = 2131493084;
 			
 			// aapt resource value: 0x7f0c007b
 			public const int custom = 2131492987;
@@ -7100,8 +7106,8 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c00c0
 			public const int main_frame = 2131493056;
 			
-			// aapt resource value: 0x7f0c00dd
-			public const int masked = 2131493085;
+			// aapt resource value: 0x7f0c00e1
+			public const int masked = 2131493089;
 			
 			// aapt resource value: 0x7f0c00c8
 			public const int media_actions = 2131493064;
@@ -7307,6 +7313,9 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0032
 			public const int tabMode = 2131492914;
 			
+			// aapt resource value: 0x7f0c00df
+			public const int tab_layout_main = 2131493087;
+			
 			// aapt resource value: 0x7f0c0019
 			public const int tag_transition_group = 2131492889;
 			
@@ -7397,8 +7406,11 @@ namespace TodoList.Droid
 			// aapt resource value: 0x7f0c0016
 			public const int view_offset_helper = 2131492886;
 			
-			// aapt resource value: 0x7f0c00dc
-			public const int visible = 2131493084;
+			// aapt resource value: 0x7f0c00de
+			public const int view_pager_main = 2131493086;
+			
+			// aapt resource value: 0x7f0c00e0
+			public const int visible = 2131493088;
 			
 			// aapt resource value: 0x7f0c004f
 			public const int withText = 2131492943;
@@ -7689,6 +7701,9 @@ namespace TodoList.Droid
 			
 			// aapt resource value: 0x7f040049
 			public const int tooltip = 2130968649;
+			
+			// aapt resource value: 0x7f04004a
+			public const int ViewPagerLayout = 2130968650;
 			
 			static Layout()
 			{

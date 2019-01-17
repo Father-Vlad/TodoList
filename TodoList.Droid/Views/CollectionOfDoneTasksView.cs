@@ -10,8 +10,8 @@ using TodoList.Core.ViewModels;
 namespace TodoList.Droid.Views
 {
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, false)]
-    [Register("TodoList.Droid.Views.CollectionView")]
-    public class CollectionView : BaseFragment<CollectionViewModel>
+    [Register("TodoList.Droid.Views.CollectionOfDoneTasksView")]
+    public class CollectionOfDoneTasksView : BaseFragment<CollectionOfDoneTasksViewModel>
     {
         private RecyclerAdapter _recyclerAdapter;
         private RecyclerView.LayoutManager _layoutManager;

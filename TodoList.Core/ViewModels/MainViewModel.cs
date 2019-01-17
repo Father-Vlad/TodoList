@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using MvvmCross.Commands;
+﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 
 namespace TodoList.Core.ViewModels
@@ -18,12 +17,12 @@ namespace TodoList.Core.ViewModels
             _loginService = loginService;
             ShowCurrentViewModelCommand = new MvxAsyncCommand(ShowCurrentViewModel);
             ShowLoginViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
-            ShowCollectionViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<CollectionViewModel>());
+            ShowViewPagerViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<ViewPagerViewModel>());
         }
 
         public IMvxAsyncCommand ShowCurrentViewModelCommand { get; set; }
         public IMvxAsyncCommand ShowLoginViewModelCommand { get; set; }
-        public IMvxAsyncCommand ShowCollectionViewModelCommand { get; set; }
+        public IMvxAsyncCommand ShowViewPagerViewModelCommand { get; set; }
 
         private async Task ShowCurrentViewModel()
         {
@@ -32,7 +31,7 @@ namespace TodoList.Core.ViewModels
                 ShowLoginViewModelCommand.Execute();
                 return;
             }
-            ShowCollectionViewModelCommand.Execute();
+            ShowViewPagerViewModelCommand.Execute();
         }
     }
 }
