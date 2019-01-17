@@ -14,20 +14,23 @@ namespace TodoList.Core.ViewModels
         private MvxCommand _updateDataCommand;
         private ITaskService _taskService;
         private ILoginService _loginService;
+        private readonly IMvxNavigationService _navigationService;
 
-        public CollectionOfDoneTasksViewModel(ITaskService taskService, ILoginService loginService)
+        public CollectionOfDoneTasksViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
         {
+            _navigationService = navigationService;
             _taskService = taskService;
             _loginService = loginService;
             Goals = new MvxObservableCollection<Goal>();
+            FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
         }
+
+        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
 
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-            User user = _loginService.CurrentUser;
-            var list = _taskService.GetUserGoal(user.UserId);
-            Goals = new MvxObservableCollection<Goal>(list);
+            MakeListOfGoals();
             RaisePropertyChanged(() => Goals);
         }
         
@@ -43,7 +46,12 @@ namespace TodoList.Core.ViewModels
                 RaisePropertyChanged(() => Goals);
             }
         }
-        
+
+        public async Task CreateNewGoal(Goal goal)
+        {
+            var result = await _navigationService.Navigate<FillingDataViewModel, Goal>(goal);
+        }
+
         public MvxCommand UpdateDataCommand
         {
             get
@@ -55,10 +63,15 @@ namespace TodoList.Core.ViewModels
         private void UpdateDataFromDB()
         {
             IsRefreshLayoutRefreshing = true;
-            User user = _loginService.CurrentUser;
-            var list = _taskService.GetUserGoal(user.UserId);
-            Goals = new MvxObservableCollection<Goal>(list);
+            MakeListOfGoals();
             IsRefreshLayoutRefreshing = false;
+        }
+
+        private void MakeListOfGoals()
+        {
+            User user = _loginService.CurrentUser;
+            var list = _taskService.GetDoneUserGoal(user.UserId);
+            Goals = new MvxObservableCollection<Goal>(list);
         }
 
         public bool IsRefreshLayoutRefreshing

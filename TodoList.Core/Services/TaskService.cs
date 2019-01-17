@@ -46,6 +46,16 @@ namespace TodoList.Core.Services
             _sqlConnection.Delete<Goal>(goalId);
         }
 
+        public List<Goal> GetDoneUserGoal(string currentUserId)
+        {
+            return (from data in _sqlConnection.Table<Goal>() where data.UserId == currentUserId where data.GoalStatus == true select data).ToList();
+        }
+
+        public List<Goal> GetNotDoneUserGoal(string currentUserId)
+        {
+            return (from data in _sqlConnection.Table<Goal>() where data.UserId == currentUserId where data.GoalStatus == false select data).ToList();
+        }
+
         //For Users
         public List<User> GetAllUsers()
         {
