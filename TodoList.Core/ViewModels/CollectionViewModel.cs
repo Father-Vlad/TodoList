@@ -1,7 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
@@ -11,29 +10,43 @@ namespace TodoList.Core.ViewModels
 {
     public class CollectionViewModel : MvxViewModel
     {
-        private bool _isRefreshing;
+        private bool _isRefreshLayoutRefreshing;
         private MvxObservableCollection<Goal> _goals;
         private MvxCommand _updateDataCommand;
         private readonly IMvxNavigationService _navigationService;
-        ITaskService _taskService;
-               
-        public override async Task Initialize()
-        {
-            await base.Initialize();
-        }
+        private ITaskService _taskService;
+        private ILoginService _loginService;
 
-        public CollectionViewModel(IMvxNavigationService navigationService, ITaskService taskService)
+        public IMvxCommand LogoutCommand { get; set; }
+        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
+
+        public CollectionViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
         {
             _taskService = taskService;
             _navigationService = navigationService;
+            _navigationService.BeforeClose += _navigationService_BeforeClose;
+            _loginService = loginService;
             Goals = new MvxObservableCollection<Goal>();
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
+            LogoutCommand = new MvxAsyncCommand(Logout);
+        }
+
+        private async Task Logout()
+        {
+            _loginService.LogoutFacebook();
+            await _navigationService.Close(this);
+        }
+
+        private void _navigationService_BeforeClose(object sender, MvvmCross.Navigation.EventArguments.IMvxNavigateEventArgs e)
+        {
+            _navigationService.Navigate<LoginViewModel>();
         }
 
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-            var list = _taskService.GetUserGoal(CurrentUser.CurrentUserId);
+            User user = _loginService.CurrentUser;
+            var list = _taskService.GetUserGoal(user.UserId);
             Goals = new MvxObservableCollection<Goal>(list);
             RaisePropertyChanged(() => Goals);
         }
@@ -50,9 +63,7 @@ namespace TodoList.Core.ViewModels
                 RaisePropertyChanged(() => Goals);
             }
         }
-
-        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
-
+        
         public async Task CreateNewGoal(Goal goal)
         {
             var result = await _navigationService.Navigate<FillingDataViewModel, Goal>(goal);
@@ -68,23 +79,24 @@ namespace TodoList.Core.ViewModels
 
         private void UpdateDataFromDB()
         {
-            IsRefreshing = true;
-            var list = _taskService.GetUserGoal(CurrentUser.CurrentUserId);
+            IsRefreshLayoutRefreshing = true;
+            User user = _loginService.CurrentUser;
+            var list = _taskService.GetUserGoal(user.UserId);
             Goals = new MvxObservableCollection<Goal>(list);
-            IsRefreshing = false;
+            IsRefreshLayoutRefreshing = false;
         }
 
-        public bool IsRefreshing
+        public bool IsRefreshLayoutRefreshing
         {
             get
             {
-                return _isRefreshing;
+                return _isRefreshLayoutRefreshing;
             }
 
             set
             {
-                _isRefreshing = value;
-                RaisePropertyChanged(() => IsRefreshing);
+                _isRefreshLayoutRefreshing = value;
+                RaisePropertyChanged(() => IsRefreshLayoutRefreshing);
             }
         }
     }

@@ -11,7 +11,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="@color/colorWhite"
-		local:MvxBind = "Refreshing IsRefreshing; RefreshCommand UpdateDataCommand">
+		local:MvxBind = "Refreshing IsRefreshLayoutRefreshing; RefreshCommand UpdateDataCommand">
 		<mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
 			android:id="@+id/recycler_view_main"  
 			android:layout_width="match_parent"

@@ -16,14 +16,16 @@ namespace TodoList.Core.ViewModels
         private bool _goalNameEnableStatus;
         private readonly IMvxNavigationService _navigationService;
         private ITaskService _taskService;
+        private ILoginService _loginService;
         private int _goalId;
         private bool _saveButtonEnableStatus = false;
         private string _userId;
 
-        public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService)
+        public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
         {
             _navigationService = navigationService;
             _taskService = taskService;
+            _loginService = loginService;
         }
 
         public int GoalId
@@ -155,8 +157,7 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
-                _userId = CurrentUser.CurrentUserId;
-                return _userId;
+                return _userId = _loginService.CurrentUser.UserId;
             }
 
             set
@@ -182,6 +183,7 @@ namespace TodoList.Core.ViewModels
                 GoalName = parameter.GoalName;
                 GoalDescription = parameter.GoalDescription;
                 GoalStatus = parameter.GoalStatus;
+                UserId = parameter.UserId;
                 return;
             }
             GoalNameEnableStatus = true;

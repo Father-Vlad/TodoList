@@ -15,7 +15,6 @@ namespace TodoList.Core.Services
             _sqlConnection = connection.GetDataBaseConnection();
             _sqlConnection.CreateTable<Goal>();
             _sqlConnection.CreateTable<User>();
-            _sqlConnection.CreateTable<LastUser>();
         }
 
         //For Goals

@@ -12,6 +12,16 @@
 		android:background="?android:attr/colorPrimary"
 		android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
 		<Button
+			android:id="@+id/button_logout"
+			android:text="Logout"
+			android:backgroundTint = "@color/colorButtonBackground"
+			android:textSize = "@dimen/text_size_20"
+			android:layout_width="wrap_content"
+			android:layout_height="@dimen/toolbar_button_60"
+			android:textAllCaps = "false"
+			local:MvxBind = "Click LogoutCommand"
+		/>
+		<Button
 			android:text="+"
 			android:backgroundTint = "@color/colorButtonBackground"
 			android:textSize = "@dimen/text_size_20"
