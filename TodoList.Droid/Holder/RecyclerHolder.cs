@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
@@ -58,8 +59,9 @@ namespace TodoList.Droid.Views
                 _actionSendIntent.SetPackage(_appName);
                 if (_actionSendIntent != null)
                 {
-                    var uri = "testappforlinks://my_code_is_here";
-                    _actionSendIntent.PutExtra(Intent.ExtraText, uri);
+                    var uri = new Uri("todolist://my_code_is_here");
+                    string s = "<a href=\"" + "todolist://my_code_is_here\"" + ">This is an example</a>";
+                    _actionSendIntent.PutExtra(Intent.ExtraText, Html.FromHtml(s));
                     _chooserIntent = Intent.CreateChooser(_actionSendIntent, _titleOfChooserIntent);
                     Application.Context.StartActivity(_chooserIntent);
                     return;
