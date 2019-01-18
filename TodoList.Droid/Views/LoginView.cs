@@ -37,7 +37,7 @@ namespace TodoList.Droid.Views
             return view;
         }
 
-        private void LoggedInOrOutFacebook()
+        private async void LoggedInOrOutFacebook()
         {
             if (string.IsNullOrEmpty(this.ViewModel.UserId))
             {
