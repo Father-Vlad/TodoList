@@ -13,8 +13,16 @@ namespace Blank
     [Register ("CollectionOfNotDoneTasksView")]
     partial class CollectionOfNotDoneTasksView
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView CollectionOfNotDoneTasksTableView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (CollectionOfNotDoneTasksTableView != null) {
+                CollectionOfNotDoneTasksTableView.Dispose ();
+                CollectionOfNotDoneTasksTableView = null;
+            }
         }
     }
 }

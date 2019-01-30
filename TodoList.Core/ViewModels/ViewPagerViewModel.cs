@@ -2,6 +2,7 @@
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
@@ -22,12 +23,18 @@ namespace TodoList.Core.ViewModels
             CollectionOfNotDoneTasksViewModelCommand = Mvx.IoCConstruct<CollectionOfNotDoneTasksViewModel>();
             LogoutCommand = new MvxAsyncCommand(Logout);
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
+
+            ShowCollectionOfDoneTasksViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<CollectionOfDoneTasksViewModel>());
+            ShowCollectionOfNotDoneTasksViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<CollectionOfNotDoneTasksViewModel>());
         }
 
         public CollectionOfDoneTasksViewModel CollectionOfDoneTasksViewModelCommand { get; set; }
         public CollectionOfNotDoneTasksViewModel CollectionOfNotDoneTasksViewModelCommand { get; set; }
         public IMvxCommand LogoutCommand { get; set; }
         public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
+
+        public IMvxAsyncCommand ShowCollectionOfDoneTasksViewModelCommand { get; private set; }
+        public IMvxAsyncCommand ShowCollectionOfNotDoneTasksViewModelCommand { get; private set; }
 
         private async Task Logout()
         {

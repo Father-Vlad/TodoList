@@ -13,8 +13,16 @@ namespace Blank
     [Register ("FillingDataView")]
     partial class FillingDataView
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField NameOfTaskTextField { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (NameOfTaskTextField != null) {
+                NameOfTaskTextField.Dispose ();
+                NameOfTaskTextField = null;
+            }
         }
     }
 }

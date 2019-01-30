@@ -61,14 +61,16 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Views\CollectionOfDoneTasksView.cs" />
-    <Compile Include="Views\CollectionOfDoneTasksView.designer.cs">
-      <DependentUpon>CollectionOfDoneTasksView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\CollectionOfNotDoneTasksView.cs" />
     <Compile Include="Views\CollectionOfNotDoneTasksView.designer.cs">
       <DependentUpon>CollectionOfNotDoneTasksView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CollectionOfDoneTasksView.cs" />
+    <Compile Include="Views\CollectionOfDoneTasksView.designer.cs">
+      <DependentUpon>CollectionOfDoneTasksView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\DataBaseConnectionService.cs" />
+    <Compile Include="Setup.cs" />
     <Compile Include="Views\FillingDataView.cs" />
     <Compile Include="Views\FillingDataView.designer.cs">
       <DependentUpon>FillingDataView.cs</DependentUpon>
@@ -79,15 +81,41 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\MainView.cs" />
+    <Compile Include="Views\TabBarView.cs" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="Views\LoginView.xib" />
-    <InterfaceDefinition Include="Views\CollectionOfDoneTasksView.xib" />
-    <InterfaceDefinition Include="Views\CollectionOfNotDoneTasksView.xib" />
     <InterfaceDefinition Include="Views\FillingDataView.xib" />
+    <None Include="packages.config" />
+    <InterfaceDefinition Include="Views\CollectionOfDoneTasksView.xib" />
+    <InterfaceDefinition Include="Views\CollectionOfNotDoneTasksView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MvvmCross, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.6.2.2\lib\xamarinios10\MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugin.Color, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.6.2.2\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net, Version=1.6.258.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sqlite-net-pcl.1.6.258-beta\lib\netstandard1.1\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.1.13.388, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.13\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.1.13.388, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.13\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=1.1.13.388, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.core.1.1.13\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.sqlite3, Version=1.1.13.388, Culture=neutral, PublicKeyToken=62684c7b4f184e3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.13\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -139,6 +167,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TodoList.Core\TodoList.Core.csproj">
+      <Project>{b4a5f68f-8de2-40e1-bbf1-b029212d2015}</Project>
+      <Name>TodoList.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
