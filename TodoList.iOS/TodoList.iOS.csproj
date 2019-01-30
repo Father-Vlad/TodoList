@@ -60,8 +60,17 @@
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="MvxBindings\NetworkIndicatorTargetBinding.cs" />
     <Compile Include="Sources\TodoTasksTableViewSource.cs" />
+    <Compile Include="Views\Cells\TaskViewCell.cs" />
+    <Compile Include="Views\Cells\TaskViewCell.designer.cs">
+      <DependentUpon>TaskViewCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CollectionOfNotDoneTasksView.cs" />
     <Compile Include="Views\CollectionOfNotDoneTasksView.designer.cs">
       <DependentUpon>CollectionOfNotDoneTasksView.cs</DependentUpon>
@@ -84,18 +93,24 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\TabBarView.cs" />
+    <None Include="app.config" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="Views\LoginView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
-    <InterfaceDefinition Include="Views\FillingDataView.xib" />
+    <InterfaceDefinition Include="Views\FillingDataView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
     <None Include="packages.config" />
-    <InterfaceDefinition Include="Views\CollectionOfDoneTasksView.xib" />
+    <InterfaceDefinition Include="Views\CollectionOfDoneTasksView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
     <InterfaceDefinition Include="Views\CollectionOfNotDoneTasksView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\Cells\TaskViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -103,6 +118,12 @@
     </Reference>
     <Reference Include="MvvmCross.Plugin.Color, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Plugin.Color.6.2.2\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugin.Json, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Json.6.2.2\lib\netstandard2.0\MvvmCross.Plugin.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SQLite-net, Version=1.6.258.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\sqlite-net-pcl.1.6.258-beta\lib\netstandard1.1\SQLite-net.dll</HintPath>

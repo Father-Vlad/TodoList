@@ -1,13 +1,13 @@
-using Foundation;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
-using System;
 using TodoList.Core.ViewModels;
+using TodoList.iOS.Sources;
 using UIKit;
 
 namespace TodoList.iOS.Views
 {
-    [MvxTabPresentation(WrapInNavigationController = true, TabName = " Done")]
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Done")]
     public partial class CollectionOfDoneTasksView : MvxViewController<CollectionOfDoneTasksViewModel>
     {
         private UIBarButtonItem _buttonAdd;
@@ -21,8 +21,14 @@ namespace TodoList.iOS.Views
             base.ViewDidLoad();
             _buttonAdd = new UIBarButtonItem(UIBarButtonSystemItem.Add, null);
             NavigationItem.SetRightBarButtonItem(_buttonAdd, false);
-
-            //var source = new TaskTableViewSource
+            var source = new TodoTasksTableViewSource(CollectionOfDoneTasksTableView);
+            CollectionOfDoneTasksTableView.Source = source;
+            var set = this.CreateBindingSet<CollectionOfDoneTasksView, CollectionOfDoneTasksViewModel>();
+            set.Bind(source).To(vm => vm.Goals);
+            set.Bind(source).For(v => v.SelectionChangedCommand).To(vm => vm.FillingDataActivityCommand);
+            set.Bind(_buttonAdd).For("Clicked").To(vm => vm.FillingDataActivityCommand);
+            set.Apply();
+            CollectionOfDoneTasksTableView.ReloadData();
         }
     }
 }

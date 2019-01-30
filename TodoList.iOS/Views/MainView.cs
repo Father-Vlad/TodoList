@@ -20,7 +20,7 @@ namespace TodoList.iOS.Views
             if (_firstTimePresented)
             {
                 _firstTimePresented = !_firstTimePresented;
-                ViewModel.ShowCurrentViewModelCommand.Execute(null);
+                ViewModel.ShowLoginViewModelCommand.Execute(null);
             }
 
         }

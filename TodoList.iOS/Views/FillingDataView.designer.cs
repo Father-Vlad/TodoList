@@ -29,6 +29,10 @@ namespace TodoList.iOS.Views
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton SaveButton { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UISwitch StatusOfTaskSwitch { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (DeleteButton != null) {
@@ -49,6 +53,11 @@ namespace TodoList.iOS.Views
             if (SaveButton != null) {
                 SaveButton.Dispose ();
                 SaveButton = null;
+            }
+
+            if (StatusOfTaskSwitch != null) {
+                StatusOfTaskSwitch.Dispose ();
+                StatusOfTaskSwitch = null;
             }
         }
     }

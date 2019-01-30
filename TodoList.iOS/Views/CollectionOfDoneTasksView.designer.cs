@@ -15,13 +15,13 @@ namespace TodoList.iOS.Views
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView CollectionOfDoneTaskTableView { get; set; }
+        UIKit.UITableView CollectionOfDoneTasksTableView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (CollectionOfDoneTaskTableView != null) {
-                CollectionOfDoneTaskTableView.Dispose ();
-                CollectionOfDoneTaskTableView = null;
+            if (CollectionOfDoneTasksTableView != null) {
+                CollectionOfDoneTasksTableView.Dispose ();
+                CollectionOfDoneTasksTableView = null;
             }
         }
     }
