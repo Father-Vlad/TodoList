@@ -8,13 +8,21 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace Blank
+namespace TodoList.iOS.Views
 {
     [Register ("LoginView")]
     partial class LoginView
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton LoginToFacebookButton { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (LoginToFacebookButton != null) {
+                LoginToFacebookButton.Dispose ();
+                LoginToFacebookButton = null;
+            }
         }
     }
 }

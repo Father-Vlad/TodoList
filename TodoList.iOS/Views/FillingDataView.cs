@@ -1,7 +1,7 @@
 using Foundation;
 using System;
 
-namespace Blank
+namespace TodoList.iOS.Views
 {
     public partial class FillingDataView : NSObject
     {

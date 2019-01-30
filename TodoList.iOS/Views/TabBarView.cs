@@ -4,7 +4,7 @@ using MvvmCross.Plugin.Color.Platforms.Ios;
 using TodoList.Core;
 using TodoList.Core.ViewModels;
 
-namespace Blank.Views
+namespace TodoList.iOS.Views
 {
     [MvxRootPresentation(WrapInNavigationController = false)]
     public class TabBarView : MvxTabBarViewController<ViewPagerViewModel>

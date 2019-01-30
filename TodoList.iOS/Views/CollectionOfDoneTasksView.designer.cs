@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace Blank
+namespace TodoList.iOS.Views
 {
     [Register ("CollectionOfDoneTasksView")]
     partial class CollectionOfDoneTasksView

@@ -5,7 +5,7 @@ using MvvmCross.Platforms.Ios.Core;
 using MvvmCross.ViewModels;
 using TodoList.Core;
 
-namespace Blank
+namespace TodoList.iOS
 {
     public class Setup : MvxIosSetup<App>
     {

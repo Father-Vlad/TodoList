@@ -2,7 +2,7 @@
 using System.IO;
 using TodoList.Core.Interfaces;
 
-namespace Blank.Services
+namespace TodoList.iOS.Services
 {
     public class DataBaseConnectionService : IDataBaseConnectionService
     {

@@ -1,7 +1,7 @@
 ﻿using MvvmCross.Platforms.Ios.Views;
 using TodoList.Core.ViewModels;
 
-namespace Blank.Views
+namespace TodoList.iOS.Views
 {
     public class MainView : MvxViewController<MainViewModel>
     {

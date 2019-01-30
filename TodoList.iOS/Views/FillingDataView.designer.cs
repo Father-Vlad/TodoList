@@ -8,20 +8,47 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace Blank
+namespace TodoList.iOS.Views
 {
     [Register ("FillingDataView")]
     partial class FillingDataView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton DeleteButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField DescriptionOfTaskTextField { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField NameOfTaskTextField { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton SaveButton { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (DeleteButton != null) {
+                DeleteButton.Dispose ();
+                DeleteButton = null;
+            }
+
+            if (DescriptionOfTaskTextField != null) {
+                DescriptionOfTaskTextField.Dispose ();
+                DescriptionOfTaskTextField = null;
+            }
+
             if (NameOfTaskTextField != null) {
                 NameOfTaskTextField.Dispose ();
                 NameOfTaskTextField = null;
+            }
+
+            if (SaveButton != null) {
+                SaveButton.Dispose ();
+                SaveButton = null;
             }
         }
     }
