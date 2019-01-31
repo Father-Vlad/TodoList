@@ -10,7 +10,8 @@ namespace TodoList.Core.Interfaces
         Action OnLoggedOutHandler { get; set; }
         void LoginFacebook();
         void LogoutFacebook();
-        Account CurrentUserAccount { get;}
+        string CurrentUserId { get;}
+        string CurrentUserName { get; }
         OAuth2Authenticator Authenticator();
         User CurrentUser { get; set; }
     }

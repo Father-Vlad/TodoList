@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Plugin.Settings;
 using System;
 using System.Linq;
 using System.Net;
@@ -14,9 +15,11 @@ namespace TodoList.Core.Services
         private readonly string _facebookAuthorizeUrl = "https://m.facebook.com/dialog/oauth/";
         private readonly string _facebookRedirectUrl = "https://www.facebook.com/connect/login_success.html";
         private readonly string _facebookRequestUrl = "https://graph.facebook.com/me?fields=id,name,picture,email";
-        private readonly string _serviceIdFacebookLastUser = "FacebookLastUser";
+        private readonly string _keyForSettingId = "LastUserId";
+        private readonly string _keyForSettingName = "LastUserName";
         private OAuth2Authenticator _auth;
-        private Account _currentUserAccount;
+        private string _currentUserId;
+        private string _currentUserName;
         private User _currentUser;
 
         public Action OnLoggedInHandler { get; set; }
@@ -33,10 +36,11 @@ namespace TodoList.Core.Services
 
         public void LogoutFacebook()
         {
-            var data = AccountStore.Create().FindAccountsForService(_serviceIdFacebookLastUser).FirstOrDefault();
-            if (data != null)
+            var data = CrossSettings.Current.GetValueOrDefault(_keyForSettingId, string.Empty).ToString(); AccountStore.Create().FindAccountsForService(_keyForSettingId).FirstOrDefault();
+            if (CrossSettings.Current.Contains(_keyForSettingId, string.Empty))
             {
-                AccountStore.Create().Delete(data, _serviceIdFacebookLastUser);
+                CrossSettings.Current.Clear();
+                //AccountStore.Create().Delete(data, _keyForSettingId);
                 if (OnLoggedOutHandler != null)
                 {
                     OnLoggedOutHandler();
@@ -61,15 +65,25 @@ namespace TodoList.Core.Services
                     CurrentUser = new User(userId, userName);
                     OnLoggedInHandler();
                 }
-                AccountStore.Create().Save(loggedInAccount, _serviceIdFacebookLastUser);
+                CrossSettings.Current.AddOrUpdateValue(_keyForSettingId, CurrentUser.UserId);
+                CrossSettings.Current.AddOrUpdateValue(_keyForSettingName, CurrentUser.UserName);
+                //AccountStore.Create().Save(loggedInAccount, _keyForSettingId);
             }
         }
 
-        public Account CurrentUserAccount
+        public string CurrentUserId
         {
             get
             {
-                return _currentUserAccount = AccountStore.Create().FindAccountsForService(_serviceIdFacebookLastUser).FirstOrDefault();
+                return _currentUserId = CrossSettings.Current.GetValueOrDefault(_keyForSettingId, string.Empty).ToString();
+            }
+        }
+
+        public string CurrentUserName
+        {
+            get
+            {
+                return _currentUserName = CrossSettings.Current.GetValueOrDefault(_keyForSettingName, string.Empty).ToString();
             }
         }
 
@@ -84,7 +98,8 @@ namespace TodoList.Core.Services
             {
                 if (_currentUser == null)
                 {
-                    User user = new User(CurrentUserAccount.Username, string.Empty);
+                    User user = new User(CurrentUserId, CurrentUserName); //This is the right version of the user id parameter
+                    //User user = new User("1", string.Empty); //This is the test version
                     _currentUser = user;
                 }
                 return _currentUser;

@@ -10,12 +10,7 @@ namespace TodoList.iOS.Views.Cells
     public partial class TaskViewCell : MvxTableViewCell
     {
         public static readonly NSString Key = new NSString("TaskViewCell");
-        public static readonly UINib Nib;
-
-        static TaskViewCell()
-        {
-            Nib = UINib.FromName("TaskViewCell", NSBundle.MainBundle);
-        }
+        public static readonly UINib Nib = UINib.FromName("TaskViewCell", NSBundle.MainBundle);
 
         public static TaskViewCell Create()
         {

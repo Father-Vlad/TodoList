@@ -17,6 +17,10 @@ namespace TodoList.iOS.Views
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton LoginToFacebookButton { get; set; }
 
+        [Action ("LoginButton_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void LoginButton_TouchUpInside (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (LoginToFacebookButton != null) {

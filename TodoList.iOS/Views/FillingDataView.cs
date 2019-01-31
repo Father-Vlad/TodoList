@@ -6,6 +6,7 @@ using UIKit;
 
 namespace TodoList.iOS.Views
 {
+    //[MvxChildPresentation]
     [MvxModalPresentation(WrapInNavigationController = true, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
     public partial class FillingDataView : MvxViewController<FillingDataViewModel>
     {
@@ -21,10 +22,10 @@ namespace TodoList.iOS.Views
 
             var set = this.CreateBindingSet<FillingDataView, FillingDataViewModel>();
             set.Bind(NameOfTaskTextField).To(vm => vm.GoalName);
-            set.Bind(NameOfTaskTextField).For(v => v.Enabled).To(vm => vm.SaveButtonEnableStatus);
             set.Bind(DescriptionOfTaskTextField).To(vm => vm.GoalDescription);
             set.Bind(StatusOfTaskSwitch).To(vm => vm.GoalStatus);
             set.Bind(SaveButton).To(vm => vm.SaveDataCommand);
+            set.Bind(SaveButton).For(v => v.Enabled).To(vm => vm.SaveButtonEnableStatus);
             set.Bind(DeleteButton).To(vm => vm.DeleteDataCommand);
             set.Bind(_buttonGoBack).For("Clicked").To(vm => vm.SendBackCommand);
             set.Apply();

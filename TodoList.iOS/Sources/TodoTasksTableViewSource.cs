@@ -14,6 +14,7 @@ namespace TodoList.iOS.Sources
     {
         public TodoTasksTableViewSource(UITableView tableView) : base(tableView)
         {
+            DeselectAutomatically = true;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)

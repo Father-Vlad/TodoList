@@ -7,7 +7,7 @@ using UIKit;
 
 namespace TodoList.iOS.Views
 {
-    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Done")]
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Done", TabIconName = "Icon40")]
     public partial class CollectionOfDoneTasksView : MvxViewController<CollectionOfDoneTasksViewModel>
     {
         private UIBarButtonItem _buttonAdd;

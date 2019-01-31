@@ -26,7 +26,7 @@ namespace TodoList.Core.ViewModels
 
         private async Task ShowCurrentViewModel()
         {
-            if (_loginService.CurrentUserAccount == null)
+            if (_loginService.CurrentUserId == string.Empty)
             {
                 ShowLoginViewModelCommand.Execute();
                 return;
