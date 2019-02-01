@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
+using TodoList.Core.MvxInteraction;
 using Xamarin.Auth;
 
 namespace TodoList.Core.ViewModels
@@ -32,6 +33,7 @@ namespace TodoList.Core.ViewModels
             _navigationService = navigationService;
             _taskService = taskService;
             NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
+            NavigateToLoginFragmentCommand = new MvxAsyncCommand(LookAtLoginScreen);
             FillingLoginUserDataCommand = new MvxAsyncCommand(FillingLoginUserData);
             DeleteLoginUserDataCommand = new MvxAsyncCommand(DeleteLoginUserData);
         }
@@ -41,14 +43,22 @@ namespace TodoList.Core.ViewModels
         public IMvxCommand DeleteLoginUserDataCommand { get; set; }
 
         public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
+        public IMvxCommand NavigateToLoginFragmentCommand { get; set; }
 
         public IMvxCommand LoginFacebookCommand => new MvxCommand(_loginService.LoginFacebook);
 
         public IMvxCommand LogoutFacebookCommand => new MvxCommand(_loginService.LogoutFacebook);
 
+        public MvxInteraction<CloseUIViewController> Interaction { get; set; } = new MvxInteraction<CloseUIViewController>();
+
         public async Task LookAtCurrentGoals()
         {
             var result = await _navigationService.Navigate<ViewPagerViewModel>();
+        }
+
+        public async Task LookAtLoginScreen()
+        {
+            var result = await _navigationService.Navigate<LoginViewModel>();
         }
 
         public async Task FillingLoginUserData()
@@ -58,6 +68,13 @@ namespace TodoList.Core.ViewModels
             CreateNewUser(user);
             UserId = user.UserId;
             UserName = user.UserName;
+
+            var request = new CloseUIViewController()
+            {
+                OnClose = () => _navigationService.Close(this)
+            };
+            Interaction.Raise(request);
+            //NavigateToCollectionFragmentCommand.Execute(null);
         }
 
         public async Task DeleteLoginUserData()

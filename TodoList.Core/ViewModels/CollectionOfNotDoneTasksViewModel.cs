@@ -22,10 +22,19 @@ namespace TodoList.Core.ViewModels
             _taskService = taskService;
             _loginService = loginService;
             Goals = new MvxObservableCollection<Goal>();
+            LogoutCommand = new MvxAsyncCommand(Logout);
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
         }
 
         public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
+        public IMvxCommand LogoutCommand { get; set; }
+
+        private async Task Logout()
+        {
+            _loginService.LogoutFacebook();
+            //await _navigationService.Navigate<LoginViewModel>();
+            await _navigationService.Close(this);
+        }
 
         public override void ViewAppearing()
         {

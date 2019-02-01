@@ -1,5 +1,9 @@
+using MvvmCross.Base;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Views;
+using MvvmCross.ViewModels;
+using System.Threading.Tasks;
+using TodoList.Core.MvxInteraction;
 using TodoList.Core.ViewModels;
 using UIKit;
 
@@ -8,6 +12,22 @@ namespace TodoList.iOS.Views
     public partial class LoginView : MvxViewController<LoginViewModel>
     {
         private UIBarButtonItem _buttonAdd;
+        private UIViewController _ui;
+
+        private IMvxInteraction<CloseUIViewController> _interaction;
+        public IMvxInteraction<CloseUIViewController> Interaction
+        {
+            get => _interaction;
+            set
+            {
+                if (_interaction != null)
+                    _interaction.Requested -= OnInteractionRequested;
+
+                _interaction = value;
+                _interaction.Requested += OnInteractionRequested;
+            }
+        }
+
         public LoginView() : base(nameof(LoginView), null)
         {
         }
@@ -23,11 +43,17 @@ namespace TodoList.iOS.Views
             set.Apply();
         }
 
+        private void OnInteractionRequested(object sender, MvxValueEventArgs<CloseUIViewController> eventArgs)
+        {
+            _ui.DismissViewController(true, null);
+            eventArgs.Value.OnClose();
+        }
+
         partial void LoginButton_TouchUpInside(UIKit.UIButton sender)
         {
             ViewModel.LoginFacebookCommand.Execute(null);
-            var ui = ViewModel.Authenticator.GetUI();
-            PresentViewController(ui, true, null);
+            _ui = ViewModel.Authenticator.GetUI();
+            PresentViewController(_ui, true, null);
         }
     }
 }

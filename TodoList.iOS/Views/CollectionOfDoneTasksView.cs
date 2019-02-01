@@ -11,7 +11,8 @@ namespace TodoList.iOS.Views
     public partial class CollectionOfDoneTasksView : MvxViewController<CollectionOfDoneTasksViewModel>
     {
         private UIBarButtonItem _buttonAdd;
-        
+        private UIBarButtonItem _buttonLogOut;
+
         public CollectionOfDoneTasksView () : base (nameof(CollectionOfDoneTasksView), null)
         {
         }
@@ -21,12 +22,15 @@ namespace TodoList.iOS.Views
             base.ViewDidLoad();
             _buttonAdd = new UIBarButtonItem(UIBarButtonSystemItem.Add, null);
             NavigationItem.SetRightBarButtonItem(_buttonAdd, false);
+            _buttonLogOut = new UIBarButtonItem(UIBarButtonSystemItem.Stop, null);
+            NavigationItem.SetLeftBarButtonItem(_buttonLogOut, false);
             var source = new TodoTasksTableViewSource(CollectionOfDoneTasksTableView);
             CollectionOfDoneTasksTableView.Source = source;
             var set = this.CreateBindingSet<CollectionOfDoneTasksView, CollectionOfDoneTasksViewModel>();
             set.Bind(source).To(vm => vm.Goals);
             set.Bind(source).For(v => v.SelectionChangedCommand).To(vm => vm.FillingDataActivityCommand);
             set.Bind(_buttonAdd).For("Clicked").To(vm => vm.FillingDataActivityCommand);
+            set.Bind(_buttonLogOut).For("Clicked").To(vm => vm.LogoutCommand);
             set.Apply();
             CollectionOfDoneTasksTableView.ReloadData();
         }
