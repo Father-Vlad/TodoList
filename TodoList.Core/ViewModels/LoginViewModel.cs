@@ -35,7 +35,6 @@ namespace TodoList.Core.ViewModels
             _navigationService = navigationService;
             _taskService = taskService;
             NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
-            NavigateToLoginFragmentCommand = new MvxAsyncCommand(LookAtLoginScreen);
             FillingLoginUserDataCommand = new MvxCommand(FillingLoginUserData);
             DeleteLoginUserDataCommand = new MvxAsyncCommand(DeleteLoginUserData);
         }
@@ -45,7 +44,6 @@ namespace TodoList.Core.ViewModels
         public IMvxCommand DeleteLoginUserDataCommand { get; set; }
 
         public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
-        public IMvxCommand NavigateToLoginFragmentCommand { get; set; }
 
         public IMvxCommand LoginFacebookCommand => new MvxCommand(_loginService.LoginFacebook);
 
@@ -56,11 +54,7 @@ namespace TodoList.Core.ViewModels
         public async Task LookAtCurrentGoals()
         {
             var result = await _navigationService.Navigate<ViewPagerViewModel>();
-        }
-
-        public async Task LookAtLoginScreen()
-        {
-            var result = await _navigationService.Navigate<LoginViewModel>();
+            await _navigationService.Close(this);
         }
 
         public void FillingLoginUserData()

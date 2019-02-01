@@ -1,13 +1,14 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
 
 namespace TodoList.Core.ViewModels
 {
-    public class CollectionOfNotDoneTasksViewModel : MvxViewModel
+    public class CollectionOfNotDoneTasksViewModel : MvxViewModel<Action>
     {
         private bool _isRefreshLayoutRefreshing;
         private MvxObservableCollection<Goal> _goals;
@@ -22,18 +23,16 @@ namespace TodoList.Core.ViewModels
             _taskService = taskService;
             _loginService = loginService;
             Goals = new MvxObservableCollection<Goal>();
-            LogoutCommand = new MvxAsyncCommand(Logout);
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
         }
 
         public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
-        public IMvxCommand LogoutCommand { get; set; }
+        public IMvxCommand LogoutCommand => new MvxCommand(Logout);
+        public Action OnLoggedOutHandler { get; set; }
 
-        private async Task Logout()
+        private void Logout()
         {
-            _loginService.LogoutFacebook();
-            //await _navigationService.Navigate<LoginViewModel>();
-            await _navigationService.Close(this);
+            OnLoggedOutHandler();
         }
 
         public override void ViewAppearing()
@@ -95,6 +94,11 @@ namespace TodoList.Core.ViewModels
                 _isRefreshLayoutRefreshing = value;
                 RaisePropertyChanged(() => IsRefreshLayoutRefreshing);
             }
+        }
+
+        public override void Prepare(Action parameter)
+        {
+            OnLoggedOutHandler = parameter;
         }
     }
 }

@@ -220,6 +220,10 @@
       <Project>{b4a5f68f-8de2-40e1-bbf1-b029212d2015}</Project>
       <Name>TodoList.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TodoList.Droid\TodoList.Droid.csproj">
+      <Project>{E67ECAC9-088E-47D9-A23F-CA0834806BB6}</Project>
+      <Name>TodoList.Droid</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

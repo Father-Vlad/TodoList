@@ -1,5 +1,6 @@
 using MvvmCross.Base;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.ViewModels;
 using TodoList.Core.MvxInteraction;
@@ -8,6 +9,7 @@ using UIKit;
 
 namespace TodoList.iOS.Views
 {
+    //[MvxModalPresentation(WrapInNavigationController = true)]
     public partial class LoginView : MvxViewController<LoginViewModel>
     {
         private UIBarButtonItem _buttonAdd;

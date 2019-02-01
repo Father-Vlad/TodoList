@@ -24,7 +24,7 @@ namespace TodoList.iOS.Views
             NavigationItem.SetLeftBarButtonItem(_buttonLogOut, false);
             var source = new TodoTasksTableViewSource(CollectionOfNotDoneTasksTableView);
             CollectionOfNotDoneTasksTableView.Source = source;
-            var set = this.CreateBindingSet<CollectionOfNotDoneTasksView, CollectionOfDoneTasksViewModel>();
+            var set = this.CreateBindingSet<CollectionOfNotDoneTasksView, CollectionOfNotDoneTasksViewModel>();
             set.Bind(source).To(vm => vm.Goals);
             set.Bind(source).For(v => v.SelectionChangedCommand).To(vm => vm.FillingDataActivityCommand);
             set.Bind(_buttonAdd).For("Clicked").To(vm => vm.FillingDataActivityCommand);

@@ -19,7 +19,7 @@ namespace TodoList.iOS.Views
             base.ViewDidLoad();
             _buttonGoBack = new UIBarButtonItem(UIBarButtonSystemItem.Reply, null);
             NavigationItem.SetLeftBarButtonItem(_buttonGoBack, false);
-
+            
             var set = this.CreateBindingSet<FillingDataView, FillingDataViewModel>();
             set.Bind(NameOfTaskTextField).To(vm => vm.GoalName);
             set.Bind(DescriptionOfTaskTextField).To(vm => vm.GoalDescription);
