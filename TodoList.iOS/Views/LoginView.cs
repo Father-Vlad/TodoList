@@ -40,13 +40,13 @@ namespace TodoList.iOS.Views
             set.Bind(LoginToFacebookButton).To(vm => vm.NavigateToCollectionFragmentCommand);
             set.Bind(_buttonAdd).For("Clicked").To(vm => vm.NavigateToCollectionFragmentCommand);
             set.Bind(_buttonAdd).For(v => v.Enabled).To(vm => vm.ContinueButtonEnableStatus);
+            set.Bind(this).For(view => view.Interaction).To(viewModel => viewModel.Interaction).OneWay();
             set.Apply();
         }
 
         private void OnInteractionRequested(object sender, MvxValueEventArgs<CloseUIViewController> eventArgs)
         {
-            _ui.DismissViewController(true, null);
-            eventArgs.Value.OnClose();
+                _ui.DismissViewController(true, null);
         }
 
         partial void LoginButton_TouchUpInside(UIKit.UIButton sender)

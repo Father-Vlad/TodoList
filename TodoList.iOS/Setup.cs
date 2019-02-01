@@ -3,9 +3,7 @@ using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Ios.Core;
 using MvvmCross.ViewModels;
-using StarWarsSample.iOS.MvxBindings;
 using TodoList.Core;
-using UIKit;
 
 namespace TodoList.iOS
 {
@@ -19,9 +17,7 @@ namespace TodoList.iOS
         protected override void InitializeLastChance()
         {
             base.InitializeLastChance();
-
-            var registry = Mvx.Resolve<IMvxTargetBindingFactoryRegistry>();
-            registry.RegisterFactory(new MvxCustomBindingFactory<UIViewController>("NetworkIndicator", (viewController) => new NetworkIndicatorTargetBinding(viewController)));
+            var registry = Mvx.IoCProvider.Resolve<IMvxTargetBindingFactoryRegistry>();
         }
 
         protected override IMvxIocOptions CreateIocOptions()
