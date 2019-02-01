@@ -27,8 +27,6 @@ namespace TodoList.Core.ViewModels
         private readonly ITaskService _taskService;
         private readonly ILoginService _loginService;
 
-        //private readonly IUserDialogs _userDialogs;
-
         public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
         {
             _loginService = loginService;
@@ -38,7 +36,7 @@ namespace TodoList.Core.ViewModels
             _taskService = taskService;
             NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
             NavigateToLoginFragmentCommand = new MvxAsyncCommand(LookAtLoginScreen);
-            FillingLoginUserDataCommand = new MvxAsyncCommand(FillingLoginUserData);
+            FillingLoginUserDataCommand = new MvxCommand(FillingLoginUserData);
             DeleteLoginUserDataCommand = new MvxAsyncCommand(DeleteLoginUserData);
         }
 
@@ -65,28 +63,15 @@ namespace TodoList.Core.ViewModels
             var result = await _navigationService.Navigate<LoginViewModel>();
         }
 
-        public async Task FillingLoginUserData()
+        public void FillingLoginUserData()
         {
-            /*var destroy = await _userDialogs.ConfirmAsync(new ConfirmConfig
-            {
-                Title = "Destroy Person",
-                Message = "Sir, are you sure you want to destroy this person?",
-                OkText = "YES",
-                CancelText = "No"
-            });*/
-                User user = _loginService.CurrentUser;
-                var list = _taskService.GetAllUsers();
-                CreateNewUser(user);
-                UserId = user.UserId;
-                UserName = user.UserName;
-                
-                var request = new CloseUIViewController()
-                {
-                    //OnClose = () => NavigateToCollectionFragmentCommand.Execute(null)
-                };
-                Interaction.Raise(request);
-                //NavigateToCollectionFragmentCommand.Execute(null);
-            
+            User user = _loginService.CurrentUser;
+            var list = _taskService.GetAllUsers();
+            CreateNewUser(user);
+            UserId = user.UserId;
+            UserName = user.UserName;
+            var request = new CloseUIViewController();
+            Interaction.Raise(request);
         }
 
         public async Task DeleteLoginUserData()
