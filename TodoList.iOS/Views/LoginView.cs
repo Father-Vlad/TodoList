@@ -9,7 +9,7 @@ using UIKit;
 
 namespace TodoList.iOS.Views
 {
-    //[MvxModalPresentation(WrapInNavigationController = true)]
+    [MvxModalPresentation(WrapInNavigationController = true, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
     public partial class LoginView : MvxViewController<LoginViewModel>
     {
         private UIBarButtonItem _buttonAdd;

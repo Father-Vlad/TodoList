@@ -24,7 +24,7 @@
                     <rect key="frame" x="27" y="165" width="266" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.29803921568627451" green="0.41568627450980394" blue="0.66274509803921566" alpha="1"/>
-                    <state key="normal" title="   Continue with Facebook" image="facebook_black_outline_logo_transparent_background_png_font_icon_vector_button_maker_and.png">
+                    <state key="normal" title="   Continue with Facebook" image="LoginViewIcon">
                         <color key="titleColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -46,6 +46,6 @@
         </view>
     </objects>
     <resources>
-        <image name="facebook_black_outline_logo_transparent_background_png_font_icon_vector_button_maker_and.png" width="32" height="32"/>
+        <image name="LoginViewIcon" width="32" height="32"/>
     </resources>
 </document>

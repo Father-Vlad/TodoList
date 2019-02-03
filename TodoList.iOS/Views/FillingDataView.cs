@@ -6,7 +6,6 @@ using UIKit;
 
 namespace TodoList.iOS.Views
 {
-    //[MvxChildPresentation]
     [MvxModalPresentation(WrapInNavigationController = true, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
     public partial class FillingDataView : MvxViewController<FillingDataViewModel>
     {

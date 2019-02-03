@@ -23,7 +23,7 @@ namespace TodoList.iOS.Views.Cells
             {
                 var set = this.CreateBindingSet<TaskViewCell, Goal>();
                 set.Bind(TaskNameLabel).To(vm => vm.GoalName);
-                set.Bind(TaskStatusSwitch).To(vm => vm.GoalStatus);
+                set.Bind(TaskStatusImageView).For(v=>v.Image).To(vm => vm.GoalStatus).WithConversion("StatusImage");
                 set.Apply();
             });
         }

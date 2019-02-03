@@ -18,7 +18,6 @@ namespace TodoList.Core.ViewModels
         {
             _navigationService = navigationService;
             _loginService = loginService;
-            _navigationService.BeforeClose += _navigationService_BeforeClose;
             CollectionOfDoneTasksViewModelCommand = Mvx.IoCConstruct<CollectionOfDoneTasksViewModel>();
             CollectionOfNotDoneTasksViewModelCommand = Mvx.IoCConstruct<CollectionOfNotDoneTasksViewModel>();
             LogoutCommand = new MvxAsyncCommand(Logout);
@@ -39,12 +38,8 @@ namespace TodoList.Core.ViewModels
         private async Task Logout()
         {
             _loginService.LogoutFacebook();
+            await _navigationService.Navigate<LoginViewModel>();
             await _navigationService.Close(this);
-        }
-
-        private void _navigationService_BeforeClose(object sender, MvvmCross.Navigation.EventArguments.IMvxNavigateEventArgs e)
-        {
-            _navigationService.Navigate<LoginViewModel>();
         }
 
         public async Task CreateNewGoal(Goal goal)

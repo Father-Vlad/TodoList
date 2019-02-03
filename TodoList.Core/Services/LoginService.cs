@@ -29,9 +29,18 @@ namespace TodoList.Core.Services
         {
             _auth = new OAuth2Authenticator(clientId: _facebookClientId, scope: string.Empty, authorizeUrl: new Uri(_facebookAuthorizeUrl), redirectUrl: new Uri(_facebookRedirectUrl))
             {
+                Title = "To-do List",
                 AllowCancel = true
+                
             };
             _auth.Completed += FacebookAuthCompleted;
+            _auth.Error += _auth_Error;
+        }
+
+        private void _auth_Error(object sender, AuthenticatorErrorEventArgs e)
+        {
+            _auth.ShowErrors = false;
+            _auth.OnCancelled();
         }
 
         public void LogoutFacebook()
@@ -40,7 +49,6 @@ namespace TodoList.Core.Services
             if (CrossSettings.Current.Contains(_keyForSettingId, string.Empty))
             {
                 CrossSettings.Current.Clear();
-                //AccountStore.Create().Delete(data, _keyForSettingId);
                 if (OnLoggedOutHandler != null)
                 {
                     OnLoggedOutHandler();
@@ -67,7 +75,6 @@ namespace TodoList.Core.Services
                 }
                 CrossSettings.Current.AddOrUpdateValue(_keyForSettingId, CurrentUser.UserId);
                 CrossSettings.Current.AddOrUpdateValue(_keyForSettingName, CurrentUser.UserName);
-                //AccountStore.Create().Save(loggedInAccount, _keyForSettingId);
             }
         }
 
@@ -98,8 +105,7 @@ namespace TodoList.Core.Services
             {
                 if (_currentUser == null)
                 {
-                    User user = new User(CurrentUserId, CurrentUserName); //This is the right version of the user id parameter
-                    //User user = new User("1", string.Empty); //This is the test version
+                    User user = new User(CurrentUserId, CurrentUserName);
                     _currentUser = user;
                 }
                 return _currentUser;

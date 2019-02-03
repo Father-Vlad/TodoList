@@ -19,7 +19,7 @@ namespace TodoList.iOS.Views.Cells
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UISwitch TaskStatusSwitch { get; set; }
+        UIKit.UIImageView TaskStatusImageView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
@@ -28,9 +28,9 @@ namespace TodoList.iOS.Views.Cells
                 TaskNameLabel = null;
             }
 
-            if (TaskStatusSwitch != null) {
-                TaskStatusSwitch.Dispose ();
-                TaskStatusSwitch = null;
+            if (TaskStatusImageView != null) {
+                TaskStatusImageView.Dispose ();
+                TaskStatusImageView = null;
             }
         }
     }

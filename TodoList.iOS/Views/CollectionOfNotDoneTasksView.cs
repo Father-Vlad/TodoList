@@ -6,7 +6,7 @@ using TodoList.iOS.Sources;
 using UIKit;
 namespace TodoList.iOS.Views
 {
-    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Not Done", TabIconName = "Icon40")]
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "NOT DONE", TabIconName = "TabBarUnChecked")]
     public partial class CollectionOfNotDoneTasksView : MvxViewController<CollectionOfNotDoneTasksViewModel>
     {
         private UIBarButtonItem _buttonAdd;
