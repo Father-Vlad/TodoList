@@ -18,6 +18,7 @@ namespace TodoList.iOS.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            Title = "Not Done Tasks";
             _buttonAdd = new UIBarButtonItem(UIBarButtonSystemItem.Add, null);
             NavigationItem.SetRightBarButtonItem(_buttonAdd, false);
             _buttonLogOut = new UIBarButtonItem(UIBarButtonSystemItem.Stop, null);

@@ -20,12 +20,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="149" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="149" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="0.0" y="70" width="320" height="498"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
+            <constraints>
+                <constraint id="329" firstItem="149" firstAttribute="top" secondItem="1" secondAttribute="top" constant="70"/>
+                <constraint id="334" firstItem="149" firstAttribute="trailing" secondItem="1" secondAttribute="trailing"/>
+                <constraint id="357" firstItem="149" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
+                <constraint id="362" firstItem="149" firstAttribute="bottom" secondItem="1" secondAttribute="bottom"/>
+            </constraints>
+            <point key="canvasLocation" x="-4" y="-11"/>
         </view>
     </objects>
 </document>

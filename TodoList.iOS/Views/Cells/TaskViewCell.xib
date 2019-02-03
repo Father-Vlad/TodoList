@@ -10,25 +10,69 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="cxk-wN-pdQ" customClass="TaskViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="86" id="cxk-wN-pdQ" customClass="TaskViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="334" height="86"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="152" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                        <rect key="frame" x="0.0" y="0.0" width="246" height="44"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="319" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                        <rect key="frame" x="260" y="0.0" width="45" height="45"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" id="4997" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="10" y="10" width="314" height="66"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.792156862745098" green="0.788235294117647" blue="0.796078431372549" alpha="1"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="2813" translatesAutoresizingMaskIntoConstraints="NO" placeholderIntrinsicHeight="20">
+                                <rect key="frame" x="2" y="2" width="308" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="152" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="0.0" y="6" width="246" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="319" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="254" y="6" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint id="5481" firstAttribute="width" constant="50"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <rect key="contentStretch" x="0" y="0.0" width="1" height="1"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.47058823529411764" green="0.86274509803921573" blue="0.8784313725490196" alpha="1"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <constraints>
+                                    <constraint id="5475" firstItem="152" firstAttribute="top" secondItem="2813" secondAttribute="top" constant="6"/>
+                                    <constraint id="5476" firstAttribute="bottom" secondItem="152" secondAttribute="bottom" constant="4"/>
+                                    <constraint id="5477" firstItem="152" firstAttribute="leading" secondItem="2813" secondAttribute="leading"/>
+                                    <constraint id="5478" firstItem="319" firstAttribute="top" secondItem="2813" secondAttribute="top" constant="6"/>
+                                    <constraint id="5479" firstAttribute="trailing" secondItem="319" secondAttribute="trailing" constant="4"/>
+                                    <constraint id="5480" firstAttribute="bottom" secondItem="319" secondAttribute="bottom" constant="4"/>
+                                    <constraint id="5482" firstItem="319" firstAttribute="leading" secondItem="152" secondAttribute="trailing" constant="8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <constraints>
+                            <constraint id="5471" firstItem="2813" firstAttribute="top" secondItem="4997" secondAttribute="top" constant="2"/>
+                            <constraint id="5472" firstAttribute="bottom" secondItem="2813" secondAttribute="bottom" constant="4"/>
+                            <constraint id="5473" firstAttribute="trailing" secondItem="2813" secondAttribute="trailing" constant="4"/>
+                            <constraint id="5474" firstItem="2813" firstAttribute="leading" secondItem="4997" secondAttribute="leading" constant="2"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint id="5467" firstItem="4997" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="10"/>
+                    <constraint id="5468" firstAttribute="trailing" secondItem="4997" secondAttribute="trailing" constant="10"/>
+                    <constraint id="5469" firstAttribute="bottom" secondItem="4997" secondAttribute="bottom" constant="9"/>
+                    <constraint id="5470" firstItem="4997" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="10"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="TaskNameLabel" destination="152" id="name-outlet-152"/>
