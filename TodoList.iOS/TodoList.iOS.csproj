@@ -64,7 +64,10 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converters\ProfilePictureVisibleStatusValueConverter.cs" />
     <Compile Include="Converters\StatusImageValueConverter.cs" />
+    <Compile Include="Converters\StatusOfTaskLabelValueConverter.cs" />
+    <Compile Include="Converters\UrlPictureStringValueConverter.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Sources\TodoTasksTableViewSource.cs" />
     <Compile Include="Views\Cells\TaskViewCell.cs" />

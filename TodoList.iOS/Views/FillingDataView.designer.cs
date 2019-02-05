@@ -19,7 +19,7 @@ namespace TodoList.iOS.Views
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField DescriptionOfTaskTextField { get; set; }
+        UIKit.UITextView DescriptionOfTaskTextView { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -28,6 +28,10 @@ namespace TodoList.iOS.Views
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton SaveButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel StatusOfTaskLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -40,9 +44,9 @@ namespace TodoList.iOS.Views
                 DeleteButton = null;
             }
 
-            if (DescriptionOfTaskTextField != null) {
-                DescriptionOfTaskTextField.Dispose ();
-                DescriptionOfTaskTextField = null;
+            if (DescriptionOfTaskTextView != null) {
+                DescriptionOfTaskTextView.Dispose ();
+                DescriptionOfTaskTextView = null;
             }
 
             if (NameOfTaskTextField != null) {
@@ -53,6 +57,11 @@ namespace TodoList.iOS.Views
             if (SaveButton != null) {
                 SaveButton.Dispose ();
                 SaveButton = null;
+            }
+
+            if (StatusOfTaskLabel != null) {
+                StatusOfTaskLabel.Dispose ();
+                StatusOfTaskLabel = null;
             }
 
             if (StatusOfTaskSwitch != null) {

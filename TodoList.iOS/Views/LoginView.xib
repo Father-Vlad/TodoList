@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="LoginToFacebookButton" destination="149" id="name-outlet-149"/>
                 <outlet property="view" destination="1" id="RRd-Eg-VrN"/>
+                <outlet property="UserImageView" destination="557" id="name-outlet-557"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -36,12 +37,22 @@
                         <action selector="LoginButton_TouchUpInside:" destination="-1" id="336" eventType="touchUpInside"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="557" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="60" y="213" width="200" height="200"/>
+                    <constraints>
+                        <constraint id="1329" firstAttribute="height" constant="200"/>
+                        <constraint id="1330" firstAttribute="width" constant="200"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <constraints>
                 <constraint id="318" firstItem="149" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="27"/>
                 <constraint id="319" firstAttribute="trailing" secondItem="149" secondAttribute="trailing" constant="27"/>
                 <constraint id="326" firstItem="149" firstAttribute="top" secondItem="1" secondAttribute="top" constant="165"/>
-                <constraint id="327" firstAttribute="bottom" secondItem="149" secondAttribute="bottom" constant="363"/>
+                <constraint id="1326" firstItem="557" firstAttribute="top" secondItem="149" secondAttribute="bottom" constant="8"/>
+                <constraint id="1327" firstItem="557" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="60"/>
+                <constraint id="1331" firstAttribute="bottom" secondItem="557" secondAttribute="bottom" constant="155"/>
+                <constraint id="1343" firstAttribute="trailing" secondItem="557" secondAttribute="trailing" constant="60"/>
             </constraints>
         </view>
     </objects>

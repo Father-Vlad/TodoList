@@ -11,6 +11,7 @@ namespace TodoList.iOS.Views
     {
         private UIBarButtonItem _buttonAdd;
         private UIBarButtonItem _buttonLogOut;
+        private readonly string _textTitle = "To-do List";
 
         public CollectionOfNotDoneTasksView() : base(nameof(CollectionOfNotDoneTasksView), null)
         {
@@ -18,7 +19,7 @@ namespace TodoList.iOS.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Title = "Not Done Tasks";
+            Title = _textTitle;
             _buttonAdd = new UIBarButtonItem(UIBarButtonSystemItem.Add, null);
             NavigationItem.SetRightBarButtonItem(_buttonAdd, false);
             _buttonLogOut = new UIBarButtonItem(UIBarButtonSystemItem.Stop, null);

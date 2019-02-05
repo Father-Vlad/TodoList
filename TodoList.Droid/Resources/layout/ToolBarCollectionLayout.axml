@@ -6,7 +6,7 @@
 	<Toolbar
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:title = "@string/text_title"
+		android:title = "@string/app_name"
 		android:titleTextColor = "@color/colorWhite"
 		android:minHeight="?attr/actionBarSize"
 		android:background="?android:attr/colorPrimary"

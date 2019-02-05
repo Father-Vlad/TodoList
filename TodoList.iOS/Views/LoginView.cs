@@ -1,3 +1,4 @@
+using Foundation;
 using MvvmCross.Base;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
@@ -15,6 +16,7 @@ namespace TodoList.iOS.Views
         private UIBarButtonItem _buttonAdd;
         private UIViewController _ui;
         private IMvxInteraction<CloseUIViewController> _interaction;
+        //private UIButton _facebookLoginButton;
 
         public LoginView() : base(nameof(LoginView), null)
         {
@@ -30,6 +32,9 @@ namespace TodoList.iOS.Views
             set.Bind(_buttonAdd).For("Clicked").To(vm => vm.NavigateToCollectionFragmentCommand);
             set.Bind(_buttonAdd).For(v => v.Enabled).To(vm => vm.ContinueButtonEnableStatus);
             set.Bind(this).For(view => view.Interaction).To(viewModel => viewModel.Interaction).OneWay();
+            set.Bind(UserImageView).For(v => v.Image).To(vm => vm.UserId).WithConversion("UrlPictureString");
+            set.Bind(UserImageView).For(v => v.Hidden).To(vm => vm.ProfilePictureViewVisibleStatus).WithConversion("ProfilePictureVisibleStatus");
+            set.Bind(LoginToFacebookButton).For("Title").To(vm => vm.LoginButtonText);
             set.Apply();
         }
 
@@ -53,9 +58,14 @@ namespace TodoList.iOS.Views
 
         partial void LoginButton_TouchUpInside(UIKit.UIButton sender)
         {
-            ViewModel.LoginFacebookCommand.Execute(null);
-            _ui = ViewModel.Authenticator.GetUI();
-            PresentViewController(_ui, true, null);
+            if (string.IsNullOrEmpty(this.ViewModel.UserId))
+            {
+                ViewModel.LoginFacebookCommand.Execute(null);
+                _ui = ViewModel.Authenticator.GetUI();
+                PresentViewController(_ui, true, null);
+                return;
+            }
+            this.ViewModel.LogoutFacebookCommand.Execute();
         }
     }
 }

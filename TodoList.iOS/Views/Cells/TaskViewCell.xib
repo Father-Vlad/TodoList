@@ -19,10 +19,10 @@
                 <subviews>
                     <view contentMode="scaleToFill" id="5865" translatesAutoresizingMaskIntoConstraints="NO">
                         <rect key="frame" x="10" y="8" width="314" height="69"/>
-                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.97254901960784312" green="0.96862745098039216" blue="0.97647058823529409" alpha="1"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.95686274509803926" green="0.95294117647058818" blue="0.96078431372549022" alpha="1"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="4997" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="7" y="3" width="300" height="63"/>
+                                <rect key="frame" x="7" y="3" width="300" height="62"/>
                                 <color key="backgroundColor" colorSpace="calibratedRGB" red="0.792156862745098" green="0.788235294117647" blue="0.796078431372549" alpha="1"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="2813" translatesAutoresizingMaskIntoConstraints="NO" placeholderIntrinsicHeight="20">
@@ -65,7 +65,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <constraints>
                                     <constraint id="5471" firstItem="2813" firstAttribute="top" secondItem="4997" secondAttribute="top"/>
-                                    <constraint id="5472" firstAttribute="bottom" secondItem="2813" secondAttribute="bottom" constant="3"/>
+                                    <constraint id="5472" firstAttribute="bottom" secondItem="2813" secondAttribute="bottom" constant="2"/>
                                     <constraint id="5473" firstAttribute="trailing" secondItem="2813" secondAttribute="trailing" constant="-4"/>
                                     <constraint id="5474" firstItem="2813" firstAttribute="leading" secondItem="4997" secondAttribute="leading" constant="-4"/>
                                 </constraints>
@@ -73,13 +73,13 @@
                         </subviews>
                         <constraints>
                             <constraint id="5894" firstItem="4997" firstAttribute="top" secondItem="5865" secondAttribute="top" constant="3"/>
-                            <constraint id="5895" firstAttribute="bottom" secondItem="4997" secondAttribute="bottom" constant="3"/>
+                            <constraint id="5895" firstAttribute="bottom" secondItem="4997" secondAttribute="bottom" constant="4"/>
                             <constraint id="5896" firstItem="4997" firstAttribute="leading" secondItem="5865" secondAttribute="leading" constant="7"/>
                             <constraint id="5897" firstAttribute="trailing" secondItem="4997" secondAttribute="trailing" constant="7"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                                <real key="value" value="5"/>
+                                <real key="value" value="15"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
