@@ -26,6 +26,7 @@ namespace TodoList.Core.ViewModels
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
         }
 
+
         public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
         public IMvxCommand LogoutCommand => new MvxCommand(Logout);
         public Action OnLoggedOutHandler { get; set; }

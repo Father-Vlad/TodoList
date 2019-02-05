@@ -11,122 +11,134 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FillingDataView">
             <connections>
                 <outlet property="view" destination="1" id="RRd-Eg-VrN"/>
-                <outlet property="NameOfTaskTextField" destination="3209" id="name-outlet-3209"/>
-                <outlet property="SaveButton" destination="299" id="name-outlet-299"/>
-                <outlet property="DeleteButton" destination="300" id="name-outlet-300"/>
-                <outlet property="StatusOfTaskLabel" destination="2193" id="name-outlet-2193"/>
-                <outlet property="StatusOfTaskSwitch" destination="298" id="name-outlet-298"/>
-                <outlet property="DescriptionOfTaskTextView" destination="1909" id="name-outlet-1909"/>
+                <outlet property="NameOfTaskTextField" destination="7610" id="name-outlet-7610"/>
+                <outlet property="DescriptionOfTaskTextView" destination="7612" id="name-outlet-7612"/>
+                <outlet property="StatusOfTaskSwitch" destination="7614" id="name-outlet-7614"/>
+                <outlet property="SaveButton" destination="7619" id="name-outlet-7619"/>
+                <outlet property="DeleteButton" destination="7621" id="name-outlet-7621"/>
+                <outlet property="StatusOfTaskLabel" destination="7616" id="name-outlet-7616"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+            <point key="canvasLocation" x="0.0" y="2"/>
             <subviews>
-                <view contentMode="scaleToFill" id="3633" translatesAutoresizingMaskIntoConstraints="NO">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7033" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.47058823529411764" green="0.86274509803921573" blue="0.8784313725490196" alpha="1"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="3209" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Name of Task" textAlignment="justified">
-                            <rect key="frame" x="10" y="70" width="300" height="30"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                        <view contentMode="scaleToFill" id="7264" translatesAutoresizingMaskIntoConstraints="NO">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.47058823529411764" green="0.86274509803921573" blue="0.8784313725490196" alpha="1"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="7610" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Name of Task" textAlignment="justified">
+                                    <rect key="frame" x="10" y="16" width="300" height="30"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <constraints>
+                                        <constraint id="7611" firstAttribute="height" constant="30"/>
+                                    </constraints>
+                                </textField>
+                                <textView clipsSubviews="YES" contentMode="scaleToFill" id="7612" translatesAutoresizingMaskIntoConstraints="NO" text="Enter your Description" textAlignment="justified">
+                                    <rect key="frame" x="5" y="66" width="310" height="136"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <constraints>
+                                        <constraint id="7613" firstAttribute="height" constant="136"/>
+                                    </constraints>
+                                </textView>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="7614" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <rect key="frame" x="12" y="239" width="51" height="31"/>
+                                </switch>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Done" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7616" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <rect key="frame" x="71" y="244" width="76" height="21"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <constraints>
+                                        <constraint id="7617" firstAttribute="width" constant="76"/>
+                                        <constraint id="7618" firstAttribute="height" constant="21"/>
+                                    </constraints>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7619" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <rect key="frame" x="0.0" y="295" width="160" height="40"/>
+                                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.4392156862745098" green="0.60392156862745094" blue="0.58823529411764708" alpha="1"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <size key="titleShadowOffset" width="0" height="0"/>
+                                    <state key="normal" title="Save">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <constraints>
+                                        <constraint id="7620" firstAttribute="height" constant="40"/>
+                                    </constraints>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7621" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <rect key="frame" x="160" y="295" width="160" height="40"/>
+                                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.4392156862745098" green="0.60392156862745094" blue="0.58823529411764708" alpha="1"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <state key="normal" title="Delete">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <constraints>
+                                        <constraint id="7622" firstAttribute="height" constant="40"/>
+                                    </constraints>
+                                </button>
+                            </subviews>
                             <constraints>
-                                <constraint id="4661" firstAttribute="height" constant="30"/>
+                                <constraint id="7959" firstItem="7610" firstAttribute="leading" secondItem="7264" secondAttribute="leading" constant="10"/>
+                                <constraint id="7985" firstAttribute="trailing" secondItem="7610" secondAttribute="trailing" constant="10"/>
+                                <constraint id="8111" firstItem="7612" firstAttribute="top" secondItem="7610" secondAttribute="bottom" constant="20"/>
+                                <constraint id="8137" firstItem="7612" firstAttribute="leading" secondItem="7264" secondAttribute="leading" constant="5"/>
+                                <constraint id="8163" firstAttribute="trailing" secondItem="7612" secondAttribute="trailing" constant="5"/>
+                                <constraint id="8239" firstItem="7614" firstAttribute="top" secondItem="7612" secondAttribute="bottom" constant="37"/>
+                                <constraint id="8265" firstItem="7614" firstAttribute="leading" secondItem="7264" secondAttribute="leading" constant="12"/>
+                                <constraint id="8291" firstItem="7616" firstAttribute="top" secondItem="7612" secondAttribute="bottom" constant="42"/>
+                                <constraint id="8317" firstItem="7616" firstAttribute="leading" secondItem="7614" secondAttribute="trailing" constant="10"/>
+                                <constraint id="8343" firstItem="7619" firstAttribute="leading" secondItem="7264" secondAttribute="leading"/>
+                                <constraint id="8395" firstItem="7619" firstAttribute="top" secondItem="7614" secondAttribute="bottom" constant="25"/>
+                                <constraint id="8498" firstItem="7621" firstAttribute="top" secondItem="7614" secondAttribute="bottom" constant="25"/>
+                                <constraint id="8524" firstItem="7621" firstAttribute="trailing" secondItem="7264" secondAttribute="trailing"/>
+                                <constraint id="9502" firstItem="7619" firstAttribute="trailing" secondItem="7612" secondAttribute="centerX"/>
+                                <constraint id="9525" firstItem="7621" firstAttribute="leading" secondItem="7612" secondAttribute="centerX"/>
+                                <constraint id="11924" firstItem="7610" firstAttribute="top" secondItem="7264" secondAttribute="top" constant="16"/>
+                                <constraint id="11957" firstAttribute="bottom" secondItem="7610" secondAttribute="bottom" constant="522"/>
                             </constraints>
-                        </textField>
-                        <textView clipsSubviews="YES" contentMode="scaleToFill" id="1909" translatesAutoresizingMaskIntoConstraints="NO" text="Enter your Description" textAlignment="justified">
-                            <rect key="frame" x="5" y="120" width="310" height="136"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                                    <real key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <constraints>
-                                <constraint id="4660" firstAttribute="height" constant="136"/>
-                            </constraints>
-                        </textView>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="298" translatesAutoresizingMaskIntoConstraints="NO">
-                            <rect key="frame" x="8" y="276" width="51" height="31"/>
-                            <constraints>
-                                <constraint id="2191" firstAttribute="width" constant="49"/>
-                            </constraints>
-                        </switch>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Done" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2193" translatesAutoresizingMaskIntoConstraints="NO">
-                            <rect key="frame" x="67" y="281" width="76" height="21"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                            <constraints>
-                                <constraint id="4403" firstAttribute="width" constant="76"/>
-                                <constraint id="4405" firstAttribute="height" constant="21"/>
-                            </constraints>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="299" translatesAutoresizingMaskIntoConstraints="NO">
-                            <rect key="frame" x="0.0" y="327" width="160" height="40"/>
-                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.4392156862745098" green="0.60392156862745094" blue="0.58823529411764708" alpha="1"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <size key="titleShadowOffset" width="0" height="0"/>
-                            <state key="normal" title="Save">
-                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                                    <real key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <constraints>
-                                <constraint id="4871" firstAttribute="height" constant="40"/>
-                            </constraints>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="300" translatesAutoresizingMaskIntoConstraints="NO">
-                            <rect key="frame" x="160" y="327" width="160" height="40"/>
-                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.4392156862745098" green="0.60392156862745094" blue="0.58823529411764708" alpha="1"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <state key="normal" title="Delete">
-                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                                    <real key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <constraints>
-                                <constraint id="4872" firstAttribute="height" constant="40"/>
-                            </constraints>
-                        </button>
+                        </view>
                     </subviews>
                     <constraints>
-                        <constraint id="4347" firstItem="3209" firstAttribute="top" secondItem="3633" secondAttribute="top" constant="70"/>
-                        <constraint id="4348" firstItem="3209" firstAttribute="leading" secondItem="3633" secondAttribute="leading" constant="10"/>
-                        <constraint id="4349" firstAttribute="trailing" secondItem="3209" secondAttribute="trailing" constant="10"/>
-                        <constraint id="4395" firstItem="1909" firstAttribute="top" secondItem="3209" secondAttribute="bottom" constant="20"/>
-                        <constraint id="4396" firstItem="1909" firstAttribute="leading" secondItem="3633" secondAttribute="leading" constant="5"/>
-                        <constraint id="4397" firstAttribute="trailing" secondItem="1909" secondAttribute="trailing" constant="5"/>
-                        <constraint id="4399" firstItem="298" firstAttribute="top" secondItem="1909" secondAttribute="bottom" constant="20"/>
-                        <constraint id="4400" firstItem="298" firstAttribute="leading" secondItem="3633" secondAttribute="leading" constant="8"/>
-                        <constraint id="4401" firstItem="2193" firstAttribute="leading" secondItem="298" secondAttribute="trailing" constant="10"/>
-                        <constraint id="4402" firstItem="2193" firstAttribute="top" secondItem="1909" secondAttribute="bottom" constant="25"/>
-                        <constraint id="4408" firstItem="299" firstAttribute="leading" secondItem="3633" secondAttribute="leading"/>
-                        <constraint id="4409" firstItem="299" firstAttribute="top" secondItem="298" secondAttribute="bottom" constant="20"/>
-                        <constraint id="4411" firstItem="300" firstAttribute="top" secondItem="298" secondAttribute="bottom" constant="20"/>
-                        <constraint id="4412" firstItem="300" firstAttribute="trailing" secondItem="3633" secondAttribute="trailing"/>
-                        <constraint id="4625" firstItem="300" firstAttribute="leading" secondItem="299" secondAttribute="centerX" constant="80"/>
-                        <constraint id="4626" firstItem="300" firstAttribute="centerX" secondItem="299" secondAttribute="trailing" constant="80"/>
+                        <constraint id="7281" firstItem="7264" firstAttribute="top" secondItem="7033" secondAttribute="top"/>
+                        <constraint id="7282" firstItem="7264" firstAttribute="leading" secondItem="7033" secondAttribute="leading"/>
+                        <constraint id="7283" firstItem="7264" firstAttribute="trailing" secondItem="7033" secondAttribute="trailing"/>
+                        <constraint id="7284" firstItem="7264" firstAttribute="width" secondItem="7033" secondAttribute="width"/>
+                        <constraint id="7285" firstItem="7264" firstAttribute="bottom" secondItem="7033" secondAttribute="bottom"/>
                     </constraints>
-                </view>
+                </scrollView>
             </subviews>
-            <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
             <constraints>
-                <constraint id="4038" firstItem="3633" firstAttribute="top" secondItem="1" secondAttribute="top"/>
-                <constraint id="4061" firstAttribute="bottom" secondItem="3633" secondAttribute="bottom"/>
-                <constraint id="4084" firstItem="3633" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
-                <constraint id="4107" firstAttribute="trailing" secondItem="3633" secondAttribute="trailing"/>
+                <constraint id="7034" firstItem="7033" firstAttribute="top" secondItem="1" secondAttribute="top"/>
+                <constraint id="7035" firstItem="7033" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
+                <constraint id="7036" firstAttribute="trailing" secondItem="7033" secondAttribute="trailing"/>
+                <constraint id="7037" firstItem="7033" firstAttribute="height" secondItem="1" secondAttribute="height"/>
             </constraints>
         </view>
     </objects>
