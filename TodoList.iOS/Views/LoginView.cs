@@ -16,7 +16,6 @@ namespace TodoList.iOS.Views
         private UIBarButtonItem _buttonAdd;
         private UIViewController _ui;
         private IMvxInteraction<CloseUIViewController> _interaction;
-        //private UIButton _facebookLoginButton;
 
         public LoginView() : base(nameof(LoginView), null)
         {

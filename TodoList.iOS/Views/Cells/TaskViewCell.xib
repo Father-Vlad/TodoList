@@ -29,7 +29,7 @@
                                         <rect key="frame" x="-4" y="0.0" width="308" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="152" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="0.0" y="6" width="246" height="50"/>
+                                                <rect key="frame" x="0.0" y="6" width="190" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -39,6 +39,13 @@
                                                     <constraint id="5481" firstAttribute="width" constant="50"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6162" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <rect key="frame" x="198" y="6" width="48" height="48"/>
+                                                <state key="normal" backgroundImage="ShareToTelegramButton"/>
+                                                <connections>
+                                                    <action selector="ShareToTelegram_TouchUpInside:" destination="cxk-wN-pdQ" id="6570" eventType="touchUpInside"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <rect key="contentStretch" x="0" y="0.0" width="1" height="1"/>
                                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.47058823529411764" green="0.86274509803921573" blue="0.8784313725490196" alpha="1"/>
@@ -54,7 +61,11 @@
                                             <constraint id="5478" firstItem="319" firstAttribute="top" secondItem="2813" secondAttribute="top" constant="6"/>
                                             <constraint id="5479" firstAttribute="trailing" secondItem="319" secondAttribute="trailing" constant="4"/>
                                             <constraint id="5480" firstAttribute="bottom" secondItem="319" secondAttribute="bottom" constant="4"/>
-                                            <constraint id="5482" firstItem="319" firstAttribute="leading" secondItem="152" secondAttribute="trailing" constant="8"/>
+                                            <constraint id="6290" firstAttribute="trailing" secondItem="6162" secondAttribute="trailing" constant="62"/>
+                                            <constraint id="6291" firstItem="6162" firstAttribute="top" secondItem="2813" secondAttribute="top" constant="6"/>
+                                            <constraint id="6292" firstAttribute="bottom" secondItem="6162" secondAttribute="bottom" constant="6"/>
+                                            <constraint id="6293" firstItem="6162" firstAttribute="leading" secondItem="152" secondAttribute="trailing" constant="8"/>
+                                            <constraint id="6294" firstItem="319" firstAttribute="leading" secondItem="152" secondAttribute="trailing" constant="64"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -94,6 +105,7 @@
             <connections>
                 <outlet property="TaskNameLabel" destination="152" id="name-outlet-152"/>
                 <outlet property="TaskStatusImageView" destination="319" id="name-outlet-319"/>
+                <outlet property="ShareToTelgramButton" destination="6162" id="name-outlet-6162"/>
             </connections>
             <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
             <userDefinedRuntimeAttributes>
@@ -101,6 +113,10 @@
                     <real key="value" value="5"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="-83" y="-35"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ShareToTelegramButton" width="48" height="48"/>
+    </resources>
 </document>

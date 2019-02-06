@@ -69,7 +69,13 @@
     <Compile Include="Converters\StatusOfTaskLabelValueConverter.cs" />
     <Compile Include="Converters\UrlPictureStringValueConverter.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="Services\ShareTextToTelegramService.cs" />
     <Compile Include="Sources\TodoTasksTableViewSource.cs" />
+    <Compile Include="Helper\ToastClass.cs" />
+    <Compile Include="Views\SplachScreenAnimationView.cs" />
+    <Compile Include="Views\SplachScreenAnimationView.designer.cs">
+      <DependentUpon>SplachScreenAnimationView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Cells\TaskViewCell.cs" />
     <Compile Include="Views\Cells\TaskViewCell.designer.cs">
       <DependentUpon>TaskViewCell.cs</DependentUpon>
@@ -117,6 +123,7 @@
     </InterfaceDefinition>
     <InterfaceDefinition Include="Views\Cells\TaskViewCell.xib" />
     <InterfaceDefinition Include="Resources\Splash.xib" />
+    <InterfaceDefinition Include="Views\SplachScreenAnimationView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BTProgressHUD, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -223,6 +230,12 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork@2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ShareToTelegramButton.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ShareToTelegramButton.imageset\icons8-telegram-app-48.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\TabBarChecked.imageset\Contents.json">

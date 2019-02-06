@@ -17,6 +17,8 @@ namespace TodoList.iOS.Sources
             DeselectAutomatically = true;
         }
 
+        public Action<int> OnShareHandlerSource { get; set; }
+
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             var group = ItemsSource.ElementAt(indexPath.Row) as Goal;
@@ -29,7 +31,12 @@ namespace TodoList.iOS.Sources
             var cell = tableView.DequeueReusableCell(TaskViewCell.Key) as TaskViewCell;
             if (cell == null)
             {
+                var goal = item as Goal;
                 cell = TaskViewCell.Create();
+                cell.OnShareHandlerCell = () =>
+                {
+                    OnShareHandlerSource(goal.Id);
+                };
             }
             var bindable = cell as IMvxDataConsumer;
             if (bindable != null)
