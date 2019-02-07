@@ -4,6 +4,7 @@ using MvvmCross.Platforms.Ios.Views;
 using TodoList.Core.ViewModels;
 using TodoList.iOS.Sources;
 using UIKit;
+
 namespace TodoList.iOS.Views
 {
     [MvxTabPresentation(WrapInNavigationController = true, TabName = "NOT DONE", TabIconName = "TabBarUnChecked")]
@@ -17,6 +18,7 @@ namespace TodoList.iOS.Views
         public CollectionOfNotDoneTasksView() : base(nameof(CollectionOfNotDoneTasksView), null)
         {
         }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -29,6 +31,11 @@ namespace TodoList.iOS.Views
             NavigationItem.SetLeftBarButtonItem(_buttonLogOut, false);
             var source = new TodoTasksTableViewSource(CollectionOfNotDoneTasksTableView);
             CollectionOfNotDoneTasksTableView.Source = source;
+            source.OnShareHandlerSource = (currentTask) =>
+            {
+                this.ViewModel.PlatformName = false; //if false -> iOS, if true -> Android
+                this.ViewModel.ShareMessageCommand.Execute(currentTask);
+            };
             var set = this.CreateBindingSet<CollectionOfNotDoneTasksView, CollectionOfNotDoneTasksViewModel>();
             set.Bind(source).To(vm => vm.Goals);
             set.Bind(source).For(v => v.SelectionChangedCommand).To(vm => vm.FillingDataActivityCommand);

@@ -46,7 +46,7 @@ namespace TodoList.Core.Services
             _sqlConnection.Delete<Goal>(goalId);
         }
 
-        public Goal CurrentGoal(int goalId)
+        public Goal GetCurrentGoal(int goalId)
         {
             return (from data in _sqlConnection.Table<Goal>() where data.Id == goalId select data).FirstOrDefault();
         }

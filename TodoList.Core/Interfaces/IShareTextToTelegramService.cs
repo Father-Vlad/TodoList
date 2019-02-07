@@ -2,6 +2,8 @@
 {
     public interface IShareTextToTelegramService
     {
-        void ShareText(string message, string toastMessage);
+        void ShareText(string shareText);
+        bool IsTheAppInstalled(string appName);
+        void ShowToastMessage(string toastMessage);
     }
 }

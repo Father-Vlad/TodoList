@@ -5,13 +5,13 @@ namespace TodoList.iOS.Helper
 {
     public class ToastClass
     {
-        public static void ShowToast(string message)
+        public static void ShowToast(string toastMessage)
         {
             UIApplication.SharedApplication.InvokeOnMainThread(() =>
             {
                 UIAlertView alert = new UIAlertView()
                 {
-                    Message = message,
+                    Message = toastMessage,
                     Alpha = 1.0f
                 };
 

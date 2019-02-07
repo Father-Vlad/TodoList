@@ -16,19 +16,34 @@ namespace TodoList.Core.ViewModels
         private ITaskService _taskService;
         private ILoginService _loginService;
         private readonly IMvxNavigationService _navigationService;
+        private readonly IShareTextToTelegramService _shareTextToTelegramService;
+        private readonly string _toastMessage = "Telegram is not installed";
+        private readonly string _checkAppNameiOS = "tg://msg?text=";
+        private readonly string _checkAppNameDroid = "org.telegram.messenger";
+        private readonly string _newLineDroid = "\n";
+        private readonly string _newLineiOS = "%0A";
+        private readonly string _shareWelcomeText = "Hi, I created a new task for myself with To-do List app.";
+        private readonly string _shareForewordText = "The name of the task is: ";
+        private readonly string _goalDone = "It's done :)";
+        private readonly string _goalNotDone = "It's not done yet :(";
+        private bool _platformName;
+        private int _currentTaskId;
 
-        public CollectionOfNotDoneTasksViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
+        public CollectionOfNotDoneTasksViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, IShareTextToTelegramService shareTextToTelegramService)
         {
             _navigationService = navigationService;
             _taskService = taskService;
             _loginService = loginService;
+            _shareTextToTelegramService = shareTextToTelegramService;
             Goals = new MvxObservableCollection<Goal>();
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
+            ShareMessageCommand = new MvxCommand<int>(ShareMessege);
         }
 
         public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
         public IMvxCommand LogoutCommand => new MvxCommand(Logout);
         public Action OnLoggedOutHandler { get; set; }
+        public IMvxCommand<int> ShareMessageCommand { get; set; }
 
         private void Logout()
         {
@@ -99,6 +114,103 @@ namespace TodoList.Core.ViewModels
         public override void Prepare(Action parameter)
         {
             OnLoggedOutHandler = parameter;
+        }
+
+        private int CurrentTaskId
+        {
+            get
+            {
+                return _currentTaskId;
+            }
+
+            set
+            {
+                _currentTaskId = value;
+                RaisePropertyChanged(() => CurrentTaskId);
+            }
+        }
+
+        private string CurrentTaskName { get; set; }
+
+        private bool CurrentTaskStatus { get; set; }
+
+        private string ShareTaskStatus
+        {
+            get
+            {
+                return CurrentTaskStatus ? _goalDone : _goalNotDone;
+            }
+        }
+
+        public bool PlatformName // if true -> Android platform, if false -> iOS
+        {
+            get
+            {
+                return _platformName;
+            }
+
+            set
+            {
+                _platformName = value;
+                RaisePropertyChanged<bool>(() => PlatformName);
+            }
+        }
+
+        private string CurrentPlatformName
+        {
+            get
+            {
+                if (PlatformName)
+                {
+                    ShareNewLine = _newLineDroid;
+                    return _checkAppNameDroid;
+                }
+                ShareNewLine = _newLineiOS;
+                return _checkAppNameiOS;
+            }
+        }
+
+        private string ShareNewLine { get; set; }
+
+        private string GetIOSFormattingString(string stringToFormat)
+        {
+            string shareCurrentTaskName = string.Empty;
+            for (int i = 0; i < stringToFormat.Length; i++)
+            {
+                if (stringToFormat[i] == ' ')
+                {
+                    shareCurrentTaskName += "%20";
+                    continue;
+                }
+                shareCurrentTaskName += stringToFormat[i];
+            }
+            return shareCurrentTaskName;
+        }
+
+        private string ShareString
+        {
+            get
+            {
+                if (PlatformName)
+                {
+                    return string.Format(_shareWelcomeText + ShareNewLine + _shareForewordText + CurrentTaskName + ShareNewLine + ShareTaskStatus);
+                }
+                return GetIOSFormattingString(string.Format(_checkAppNameiOS + _shareWelcomeText + ShareNewLine + _shareForewordText + CurrentTaskName + ShareNewLine + ShareTaskStatus));
+            }
+        }
+
+        private void ShareMessege(int currentTaskId)
+        {
+            Goal currentGoal = _taskService.GetCurrentGoal(currentTaskId);
+            CurrentTaskId = currentGoal.Id;
+            CurrentTaskName = currentGoal.GoalName;
+            CurrentTaskStatus = currentGoal.GoalStatus;
+            if (_shareTextToTelegramService.IsTheAppInstalled(CurrentPlatformName) == false)
+            {
+                _shareTextToTelegramService.ShowToastMessage(_toastMessage);
+                return;
+            }
+            _shareTextToTelegramService.ShareText(ShareString);
         }
     }
 }

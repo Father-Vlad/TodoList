@@ -7,16 +7,26 @@ namespace TodoList.iOS.Services
 {
     public class ShareTextToTelegramService : IShareTextToTelegramService
     {
-        private NSUrl _urlShareToTelegram;
-
-        public void ShareText(string message, string toastMessage)
+        public void ShareText(string shareText)
         {
-            _urlShareToTelegram = new NSUrl(string.Format("tg://msg?text=" + "Hi, I created a new task for myself with To-do List app.\nThe name of task is: "));
-            if (UIApplication.SharedApplication.CanOpenUrl(_urlShareToTelegram))
+            try
             {
-                UIApplication.SharedApplication.OpenUrl(_urlShareToTelegram);
-                return;
+                UIApplication.SharedApplication.OpenUrl(new NSUrl(shareText));
             }
+            catch
+            {
+                ShowToastMessage("Something went wrong");
+            }
+            
+        }
+
+        public bool IsTheAppInstalled(string appName)
+        {
+            return UIApplication.SharedApplication.CanOpenUrl(new NSUrl(appName));
+        }
+
+        public void ShowToastMessage(string toastMessage)
+        {
             ToastClass.ShowToast(toastMessage);
         }
     }

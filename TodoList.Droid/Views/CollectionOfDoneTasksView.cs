@@ -32,6 +32,11 @@ namespace TodoList.Droid.Views
             _layoutManager = new LinearLayoutManager(Context);
             _recyclerView.SetLayoutManager(_layoutManager);
             _recyclerAdapter = new RecyclerAdapter((IMvxAndroidBindingContext)this.BindingContext);
+            _recyclerAdapter.OnTelegramShareClickAdapter = (currentTask) =>
+            {
+                this.ViewModel.PlatformName = true; //if false -> iOS, if true -> Android
+                this.ViewModel.ShareMessageCommand.Execute(currentTask);
+            };
             _recyclerView.Adapter = _recyclerAdapter;
             return view;
         }
