@@ -10,18 +10,18 @@ using System.CodeDom.Compiler;
 
 namespace TodoList.iOS
 {
-    [Register ("SplachScreenAnimationView")]
-    partial class SplachScreenAnimationView
+    [Register ("LaunchSplachScreenAnimationView")]
+    partial class LaunchSplachScreenAnimationView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView AnimImageView { get; set; }
+        UIKit.UIView ItemWitchAnimatedView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (AnimImageView != null) {
-                AnimImageView.Dispose ();
-                AnimImageView = null;
+            if (ItemWitchAnimatedView != null) {
+                ItemWitchAnimatedView.Dispose ();
+                ItemWitchAnimatedView = null;
             }
         }
     }

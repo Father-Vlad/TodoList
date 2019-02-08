@@ -5,6 +5,7 @@ using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.ViewModels;
+using static Android.Resource;
 
 namespace TodoList.Droid.Views
 {

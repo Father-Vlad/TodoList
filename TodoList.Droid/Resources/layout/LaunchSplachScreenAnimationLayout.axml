@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background= "@color/colorSplashScreenBackground"
+	android:id="@+id/launchSplachScreen_animation_relativeLayout">
+	<ImageView
+		android:id="@+id/launchSplachScreen_animation_imageView"
+		android:layout_width="500dp"
+		android:layout_height="500dp"
+		android:background="@drawable/transitionmy"
+	/>
+	<ImageView
+		android:id="@+id/launchSplachScreen_icon_imageView"
+		android:src="@mipmap/ic_launcher"
+		android:layout_width="200dp"
+		android:layout_height="200dp"
+		android:layout_centerInParent = "true"
+	/>
+</RelativeLayout>

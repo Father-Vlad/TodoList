@@ -1,8 +1,8 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
+using TodoList.Core.Models;
 
 namespace TodoList.Core.ViewModels
 {
@@ -15,17 +15,26 @@ namespace TodoList.Core.ViewModels
         {
             _navigationService = navigationService;
             _loginService = loginService;
-            ShowCurrentViewModelCommand = new MvxAsyncCommand(ShowCurrentViewModel);
+            ShowCurrentViewModelCommand = new MvxCommand(ShowCurrentViewModel);
             ShowLoginViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
             ShowViewPagerViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<ViewPagerViewModel>());
+            ShowAnimationViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<SplachScreenAnimationViewModel>());
         }
 
-        public IMvxAsyncCommand ShowCurrentViewModelCommand { get; set; }
+        public IMvxCommand ShowCurrentViewModelCommand { get; set; }
         public IMvxAsyncCommand ShowLoginViewModelCommand { get; set; }
         public IMvxAsyncCommand ShowViewPagerViewModelCommand { get; set; }
+        public IMvxAsyncCommand ShowAnimationViewModelCommand { get; set; }
 
-        private async Task ShowCurrentViewModel()
+        private void ShowCurrentViewModel()
         {
+            if (TimePresented.IsFirstTimePresented)
+            {
+                TimePresented.IsFirstTimePresented = false;
+                ShowAnimationViewModelCommand.Execute();
+                return;
+            }
+
             if (_loginService.CurrentUserId == string.Empty)
             {
                 ShowLoginViewModelCommand.Execute();

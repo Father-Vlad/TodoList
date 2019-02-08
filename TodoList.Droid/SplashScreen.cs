@@ -26,30 +26,5 @@ namespace TodoList.Droid
         public SplashScreen() : base(Resource.Layout.SplashScreen)
         {
         }
-
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-            myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.MyAnimation);
-            myLayout = FindViewById<LinearLayout>(Resource.Id.linearLayout1);
-            myImage = FindViewById<ImageView>(Resource.Id.imageView1);
-            transition = (TransitionDrawable)myImage.Background;
-            transition.StartTransition(500);
-            
-        }  
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-            Task.Run(() =>
-            {
-                myImage.StartAnimation(myAnimation);
-                myImage.Animation.AnimationEnd += delegate
-                {
-                    myLayout.SetBackgroundColor(Android.Graphics.Color.ParseColor("#E5E5E5"));
-                };
-            });
-            //System.Threading.Thread.Sleep(40000);
-        }
     }
 }

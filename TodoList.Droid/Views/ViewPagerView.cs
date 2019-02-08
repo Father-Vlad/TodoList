@@ -1,8 +1,10 @@
 ﻿using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.Transitions;
 using Android.Support.V4.View;
 using Android.Views;
+using Java.Lang;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using System.Collections.Generic;
 using TodoList.Core.ViewModels;
@@ -49,6 +51,12 @@ namespace TodoList.Droid.Views
             _viewPager.Adapter = new MvxFragmentStatePagerAdapter(Activity, ChildFragmentManager, fragments);
             _tabLayout.SetupWithViewPager(_viewPager);
             return view;
+        }
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
         }
     }
 }

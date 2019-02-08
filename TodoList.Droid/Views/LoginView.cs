@@ -47,7 +47,7 @@ namespace TodoList.Droid.Views
             }
             this.ViewModel.LogoutFacebookCommand.Execute();
         }
-        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        public override void OnActivityResult(int requestCode, int resultCode, Intent data) // delete!!!
         {
             base.OnActivityResult(requestCode, resultCode, data);
             //Toast.MakeText(this.Context, "Authorized", ToastLength.Short).Show();
