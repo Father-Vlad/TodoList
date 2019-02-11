@@ -1,11 +1,9 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
-using TodoList.Core.Services;
 
 namespace TodoList.Core.ViewModels
 {
@@ -104,7 +102,7 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
-                if (GoalName == null | GoalName == string.Empty)
+                if (GoalName.Trim() == null | GoalName.Trim() == string.Empty)
                 {
                     return _saveButtonEnableStatus = false;
                 }
@@ -141,7 +139,7 @@ namespace TodoList.Core.ViewModels
 
         private async Task SaveDataToDB()
         {
-            Goal goal = new Goal(GoalId, GoalName, GoalDescription, GoalStatus, UserId);
+            Goal goal = new Goal(GoalId, GoalName.Trim(), GoalDescription, GoalStatus, UserId);
             _taskService.InsertGoal(goal);
             await _navigationService.Close(this);
         }
