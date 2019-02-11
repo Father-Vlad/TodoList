@@ -68,9 +68,9 @@
     <Compile Include="Converters\StatusImageValueConverter.cs" />
     <Compile Include="Converters\StatusOfTaskLabelValueConverter.cs" />
     <Compile Include="Converters\UrlPictureStringValueConverter.cs" />
-    <Compile Include="Views\LaunchSplachScreenAnimationView.cs" />
-    <Compile Include="Views\LaunchSplachScreenAnimationView.designer.cs">
-      <DependentUpon>LaunchSplachScreenAnimationView.cs</DependentUpon>
+    <Compile Include="Views\SplachScreenAnimationView.cs" />
+    <Compile Include="Views\SplachScreenAnimationView.designer.cs">
+      <DependentUpon>SplachScreenAnimationView.cs</DependentUpon>
     </Compile>
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Services\ShareTextToTelegramService.cs" />
@@ -123,7 +123,7 @@
     </InterfaceDefinition>
     <InterfaceDefinition Include="Views\Cells\TaskViewCell.xib" />
     <InterfaceDefinition Include="Resources\Splash.xib" />
-    <InterfaceDefinition Include="Views\LaunchSplachScreenAnimationView.xib">
+    <InterfaceDefinition Include="Views\SplachScreenAnimationView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
   </ItemGroup>
@@ -234,6 +234,27 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork@2x.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\FillingDataBackIcon.imageset\icons8-undo-40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LoginViewNavigationBar.imageset\icons8-sort-right-filled-40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TabBarFillingDataIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\FillingDataBackIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TabBarFillingDataIcon.imageset\icons8-add-new-40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TabBarLogOutIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LoginViewNavigationBar.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\ShareToTelegramButton.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -241,6 +262,9 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\TabBarChecked.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TabBarLogOutIcon.imageset\icons8-exit-40 (2).png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\TabBarUnChecked.imageset\Contents.json">

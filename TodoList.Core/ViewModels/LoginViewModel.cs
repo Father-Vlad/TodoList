@@ -14,9 +14,10 @@ namespace TodoList.Core.ViewModels
 {
     public class LoginViewModel : MvxViewModel
     {
-        private readonly string _strLoginWelcomeText = "Please login to continue.";
-        private readonly string _strLogInButtonText = "   Continue with Facebook";
-        private readonly string _strLoggedOutButtonText = "   Logged out";
+        private readonly string _strLoginWelcomeTextLoggedIn = "Please login to continue."; 
+        private readonly string _strLoginWelcomeTextLoggedOut = "Welcome";
+        private readonly string _strLogInButtonText = "   Continue with Facebook   ";
+        private readonly string _strLoggedOutButtonText = "   Logged out   ";
         private string _userId;
         private string _userName;
         private bool _continueButtonStatus;
@@ -92,9 +93,9 @@ namespace TodoList.Core.ViewModels
             {
                 if (string.IsNullOrEmpty(UserId))
                 {
-                    return _welcomeText = _strLoginWelcomeText;
+                    return _welcomeText = _strLoginWelcomeTextLoggedIn;
                 }
-                return _welcomeText = string.Empty;
+                return _welcomeText = _strLoginWelcomeTextLoggedOut;
             }
 
             set

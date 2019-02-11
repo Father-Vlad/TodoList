@@ -1,4 +1,4 @@
-using Foundation;
+using CoreGraphics;
 using MvvmCross.Base;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
@@ -10,10 +10,10 @@ using UIKit;
 
 namespace TodoList.iOS.Views
 {
-    [MvxModalPresentation(WrapInNavigationController = true, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
+    [MvxModalPresentation(WrapInNavigationController = true, Animated = false)]
     public partial class LoginView : MvxViewController<LoginViewModel>
     {
-        private UIBarButtonItem _buttonAdd;
+        private UIButton _buttonContinue;
         private UIViewController _ui;
         private IMvxInteraction<CloseUIViewController> _interaction;
 
@@ -25,15 +25,21 @@ namespace TodoList.iOS.Views
         {
             base.ViewDidLoad();
             this.NavigationItem.HidesBackButton = true;
-            _buttonAdd = new UIBarButtonItem(UIBarButtonSystemItem.Add, null);
-            NavigationItem.SetRightBarButtonItem(_buttonAdd, false);
+            _buttonContinue = new UIButton(UIButtonType.Custom);
+            _buttonContinue.Frame = new CGRect(0, 0, 40, 40);
+            _buttonContinue.SetImage(UIImage.FromBundle("LoginViewNavigationBar"), UIControlState.Normal);
+            this.NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(_buttonContinue), false);
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
+            NavigationController.NavigationBar.BarTintColor = new UIColor(0.17f, 0.24f, 0.31f, 1.0f);
             var set = this.CreateBindingSet<LoginView, LoginViewModel>();
-            set.Bind(_buttonAdd).For("Clicked").To(vm => vm.NavigateToCollectionFragmentCommand);
-            set.Bind(_buttonAdd).For(v => v.Enabled).To(vm => vm.ContinueButtonEnableStatus);
+            set.Bind(_buttonContinue).To(vm => vm.NavigateToCollectionFragmentCommand);
+            set.Bind(_buttonContinue).For(v => v.Enabled).To(vm => vm.ContinueButtonEnableStatus);
             set.Bind(this).For(view => view.Interaction).To(viewModel => viewModel.Interaction).OneWay();
             set.Bind(UserImageView).For(v => v.Image).To(vm => vm.UserId).WithConversion("UrlPictureString");
             set.Bind(UserImageView).For(v => v.Hidden).To(vm => vm.ProfilePictureViewVisibleStatus).WithConversion("ProfilePictureVisibleStatus");
             set.Bind(LoginToFacebookButton).For("Title").To(vm => vm.LoginButtonText);
+            set.Bind(NavigationItem).For(v=>v.Title).To(vm => vm.WelcomeText);
+            set.Bind(UserNameLabel).To(vm => vm.UserName);
             set.Apply();
         }
 

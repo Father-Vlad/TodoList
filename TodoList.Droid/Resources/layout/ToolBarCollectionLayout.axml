@@ -6,30 +6,47 @@
 	<Toolbar
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:title = "@string/app_name"
-		android:titleTextColor = "@color/colorWhite"
 		android:minHeight="?attr/actionBarSize"
 		android:background="?android:attr/colorPrimary"
 		android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
-		<Button
-			android:id="@+id/button_logout"
-			android:text="Logout"
-			android:backgroundTint = "@color/colorButtonBackground"
-			android:textSize = "@dimen/text_size_20"
-			android:layout_width="wrap_content"
-			android:layout_height="@dimen/toolbar_button_60"
-			android:textAllCaps = "false"
-			local:MvxBind = "Click LogoutCommand"
-		/>
-		<Button
-			android:text="+"
-			android:backgroundTint = "@color/colorButtonBackground"
-			android:textSize = "@dimen/text_size_20"
-			android:layout_width="@dimen/toolbar_button_60"
-			android:layout_height="@dimen/toolbar_button_60"
-			android:id="@+id/button_1"
-			android:layout_gravity = "right"
-			local:MvxBind = "Click FillingDataActivityCommand"
-		/>
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:weightSum="100">
+			<Button
+				android:id="@+id/button_logout"
+				android:text="Logout"
+				android:backgroundTint = "@color/colorButtonBackground"
+				android:textSize = "@dimen/text_size_20"
+				android:layout_width="wrap_content"
+				android:layout_height="@dimen/toolbar_button_60"
+				android:textAllCaps = "false"
+				local:MvxBind = "Click LogoutCommand"
+				android:layout_weight="10"
+			/>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="25sp"
+				android:gravity="center"
+				android:layout_gravity="center"
+				android:text="@string/app_name"
+				android:textColor = "@color/colorWhite"
+				android:layout_centerInParent = "true"
+				android:layout_weight="80"
+			/>
+			<Button
+				android:text="+"
+				android:backgroundTint = "@color/colorButtonBackground"
+				android:textSize = "@dimen/text_size_20"
+				android:layout_width="@dimen/toolbar_button_60"
+				android:layout_height="@dimen/toolbar_button_60"
+				android:id="@+id/button_1"
+				android:layout_gravity = "right"
+				local:MvxBind = "Click FillingDataActivityCommand"
+				android:layout_weight="10"
+			/>
+		</LinearLayout>
 	</Toolbar>
 </FrameLayout>

@@ -23,7 +23,7 @@
         <view contentMode="scaleToFill" id="1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.47058823529411764" green="0.86274509803921573" blue="0.8784313725490196" alpha="1"/>
             <point key="canvasLocation" x="0.0" y="2"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7033" translatesAutoresizingMaskIntoConstraints="NO">
@@ -136,8 +136,8 @@
             </subviews>
             <constraints>
                 <constraint id="7034" firstItem="7033" firstAttribute="top" secondItem="1" secondAttribute="top"/>
-                <constraint id="7035" firstItem="7033" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
-                <constraint id="7036" firstAttribute="trailing" secondItem="7033" secondAttribute="trailing"/>
+                <constraint id="7035" firstItem="7033" firstAttribute="leadingMargin" secondItem="1" secondAttribute="leadingMargin"/>
+                <constraint id="7036" firstAttribute="trailingMargin" secondItem="7033" secondAttribute="trailingMargin"/>
                 <constraint id="7037" firstItem="7033" firstAttribute="height" secondItem="1" secondAttribute="height"/>
             </constraints>
         </view>

@@ -17,11 +17,20 @@ namespace TodoList.iOS.Views
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView CollectionOfDoneTasksTableView { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.NSLayoutConstraint CollectionOfDoneTasksTopConstraint { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (CollectionOfDoneTasksTableView != null) {
                 CollectionOfDoneTasksTableView.Dispose ();
                 CollectionOfDoneTasksTableView = null;
+            }
+
+            if (CollectionOfDoneTasksTopConstraint != null) {
+                CollectionOfDoneTasksTopConstraint.Dispose ();
+                CollectionOfDoneTasksTopConstraint = null;
             }
         }
     }

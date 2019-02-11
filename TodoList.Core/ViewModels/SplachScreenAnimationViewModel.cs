@@ -12,18 +12,15 @@ namespace TodoList.Core.ViewModels
         public SplachScreenAnimationViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
-            FinishAnimationCommand = new MvxCommand(() => FinishAnimation());
+            FinishAnimationCommand = new MvxAsyncCommand(() => FinishAnimation());
         }
 
-        public IMvxCommand FinishAnimationCommand { get; set; }
+        public IMvxAsyncCommand FinishAnimationCommand { get; set; }
 
-        private void FinishAnimation()
+        private async Task FinishAnimation()
         {
-            //await _navigationService.Close(this);
-             _navigationService.Navigate<MainViewModel>();
-             _navigationService.Close(this);
-
-            //???
+            await _navigationService.Close(this);
+            var result = await _navigationService.Navigate<MainViewModel>();
         }
     }
 }

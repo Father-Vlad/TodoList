@@ -21,6 +21,10 @@ namespace TodoList.iOS.Views
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView UserImageView { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel UserNameLabel { get; set; }
+
         [Action ("LoginButton_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void LoginButton_TouchUpInside (UIKit.UIButton sender);
@@ -35,6 +39,11 @@ namespace TodoList.iOS.Views
             if (UserImageView != null) {
                 UserImageView.Dispose ();
                 UserImageView = null;
+            }
+
+            if (UserNameLabel != null) {
+                UserNameLabel.Dispose ();
+                UserNameLabel = null;
             }
         }
     }

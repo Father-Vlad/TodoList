@@ -1,8 +1,12 @@
-﻿using MvvmCross.Platforms.Ios.Views;
+﻿using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using MvvmCross.Platforms.Ios.Views;
+using MvvmCross.Plugin.Color.Platforms.Ios;
+using TodoList.Core;
 using TodoList.Core.ViewModels;
 
 namespace TodoList.iOS.Views
 {
+    [MvxModalPresentation(WrapInNavigationController = false, Animated = false)]
     public class MainView : MvxViewController<MainViewModel>
     {
         private bool _firstTimePresented = true;

@@ -1,3 +1,4 @@
+using CoreGraphics;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
@@ -9,7 +10,7 @@ namespace TodoList.iOS.Views
     [MvxModalPresentation(WrapInNavigationController = true, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
     public partial class FillingDataView : MvxViewController<FillingDataViewModel>
     {
-        private UIBarButtonItem _buttonGoBack;
+        private UIButton _buttonGoBack;
         private UIColor _placeholderDescriptionColor;
         private readonly string _textTitle = "Write TODO sample...";
         private readonly string _namePlaceholder = "Enter your Goal Name";
@@ -22,13 +23,14 @@ namespace TodoList.iOS.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
             Title = _textTitle;
-
-            _buttonGoBack = new UIBarButtonItem(UIBarButtonSystemItem.Reply, null);
-            NavigationItem.SetLeftBarButtonItem(_buttonGoBack, false);
+            _buttonGoBack = new UIButton(UIButtonType.Custom);
+            _buttonGoBack.Frame = new CGRect(0, 0, 40, 40);
+            _buttonGoBack.SetImage(UIImage.FromBundle("FillingDataBackIcon"), UIControlState.Normal);
+            this.NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_buttonGoBack), false);
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
+            NavigationController.NavigationBar.BarTintColor = new UIColor(0.17f, 0.24f, 0.31f, 1.0f);
             _placeholderDescriptionColor = new UIColor(0.78f, 0.78f, 0.8f, 1.0f);
-
             //Binding
             var set = this.CreateBindingSet<FillingDataView, FillingDataViewModel>();
             set.Bind(NameOfTaskTextField).To(vm => vm.GoalName);
@@ -38,16 +40,14 @@ namespace TodoList.iOS.Views
             set.Bind(SaveButton).To(vm => vm.SaveDataCommand);
             set.Bind(SaveButton).For(v => v.Enabled).To(vm => vm.SaveButtonEnableStatus);
             set.Bind(DeleteButton).To(vm => vm.DeleteDataCommand);
-            set.Bind(_buttonGoBack).For("Clicked").To(vm => vm.SendBackCommand);
+            set.Bind(_buttonGoBack).To(vm => vm.SendBackCommand);
             set.Bind(StatusOfTaskLabel).To(vm => vm.GoalStatus).WithConversion("StatusOfTaskLabel");
             set.Apply();
-                       
             if (DescriptionOfTaskTextView.Text == _descriptionPlaceholder || string.IsNullOrEmpty(DescriptionOfTaskTextView.Text))
             {
                 DescriptionOfTaskTextView.Text = _descriptionPlaceholder;
                 DescriptionOfTaskTextView.TextColor = _placeholderDescriptionColor;
             }
-
             //The string that is displayed when there is no other text in the text field.
             NameOfTaskTextField.Placeholder = _namePlaceholder;
             DescriptionOfTaskTextView.ShouldBeginEditing = textView =>
@@ -68,7 +68,6 @@ namespace TodoList.iOS.Views
                 }
                 return true;
             };
-
             //Hide the keyboard after using it for entering data in a text field
             NameOfTaskTextField.ShouldReturn = (textField) => {
                 textField.ResignFirstResponder();
@@ -77,7 +76,6 @@ namespace TodoList.iOS.Views
             var endEditing = new UITapGestureRecognizer(() => View.EndEditing(true));
             endEditing.CancelsTouchesInView = false;
             View.AddGestureRecognizer(endEditing);
-
             //Buttons Border Width & Color
             SaveButton.Layer.BorderWidth = 1;
             SaveButton.Layer.BorderColor = UIColor.Black.CGColor;
