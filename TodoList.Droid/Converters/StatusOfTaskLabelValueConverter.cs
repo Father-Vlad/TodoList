@@ -10,7 +10,6 @@ namespace TodoList.Droid.Converters
         private readonly string _notDoneTask = "Not Done";
         protected override object Convert(bool value, Type targetType, object parameter, CultureInfo culture)
         {
-            base.Convert(value, targetType, parameter, culture);
             return value ? _doneTask : _notDoneTask;
         }
     }
