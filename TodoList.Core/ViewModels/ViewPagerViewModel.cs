@@ -18,8 +18,9 @@ namespace TodoList.Core.ViewModels
         {
             _navigationService = navigationService;
             _loginService = loginService;
-            CollectionOfDoneTasksViewModelCommand = Mvx.IoCConstruct<CollectionOfDoneTasksViewModel>();
-            CollectionOfNotDoneTasksViewModelCommand = Mvx.IoCConstruct<CollectionOfNotDoneTasksViewModel>();
+            
+            CollectionOfDoneTasksViewModelCommand = Mvx.IoCProvider.IoCConstruct<CollectionOfDoneTasksViewModel>();
+            CollectionOfNotDoneTasksViewModelCommand = Mvx.IoCProvider.IoCConstruct<CollectionOfNotDoneTasksViewModel>();
             LogoutCommand = new MvxAsyncCommand(Logout);
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
 

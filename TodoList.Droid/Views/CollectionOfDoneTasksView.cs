@@ -31,7 +31,8 @@ namespace TodoList.Droid.Views
             _recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.recycler_view_main);
             _layoutManager = new LinearLayoutManager(Context);
             _recyclerView.SetLayoutManager(_layoutManager);
-            _recyclerAdapter = new RecyclerAdapter((IMvxAndroidBindingContext)this.BindingContext);
+            RecyclerAdapter recyclerAdapter = new RecyclerAdapter((IMvxAndroidBindingContext)BindingContext);
+            _recyclerAdapter = recyclerAdapter;
             _recyclerAdapter.OnTelegramShareClickAdapter = (currentTask) =>
             {
                 this.ViewModel.PlatformName = true; //if false -> iOS, if true -> Android

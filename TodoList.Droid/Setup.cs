@@ -10,6 +10,7 @@ using MvvmCross.Platforms.Android.Presenters;
 using MvvmCross.ViewModels;
 using System.Collections.Generic;
 using System.Reflection;
+using TodoList.Droid.Converters;
 
 namespace TestProject.Droid
 {
@@ -34,6 +35,11 @@ namespace TestProject.Droid
             typeof(MvxValueConverter).Assembly
         };
 
+        protected override void FillValueConverters(IMvxValueConverterRegistry registry)
+        {
+            base.FillValueConverters(registry);
+            registry.AddOrOverwrite("StatusOfTaskLabel", new StatusOfTaskLabelValueConverter());
+        }
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {

@@ -42,6 +42,7 @@ namespace TodoList.iOS.Views
             set.Bind(DeleteButton).To(vm => vm.DeleteDataCommand);
             set.Bind(_buttonGoBack).To(vm => vm.SendBackCommand);
             set.Bind(StatusOfTaskLabel).To(vm => vm.GoalStatus).WithConversion("StatusOfTaskLabel");
+            set.Bind(DeleteButton).For("Title").To(vm => vm.DeleteCanselButtonText); 
             set.Apply();
             if (DescriptionOfTaskTextView.Text == _descriptionPlaceholder || string.IsNullOrEmpty(DescriptionOfTaskTextView.Text))
             {

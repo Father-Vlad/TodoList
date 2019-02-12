@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using System.Threading.Tasks;
 using TodoList.Core.ViewModels;
 using Xamarin.Facebook;
 
@@ -28,7 +29,6 @@ namespace TodoList.Droid.Views
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
-            FacebookSdk.SdkInitialize(this.Context);
             _facebookLoginButton = view.FindViewById<Button>(Resource.Id.facebook_login_button);
             _facebookLoginButton.Click += delegate { LoggedInOrOutFacebook(); };
             _textViewWelcome = view.FindViewById<TextView>(Resource.Id.text_view_login);
@@ -42,15 +42,13 @@ namespace TodoList.Droid.Views
             if (string.IsNullOrEmpty(this.ViewModel.UserId))
             {
                 this.ViewModel.LoginFacebookCommand.Execute();
-                StartActivityForResult(this.ViewModel.Authenticator.GetUI(View.Context), 0);
+                await Task.Run(() =>
+                 {
+                     StartActivityForResult(this.ViewModel.Authenticator.GetUI(View.Context), 0);
+                 });
                 return;
             }
             this.ViewModel.LogoutFacebookCommand.Execute();
-        }
-        public override void OnActivityResult(int requestCode, int resultCode, Intent data) // delete!!!
-        {
-            base.OnActivityResult(requestCode, resultCode, data);
-            //Toast.MakeText(this.Context, "Authorized", ToastLength.Short).Show();
         }
     }
 }

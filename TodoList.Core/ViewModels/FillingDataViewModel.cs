@@ -19,6 +19,7 @@ namespace TodoList.Core.ViewModels
         private int _goalId;
         private bool _saveButtonEnableStatus = false;
         private string _userId;
+        private string _deleteCanselButtonText;
 
         public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
         {
@@ -102,7 +103,7 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
-                if (GoalName.Trim() == null | GoalName.Trim() == string.Empty)
+                if (GoalName == null | GoalName.Trim() == string.Empty)
                 {
                     return _saveButtonEnableStatus = false;
                 }
@@ -142,6 +143,24 @@ namespace TodoList.Core.ViewModels
             Goal goal = new Goal(GoalId, GoalName.Trim(), GoalDescription, GoalStatus, UserId);
             _taskService.InsertGoal(goal);
             await _navigationService.Close(this);
+        }
+
+        public string DeleteCanselButtonText
+        {
+            get
+            {
+                if (GoalName == null)
+                {
+                    return _deleteCanselButtonText = "Cancel";
+                }
+                return _deleteCanselButtonText = "Delete";
+            }
+
+            set
+            {
+                _deleteCanselButtonText = value;
+                RaisePropertyChanged(() => DeleteCanselButtonText);
+            }
         }
 
         public MvxAsyncCommand DeleteDataCommand
