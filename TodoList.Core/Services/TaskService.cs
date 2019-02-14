@@ -61,6 +61,16 @@ namespace TodoList.Core.Services
             return (from data in _sqlConnection.Table<Goal>() where data.UserId == currentUserId where data.GoalStatus == false select data).ToList();
         }
 
+        public void InsertAllUserGoals(List<Goal> goals)
+        {
+            _sqlConnection.InsertAll(goals);
+        }
+
+        public void DeleteAllUserGoals(string user)
+        {
+            _sqlConnection.Table<Goal>().Where(x => x.UserId == user).Delete();
+        }
+
         //For Users
         public List<User> GetAllUsers()
         {

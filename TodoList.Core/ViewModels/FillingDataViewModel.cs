@@ -16,16 +16,18 @@ namespace TodoList.Core.ViewModels
         private readonly IMvxNavigationService _navigationService;
         private ITaskService _taskService;
         private ILoginService _loginService;
+        private IWebApiService _webApiService;
         private int _goalId;
         private bool _saveButtonEnableStatus = false;
         private string _userId;
         private string _deleteCanselButtonText;
 
-        public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
+        public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, IWebApiService webApiService)
         {
             _navigationService = navigationService;
             _taskService = taskService;
             _loginService = loginService;
+            _webApiService = webApiService;
         }
 
         public int GoalId
@@ -141,7 +143,8 @@ namespace TodoList.Core.ViewModels
         private async Task SaveDataToDB()
         {
             Goal goal = new Goal(GoalId, GoalName.Trim(), GoalDescription, GoalStatus, UserId);
-            _taskService.InsertGoal(goal);
+            await _webApiService.InsertOrUpdateDataAsync(goal);
+            //_taskService.InsertGoal(goal);
             await _navigationService.Close(this);
         }
 
@@ -188,7 +191,8 @@ namespace TodoList.Core.ViewModels
         private async Task DeleteDataFromDB()
         {
             var position = GoalId;
-            _taskService.DeleteGoal(position);
+            await _webApiService.DeleteDataAsync(position);
+            //_taskService.DeleteGoal(position);
             await _navigationService.Close(this);
         }
 

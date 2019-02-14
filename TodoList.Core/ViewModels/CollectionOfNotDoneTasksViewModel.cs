@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
+using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
@@ -15,8 +16,9 @@ namespace TodoList.Core.ViewModels
         private MvxCommand _updateDataCommand;
         private ITaskService _taskService;
         private ILoginService _loginService;
-        private readonly IMvxNavigationService _navigationService;
-        private readonly IShareTextToTelegramService _shareTextToTelegramService;
+        private IMvxNavigationService _navigationService;
+        private IShareTextToTelegramService _shareTextToTelegramService;
+        private IWebApiService _webApiService;
         private readonly string _toastMessage = "Telegram is not installed";
         private readonly string _checkAppNameiOS = "tg://msg?text=";
         private readonly string _checkAppNameDroid = "org.telegram.messenger";
@@ -29,15 +31,22 @@ namespace TodoList.Core.ViewModels
         private bool _platformName;
         private int _currentTaskId;
 
-        public CollectionOfNotDoneTasksViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, IShareTextToTelegramService shareTextToTelegramService)
+        public CollectionOfNotDoneTasksViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, IShareTextToTelegramService shareTextToTelegramService, IWebApiService webApiService)
         {
             _navigationService = navigationService;
             _taskService = taskService;
             _loginService = loginService;
             _shareTextToTelegramService = shareTextToTelegramService;
+            _webApiService = webApiService;
             Goals = new MvxObservableCollection<Goal>();
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
             ShareMessageCommand = new MvxCommand<int>(ShareMessege);
+            _webApiService.OnRefreshNotDoneGoalsHandler = new Action(() =>
+            {
+                User user = _loginService.CurrentUser;
+                var list = _taskService.GetNotDoneUserGoal(user.UserId);
+                Goals = new MvxObservableCollection<Goal>(list);
+            });
         }
 
         public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
@@ -92,6 +101,12 @@ namespace TodoList.Core.ViewModels
 
         private void MakeListOfGoals()
         {
+            var net = Connectivity.NetworkAccess;
+            if (net == NetworkAccess.Internet)
+            {
+                _webApiService.RefreshDataAsync();
+                return;
+            }
             User user = _loginService.CurrentUser;
             var list = _taskService.GetNotDoneUserGoal(user.UserId);
             Goals = new MvxObservableCollection<Goal>(list);

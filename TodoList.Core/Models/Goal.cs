@@ -5,7 +5,7 @@ namespace TodoList.Core.Models
     [Table("Goal")]
     public class Goal
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public int Id { get; set; }
         public string GoalName { get; set; }
         public string GoalDescription { get; set; }

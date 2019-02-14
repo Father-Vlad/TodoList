@@ -13,6 +13,8 @@ namespace TodoList.Core.Interfaces
         List<Goal> GetUserGoal(string currentUserId);
         List<Goal> GetDoneUserGoal(string currentUserId);
         List<Goal> GetNotDoneUserGoal(string currentUserId);
+        void InsertAllUserGoals(List<Goal> goals);
+        void DeleteAllUserGoals(string user);
 
         //For Users
         List<User> GetAllUsers();
