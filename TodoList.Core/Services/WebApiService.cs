@@ -30,7 +30,7 @@ namespace TodoList.Core.Services
             try
             {
                 var currentUserId = _loginService.CurrentUserId;
-                var uri = new Uri(string.Format("http://10.10.3.207:49780/api/values/"));
+                var uri = new Uri(string.Format(_addressURL + currentUserId));
                 var response = await _client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {

@@ -12,5 +12,6 @@
   <string name="text_delete">Delete</string>
   <string name="text_title">todolist</string>
   <string name="text_login_title">Welcome</string>
+  <string name="text_is_net_available">Your net is not available</string>
 
 </resources>

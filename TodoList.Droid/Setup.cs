@@ -39,6 +39,7 @@ namespace TestProject.Droid
         {
             base.FillValueConverters(registry);
             registry.AddOrOverwrite("StatusOfTaskLabel", new StatusOfTaskLabelValueConverter());
+            registry.AddOrOverwrite("Net", new NetValueConverter());
         }
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()

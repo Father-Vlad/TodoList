@@ -7,6 +7,7 @@ using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using System.Threading.Tasks;
 using TodoList.Core.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Facebook;
 
 namespace TodoList.Droid.Views
@@ -44,7 +45,11 @@ namespace TodoList.Droid.Views
                 this.ViewModel.LoginFacebookCommand.Execute();
                 await Task.Run(() =>
                  {
-                     StartActivityForResult(this.ViewModel.Authenticator.GetUI(View.Context), 0);
+                     var net = Connectivity.NetworkAccess;
+                     if (net == NetworkAccess.Internet)
+                     {
+                         StartActivity(this.ViewModel.Authenticator.GetUI(View.Context));
+                     }
                  });
                 return;
             }

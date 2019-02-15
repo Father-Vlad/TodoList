@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
+using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
@@ -21,6 +22,7 @@ namespace TodoList.Core.ViewModels
         private bool _saveButtonEnableStatus = false;
         private string _userId;
         private string _deleteCanselButtonText;
+        private bool _isNetAvilable;
 
         public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, IWebApiService webApiService)
         {
@@ -55,6 +57,7 @@ namespace TodoList.Core.ViewModels
             {
                 _goalName = value;
                 RaisePropertyChanged(() => GoalName);
+                RaisePropertyChanged(() => IsNetAvilable);
                 RaisePropertyChanged(() => SaveButtonEnableStatus);
             }
         }
@@ -70,6 +73,7 @@ namespace TodoList.Core.ViewModels
             {
                 _goalDescription = value;
                 RaisePropertyChanged(() => GoalDescription);
+                RaisePropertyChanged(() => IsNetAvilable);
             }
         }
 
@@ -84,6 +88,7 @@ namespace TodoList.Core.ViewModels
             {
                 _goalStatus = value;
                 RaisePropertyChanged(() => GoalStatus);
+                RaisePropertyChanged(() => IsNetAvilable);
             }
         }
 
@@ -142,9 +147,13 @@ namespace TodoList.Core.ViewModels
 
         private async Task SaveDataToDB()
         {
+            if (!IsNetAvilable)
+            {
+                await RaisePropertyChanged(() => IsNetAvilable);
+                return;
+            }
             Goal goal = new Goal(GoalId, GoalName.Trim(), GoalDescription, GoalStatus, UserId);
             await _webApiService.InsertOrUpdateDataAsync(goal);
-            //_taskService.InsertGoal(goal);
             await _navigationService.Close(this);
         }
 
@@ -190,9 +199,13 @@ namespace TodoList.Core.ViewModels
 
         private async Task DeleteDataFromDB()
         {
+            if (!IsNetAvilable)
+            {
+                await RaisePropertyChanged(() => IsNetAvilable);
+                return;
+            }
             var position = GoalId;
             await _webApiService.DeleteDataAsync(position);
-            //_taskService.DeleteGoal(position);
             await _navigationService.Close(this);
         }
 
@@ -209,6 +222,25 @@ namespace TodoList.Core.ViewModels
                 return;
             }
             GoalNameEnableStatus = true;
+        }
+
+        public bool IsNetAvilable
+        {
+            get
+            {
+                var net = Connectivity.NetworkAccess;
+                if (net == NetworkAccess.Internet)
+                {
+                   return _isNetAvilable = true;
+                }
+                return _isNetAvilable = false;
+            }
+
+            set
+            {
+                _isNetAvilable = value;
+                RaisePropertyChanged(() => IsNetAvilable);
+            }
         }
     }
 }

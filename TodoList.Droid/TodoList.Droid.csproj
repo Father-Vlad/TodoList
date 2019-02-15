@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapter\MvxFragmentStatePagerAdapter.cs" />
+    <Compile Include="Converters\NetValueConverter.cs" />
     <Compile Include="Converters\StatusOfTaskLabelValueConverter.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

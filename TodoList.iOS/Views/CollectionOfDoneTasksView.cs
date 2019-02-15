@@ -24,6 +24,8 @@ namespace TodoList.iOS.Views
         {
             base.ViewDidLoad();
             NavigationItem.Title = _textTitle;
+            var titleTextAttributes = new UIStringAttributes() { ForegroundColor = UIColor.White };
+            NavigationController.NavigationBar.TitleTextAttributes = titleTextAttributes;
             _buttonFillingData = new UIButton(UIButtonType.Custom);
             _buttonFillingData.Frame = new CGRect(0, 0, 40, 40);
             _buttonFillingData.SetImage(UIImage.FromBundle("TabBarFillingDataIcon"), UIControlState.Normal);

@@ -43,9 +43,7 @@ namespace TodoList.Core.ViewModels
             ShareMessageCommand = new MvxCommand<int>(ShareMessege);
             _webApiService.OnRefreshDoneGoalsHandler = new Action(() => 
             {
-                User user = _loginService.CurrentUser;
-                var list = _taskService.GetDoneUserGoal(user.UserId);
-                Goals = new MvxObservableCollection<Goal>(list);
+                UploadNewORLoadCacheData();
             });
         }
 
@@ -69,7 +67,6 @@ namespace TodoList.Core.ViewModels
         {
             base.ViewAppearing();
             MakeListOfGoals();
-            RaisePropertyChanged(() => Goals);
         }
 
         public MvxObservableCollection<Goal> Goals
@@ -100,22 +97,27 @@ namespace TodoList.Core.ViewModels
 
         private void UpdateDataFromDB()
         {
-            IsRefreshLayoutRefreshing = true;
             MakeListOfGoals();
-            IsRefreshLayoutRefreshing = false;
         }
 
         private void MakeListOfGoals()
         {
+            IsRefreshLayoutRefreshing = true;
             var net = Connectivity.NetworkAccess;
             if (net == NetworkAccess.Internet)
             {
                 _webApiService.RefreshDataAsync();
                 return;
             }
+            UploadNewORLoadCacheData();
+        }
+
+        private void UploadNewORLoadCacheData()
+        {
             User user = _loginService.CurrentUser;
             var list = _taskService.GetDoneUserGoal(user.UserId);
             Goals = new MvxObservableCollection<Goal>(list);
+            IsRefreshLayoutRefreshing = false;
         }
 
         public bool IsRefreshLayoutRefreshing

@@ -7,8 +7,7 @@ using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
 using TodoList.Core.MvxInteraction;
 using Xamarin.Auth;
-
-
+using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
@@ -24,6 +23,7 @@ namespace TodoList.Core.ViewModels
         private string _welcomeText;
         private string _loginButtonText;
         private bool _ProfilePictureViewVisibleStatus = false;
+        private bool _isNetAvilable;
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _taskService;
         private readonly ILoginService _loginService;
@@ -38,24 +38,37 @@ namespace TodoList.Core.ViewModels
             NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
             FillingLoginUserDataCommand = new MvxCommand(FillingLoginUserData);
             DeleteLoginUserDataCommand = new MvxAsyncCommand(DeleteLoginUserData);
+            LoginFacebookCommand = new MvxAsyncCommand(LoginFacebook);
+            LogoutFacebookCommand = new MvxCommand(LogoutFacebook);
         }
 
         public IMvxCommand FillingLoginUserDataCommand { get; set; }
-
         public IMvxCommand DeleteLoginUserDataCommand { get; set; }
-
         public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
-
-        public IMvxCommand LoginFacebookCommand => new MvxCommand(_loginService.LoginFacebook);
-
-        public IMvxCommand LogoutFacebookCommand => new MvxCommand(_loginService.LogoutFacebook);
-
+        public IMvxCommand LoginFacebookCommand { get; set; }
+        public IMvxCommand LogoutFacebookCommand { get; set; }
         public MvxInteraction<CloseUIViewController> Interaction { get; set; } = new MvxInteraction<CloseUIViewController>();
 
         public async Task LookAtCurrentGoals()
         {
             var result = await _navigationService.Navigate<ViewPagerViewModel>();
             await _navigationService.Close(this);
+        }
+
+        private async Task LoginFacebook()
+        {
+            if (!IsNetAvilable)
+            {
+                await RaisePropertyChanged(() => IsNetAvilable);
+                return;
+            }
+            await RaisePropertyChanged(() => IsNetAvilable);
+            _loginService.LoginFacebook();
+        }
+
+        private void LogoutFacebook()
+        {
+            _loginService.LogoutFacebook();
         }
 
         public void FillingLoginUserData()
@@ -192,6 +205,25 @@ namespace TodoList.Core.ViewModels
             get
             {
                 return _loginService.Authenticator();
+            }
+        }
+
+        public bool IsNetAvilable
+        {
+            get
+            {
+                var net = Connectivity.NetworkAccess;
+                if (net == NetworkAccess.Internet)
+                {
+                    return _isNetAvilable = true;
+                }
+                return _isNetAvilable = false;
+            }
+
+            set
+            {
+                _isNetAvilable = value;
+                RaisePropertyChanged(() => IsNetAvilable);
             }
         }
     }
