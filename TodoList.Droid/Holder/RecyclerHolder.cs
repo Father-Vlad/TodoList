@@ -11,15 +11,15 @@ namespace TodoList.Droid.Views
     public class RecyclerHolder : MvxRecyclerViewHolder
     {
         public TextView GoalNameHolder { get; set; }
-        public CheckBox GoalStatusHolder { get; set; }
         public ImageButton TelegramShare { get; set; }
+        public ImageView GoalStatusHolder { get; set; }
         public Action<int> OnTelegramShareClickHolder { get; set; }
 
         public RecyclerHolder(View itemView, IMvxAndroidBindingContext context) : base(itemView, context)
         {
             
             GoalNameHolder = itemView.FindViewById<TextView>(Resource.Id.text_view);
-            GoalStatusHolder = itemView.FindViewById<CheckBox>(Resource.Id.check_box);
+            GoalStatusHolder = itemView.FindViewById<ImageView>(Resource.Id.image_view_check_status);
             TelegramShare = itemView.FindViewById<ImageButton>(Resource.Id.image_button_share);
             TelegramShare.Click += (s,e) =>
             {
@@ -29,7 +29,6 @@ namespace TodoList.Droid.Views
             {
                 var set = this.CreateBindingSet<RecyclerHolder, Goal>();
                 set.Bind(this.GoalNameHolder).To(x => x.GoalName);
-                set.Bind(this.GoalStatusHolder).To(y => y.GoalStatus);
                 set.Apply();
             });
         }

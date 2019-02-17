@@ -30,6 +30,7 @@ namespace TodoList.Core.ViewModels
         private readonly string _goalNotDone = "It's not done yet :(";
         private bool _platformName;
         private int _currentTaskId;
+        private bool _isNetAvailable;
 
         public CollectionOfNotDoneTasksViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, IShareTextToTelegramService shareTextToTelegramService, IWebApiService webApiService)
         {
@@ -41,6 +42,11 @@ namespace TodoList.Core.ViewModels
             Goals = new MvxObservableCollection<Goal>();
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
             ShareMessageCommand = new MvxCommand<int>(ShareMessege);
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                IsNetAvailable = true;
+            }
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
             _webApiService.OnRefreshNotDoneGoalsHandler = new Action(() =>
             {
                 UploadNewORLoadCacheData();
@@ -97,8 +103,7 @@ namespace TodoList.Core.ViewModels
         private void MakeListOfGoals()
         {
             IsRefreshLayoutRefreshing = true;
-            var net = Connectivity.NetworkAccess;
-            if (net == NetworkAccess.Internet)
+            if (IsNetAvailable)
             {
                 _webApiService.RefreshDataAsync();
                 return;
@@ -228,6 +233,30 @@ namespace TodoList.Core.ViewModels
                 return;
             }
             _shareTextToTelegramService.ShareText(ShareString);
+        }
+
+        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.NetworkAccess == NetworkAccess.Internet)
+            {
+                IsNetAvailable = true;
+                return;
+            }
+            IsNetAvailable = false;
+        }
+
+        public bool IsNetAvailable
+        {
+            get
+            {
+                return _isNetAvailable;
+            }
+
+            set
+            {
+                _isNetAvailable = value;
+                RaisePropertyChanged(() => IsNetAvailable);
+            }
         }
     }
 }

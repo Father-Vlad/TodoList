@@ -11,16 +11,6 @@
 		<include
 			layout="@layout/toolbarloginlayout"
 		/>
-		<TextView
-			android:id="@+id/text_view_login"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_margin="@dimen/padding_margin_20"
-			android:textSize = "@dimen/text_size_30"
-			android:textColor="@android:color/white"
-			android:gravity="center"
-			local:MvxBind="Text WelcomeText"
-		/>
 		<Button
 			android:drawableLeft="@drawable/com_facebook_button_icon_white"
 			android:background="@drawable/roundedloginbuttonxml"
@@ -29,10 +19,11 @@
 			android:layout_gravity="center"
 			android:gravity="right|center"
 			android:textAllCaps="false"
+			android:layout_marginTop="@dimen/padding_margin_70"
 			android:textColor="@android:color/white"
 			android:paddingHorizontal="@dimen/padding_margin_20"
 			android:id="@+id/facebook_login_button"
-			local:MvxBind="Text LoginButtonText"
+			local:MvxBind="Text LoginButtonText; Enabled IsNetAvailable"
 		/>
 		<com.facebook.login.widget.ProfilePictureView
 			android:id="@+id/profile_picture_view"
@@ -62,6 +53,6 @@
 		android:textColor="@android:color/black"
 		android:background="@android:color/white"
 		android:layout_alignParentBottom ="true"
-		local:MvxBind="Visible Net(IsNetAvilable)"
+		local:MvxBind="Visible Net(IsNetAvailable)"
 	/>
 </RelativeLayout>

@@ -16,7 +16,6 @@ namespace TodoList.Droid.Views
     [Register("TodoList.Droid.Views.LoginView")]
     public class LoginView : BaseFragment<LoginViewModel>
     {
-        private TextView _textViewWelcome;
         private Button _facebookLoginButton;
 
         protected override int FragmentId
@@ -32,9 +31,6 @@ namespace TodoList.Droid.Views
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             _facebookLoginButton = view.FindViewById<Button>(Resource.Id.facebook_login_button);
             _facebookLoginButton.Click += delegate { LoggedInOrOutFacebook(); };
-            _textViewWelcome = view.FindViewById<TextView>(Resource.Id.text_view_login);
-            Typeface newTypeface = Typeface.CreateFromAsset(view.Context.Assets, "Gothic.ttf");
-            _textViewWelcome.SetTypeface(newTypeface, TypefaceStyle.Normal);
             return view;
         }
 
@@ -45,15 +41,21 @@ namespace TodoList.Droid.Views
                 this.ViewModel.LoginFacebookCommand.Execute();
                 await Task.Run(() =>
                  {
-                     var net = Connectivity.NetworkAccess;
-                     if (net == NetworkAccess.Internet)
+                     if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                      {
                          StartActivity(this.ViewModel.Authenticator.GetUI(View.Context));
+                         Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
                      }
                  });
                 return;
             }
             this.ViewModel.LogoutFacebookCommand.Execute();
+        }
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
         }
     }
 }

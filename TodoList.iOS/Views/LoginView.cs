@@ -7,6 +7,7 @@ using MvvmCross.ViewModels;
 using TodoList.Core.MvxInteraction;
 using TodoList.Core.ViewModels;
 using UIKit;
+using Xamarin.Essentials;
 
 namespace TodoList.iOS.Views
 {
@@ -19,6 +20,11 @@ namespace TodoList.iOS.Views
 
         public LoginView() : base(nameof(LoginView), null)
         {
+        }
+
+        public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
+        {
+            return UIInterfaceOrientationMask.Portrait;
         }
 
         public override void ViewDidLoad()
@@ -38,8 +44,10 @@ namespace TodoList.iOS.Views
             set.Bind(UserImageView).For(v => v.Image).To(vm => vm.UserId).WithConversion("UrlPictureString");
             set.Bind(UserImageView).For(v => v.Hidden).To(vm => vm.ProfilePictureViewVisibleStatus).WithConversion("ProfilePictureVisibleStatus");
             set.Bind(LoginToFacebookButton).For("Title").To(vm => vm.LoginButtonText);
+            set.Bind(LoginToFacebookButton).For("Enabled").To(vm => vm.IsNetAvailable);
             set.Bind(NavigationItem).For(v=>v.Title).To(vm => vm.WelcomeText);
             set.Bind(UserNameLabel).To(vm => vm.UserName);
+            set.Bind(NetAvailableLabel).For(v => v.Hidden).To(vm => vm.IsNetAvailable);
             set.Apply();
         }
 
@@ -66,9 +74,12 @@ namespace TodoList.iOS.Views
             if (string.IsNullOrEmpty(this.ViewModel.UserId))
             {
                 ViewModel.LoginFacebookCommand.Execute(null);
-                _ui = ViewModel.Authenticator.GetUI();
-                PresentViewController(_ui, true, null);
-                return;
+                if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+                {
+                    _ui = ViewModel.Authenticator.GetUI();
+                    PresentViewController(_ui, true, null);
+                    return;
+                }
             }
             this.ViewModel.LogoutFacebookCommand.Execute();
         }

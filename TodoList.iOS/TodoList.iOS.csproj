@@ -64,6 +64,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converters\NetValueConverter.cs" />
     <Compile Include="Converters\ProfilePictureVisibleStatusValueConverter.cs" />
     <Compile Include="Converters\StatusImageValueConverter.cs" />
     <Compile Include="Converters\StatusOfTaskLabelValueConverter.cs" />

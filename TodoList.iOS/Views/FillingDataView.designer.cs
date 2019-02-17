@@ -23,6 +23,10 @@ namespace TodoList.iOS.Views
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel IsYorNetAvailableLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField NameOfTaskTextField { get; set; }
 
         [Outlet]
@@ -47,6 +51,11 @@ namespace TodoList.iOS.Views
             if (DescriptionOfTaskTextView != null) {
                 DescriptionOfTaskTextView.Dispose ();
                 DescriptionOfTaskTextView = null;
+            }
+
+            if (IsYorNetAvailableLabel != null) {
+                IsYorNetAvailableLabel.Dispose ();
+                IsYorNetAvailableLabel = null;
             }
 
             if (NameOfTaskTextField != null) {

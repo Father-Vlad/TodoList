@@ -2,10 +2,15 @@
 <resources>
   <dimen name="text_size_30">30dp</dimen>
   <dimen name="text_size_20">20dp</dimen>
+  <dimen name="padding_margin_70">70dp</dimen>
+  <dimen name="padding_margin_50">50dp</dimen>
+  <dimen name="padding_margin_40">40dp</dimen>
   <dimen name="padding_margin_20">20dp</dimen>
   <dimen name="padding_margin_10">10dp</dimen>
   <dimen name="padding_margin_5">5dp</dimen>
   <dimen name="padding_margin_3">3dp</dimen>
+  <dimen name="toolbar_button_30">30dp</dimen>
+  <dimen name="toolbar_button_40">40dp</dimen>
   <dimen name="toolbar_button_60">60dp</dimen>
   <dimen name="toolbar_button_50">50dp</dimen>
   <dimen name="facebook_button_80">80dp</dimen>

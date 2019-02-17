@@ -9,4 +9,5 @@
   <color name="colorButtonBackground">#2C3E50</color>
   <color name="colorLoginBackground">#6272D7</color>
   <color name="colorSplashScreenBackground">#A1A1A1</color>
+  <color name="colorTabLayoutBackground">#444444</color>
 </resources>

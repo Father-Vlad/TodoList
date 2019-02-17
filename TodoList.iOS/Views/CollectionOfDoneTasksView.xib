@@ -13,6 +13,7 @@
                 <outlet property="CollectionOfDoneTasksTableView" destination="145" id="name-outlet-145"/>
                 <outlet property="view" destination="1" id="RRd-Eg-VrN"/>
                 <outlet property="CollectionOfDoneTasksTopConstraint" destination="902" id="name-outlet-902"/>
+                <outlet property="YourNetAvailableDoneLabel" destination="3845" id="name-outlet-3845"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,12 +26,25 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="sectionIndexBackgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your net is not available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3845" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="0.0" y="490" width="320" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                    <nil key="highlightedColor"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.47058823529411764" green="0.86274509803921573" blue="0.8784313725490196" alpha="1"/>
+                    <constraints>
+                        <constraint id="4760" firstAttribute="height" constant="30"/>
+                    </constraints>
+                </label>
             </subviews>
             <constraints>
                 <constraint id="381" firstItem="145" firstAttribute="trailing" secondItem="1" secondAttribute="trailing"/>
                 <constraint id="384" firstItem="145" firstAttribute="bottom" secondItem="1" secondAttribute="bottom"/>
                 <constraint id="387" firstItem="145" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
                 <constraint id="902" firstItem="145" firstAttribute="top" secondItem="1" secondAttribute="top"/>
+                <constraint id="6143" firstItem="3845" firstAttribute="trailing" secondItem="1" secondAttribute="trailing"/>
+                <constraint id="6156" firstItem="3845" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
+                <constraint id="6169" firstItem="3845" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" constant="-48"/>
             </constraints>
         </view>
     </objects>

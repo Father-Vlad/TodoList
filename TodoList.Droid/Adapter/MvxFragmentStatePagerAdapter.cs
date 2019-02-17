@@ -1,6 +1,7 @@
 ﻿using Android.Content;
 using Android.Runtime;
 using Android.Support.V4.App;
+using Android.Widget;
 using Java.Lang;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.ViewModels;

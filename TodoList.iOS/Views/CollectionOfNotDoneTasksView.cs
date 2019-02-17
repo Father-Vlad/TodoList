@@ -47,9 +47,11 @@ namespace TodoList.iOS.Views
             set.Bind(source).To(vm => vm.Goals);
             set.Bind(source).For(v => v.SelectionChangedCommand).To(vm => vm.FillingDataActivityCommand);
             set.Bind(_buttonFillingData).To(vm => vm.FillingDataActivityCommand);
+            set.Bind(_buttonFillingData).For("Enabled").To(vm => vm.IsNetAvailable);
             set.Bind(_buttonLogOut).To(vm => vm.LogoutCommand);
             set.Bind(_refreshControl).For(v => v.IsRefreshing).To(vm => vm.IsRefreshLayoutRefreshing);
             set.Bind(_refreshControl).For(v => v.RefreshCommand).To(vm => vm.UpdateDataCommand);
+            set.Bind(YourNetAvailableNotDoneLabel).For(v => v.Hidden).To(vm => vm.IsNetAvailable);
             set.Apply();
             CollectionOfNotDoneTasksTableView.ReloadData();
         }

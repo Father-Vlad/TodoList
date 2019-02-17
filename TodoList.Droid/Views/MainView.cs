@@ -13,6 +13,7 @@ namespace TodoList.Droid.Views
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
             SetContentView(Resource.Layout.MainLayout);
             if (bundle == null)
             {

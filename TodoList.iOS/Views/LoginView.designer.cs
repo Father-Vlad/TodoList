@@ -19,6 +19,10 @@ namespace TodoList.iOS.Views
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel NetAvailableLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView UserImageView { get; set; }
 
         [Outlet]
@@ -34,6 +38,11 @@ namespace TodoList.iOS.Views
             if (LoginToFacebookButton != null) {
                 LoginToFacebookButton.Dispose ();
                 LoginToFacebookButton = null;
+            }
+
+            if (NetAvailableLabel != null) {
+                NetAvailableLabel.Dispose ();
+                NetAvailableLabel = null;
             }
 
             if (UserImageView != null) {

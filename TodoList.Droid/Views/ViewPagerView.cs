@@ -50,6 +50,8 @@ namespace TodoList.Droid.Views
             };
             _viewPager.Adapter = new MvxFragmentStatePagerAdapter(Activity, ChildFragmentManager, fragments);
             _tabLayout.SetupWithViewPager(_viewPager);
+            _tabLayout.GetTabAt(0).SetIcon(Resource.Drawable.checkbox_checked_20);
+            _tabLayout.GetTabAt(1).SetIcon(Resource.Drawable.checkbox_unchecked_20);
             return view;
         }
 

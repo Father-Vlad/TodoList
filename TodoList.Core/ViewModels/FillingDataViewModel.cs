@@ -22,7 +22,7 @@ namespace TodoList.Core.ViewModels
         private bool _saveButtonEnableStatus = false;
         private string _userId;
         private string _deleteCanselButtonText;
-        private bool _isNetAvilable;
+        private bool _isNetAvailable;
 
         public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, IWebApiService webApiService)
         {
@@ -30,6 +30,21 @@ namespace TodoList.Core.ViewModels
             _taskService = taskService;
             _loginService = loginService;
             _webApiService = webApiService;
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                IsNetAvailable = true;
+            }
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+        }
+
+        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.NetworkAccess == NetworkAccess.Internet)
+            {
+                IsNetAvailable = true;
+                return;
+            }
+            IsNetAvailable = false;
         }
 
         public int GoalId
@@ -57,7 +72,6 @@ namespace TodoList.Core.ViewModels
             {
                 _goalName = value;
                 RaisePropertyChanged(() => GoalName);
-                RaisePropertyChanged(() => IsNetAvilable);
                 RaisePropertyChanged(() => SaveButtonEnableStatus);
             }
         }
@@ -73,7 +87,6 @@ namespace TodoList.Core.ViewModels
             {
                 _goalDescription = value;
                 RaisePropertyChanged(() => GoalDescription);
-                RaisePropertyChanged(() => IsNetAvilable);
             }
         }
 
@@ -88,7 +101,6 @@ namespace TodoList.Core.ViewModels
             {
                 _goalStatus = value;
                 RaisePropertyChanged(() => GoalStatus);
-                RaisePropertyChanged(() => IsNetAvilable);
             }
         }
 
@@ -147,14 +159,12 @@ namespace TodoList.Core.ViewModels
 
         private async Task SaveDataToDB()
         {
-            if (!IsNetAvilable)
+            if (IsNetAvailable)
             {
-                await RaisePropertyChanged(() => IsNetAvilable);
-                return;
+                Goal goal = new Goal(GoalId, GoalName.Trim(), GoalDescription, GoalStatus, UserId);
+                await _webApiService.InsertOrUpdateDataAsync(goal);
+                await _navigationService.Close(this);
             }
-            Goal goal = new Goal(GoalId, GoalName.Trim(), GoalDescription, GoalStatus, UserId);
-            await _webApiService.InsertOrUpdateDataAsync(goal);
-            await _navigationService.Close(this);
         }
 
         public string DeleteCanselButtonText
@@ -199,14 +209,12 @@ namespace TodoList.Core.ViewModels
 
         private async Task DeleteDataFromDB()
         {
-            if (!IsNetAvilable)
+            if (IsNetAvailable)
             {
-                await RaisePropertyChanged(() => IsNetAvilable);
-                return;
+                var position = GoalId;
+                await _webApiService.DeleteDataAsync(position);
+                await _navigationService.Close(this);
             }
-            var position = GoalId;
-            await _webApiService.DeleteDataAsync(position);
-            await _navigationService.Close(this);
         }
 
         public override void Prepare(Goal parameter)
@@ -224,22 +232,17 @@ namespace TodoList.Core.ViewModels
             GoalNameEnableStatus = true;
         }
 
-        public bool IsNetAvilable
+        public bool IsNetAvailable
         {
             get
             {
-                var net = Connectivity.NetworkAccess;
-                if (net == NetworkAccess.Internet)
-                {
-                   return _isNetAvilable = true;
-                }
-                return _isNetAvilable = false;
+                return _isNetAvailable;
             }
 
             set
             {
-                _isNetAvilable = value;
-                RaisePropertyChanged(() => IsNetAvilable);
+                _isNetAvailable = value;
+                RaisePropertyChanged(() => IsNetAvailable);
             }
         }
     }

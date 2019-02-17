@@ -60,5 +60,11 @@ namespace TodoList.Droid.Views
             base.OnDestroyView();
             HideKeyboard();
         }
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
+        }
     }
 }

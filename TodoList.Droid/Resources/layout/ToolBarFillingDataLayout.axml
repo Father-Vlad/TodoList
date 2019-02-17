@@ -10,21 +10,28 @@
 		android:minHeight="?attr/actionBarSize"
 		android:background="?android:attr/colorPrimary"
 		android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
-		<ImageButton
-			android:src="@drawable/abc_ic_ab_back_material"
-			android:layout_width="@dimen/toolbar_button_60"
-			android:layout_height="@dimen/toolbar_button_60"
-			android:backgroundTint = "@color/colorButtonBackground"
-			android:id="@+id/image_back_button" 
-			local:MvxBind = "Click SendBackCommand"
-		/>
-		<TextView
+		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:text = "Write TODO sample..."
-			android:layout_marginLeft = "50dp"
-			android:textColor= "@color/colorWhite"
-			android:textSize = "@dimen/text_size_20"
-		/>
+			android:layout_marginRight="@dimen/padding_margin_10">
+			<ImageButton
+				android:background="@drawable/abc_ic_ab_back_material"
+				android:layout_width="@dimen/toolbar_button_30"
+				android:layout_height="@dimen/toolbar_button_30"
+				android:backgroundTint = "@color/colorWhite"
+				android:id="@+id/image_back_button" 
+				android:layout_centerInParent="true"
+				android:layout_alignParentLeft="true"
+				local:MvxBind = "Click SendBackCommand"
+			/>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text = "Write TODO sample..."
+				android:textColor= "@color/colorWhite"
+				android:textSize = "@dimen/text_size_20"
+				android:layout_centerInParent="true"
+			/>
+		</RelativeLayout>
 	</Toolbar>
 </FrameLayout>

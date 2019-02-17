@@ -5,25 +5,54 @@
 	android:id="@+id/coordinator_layout_main"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	<android.support.design.widget.AppBarLayout
-		android:id="@+id/appBar_layout_main"
+	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
-		<include layout="@layout/toolbarcollectionlayout" />
-	</android.support.design.widget.AppBarLayout>
-	<android.support.v4.view.ViewPager
-		android:id="@+id/view_pager_main"
-		android:layout_width="match_parent"
-		android:layout_height="fill_parent"
-	    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-	/>
-	<android.support.design.widget.TabLayout
-		android:id="@+id/tab_layout_main"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:tabMaxWidth="0dp"
-		app:tabGravity="fill"
-		app:tabMode="fixed"
-		android:layout_gravity="bottom"
-	/>
+		android:layout_height="match_parent">
+		<android.support.design.widget.AppBarLayout
+			android:id="@+id/appBar_layout_main"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<include layout="@layout/toolbarcollectionlayout" />
+		</android.support.design.widget.AppBarLayout>
+		<android.support.v4.view.ViewPager
+			android:id="@+id/view_pager_main"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@+id/linear_layout_bottom_tabbar"
+			android:layout_below="@+id/appBar_layout_main"
+			app:layout_behavior="@string/appbar_scrolling_view_behavior"
+		/>
+		<LinearLayout
+			android:id="@+id/linear_layout_bottom_tabbar"
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			>
+			<TextView
+				android:id="@+id/text_view_isnetavailable"
+				android:text="@string/text_is_net_available"
+				android:layout_width="match_parent"
+				android:layout_height="30dp"
+				android:gravity="center"
+				android:textColor="@android:color/white"
+				android:background="@color/colorBackground"
+				app:MvxBind="Visible Net(IsNetAvailable)"
+			/>
+			<android.support.design.widget.TabLayout
+				android:id="@+id/tab_layout_main"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/padding_margin_50"
+				app:tabMaxWidth="0dp"
+				app:tabTextColor = "@android:color/white"
+				app:tabSelectedTextColor="@android:color/holo_blue_light"
+				app:tabIndicatorHeight="0dp"
+				app:tabPadding="0sp"
+				app:tabGravity="fill"
+				app:tabMode="fixed"
+				app:tabTextAppearance="@style/MineCustomTabText"
+				android:background="@color/colorTabLayoutBackground"
+			/>
+		</LinearLayout>
+	</RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

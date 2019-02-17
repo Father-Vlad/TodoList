@@ -17,6 +17,7 @@
                 <outlet property="SaveButton" destination="7619" id="name-outlet-7619"/>
                 <outlet property="DeleteButton" destination="7621" id="name-outlet-7621"/>
                 <outlet property="StatusOfTaskLabel" destination="7616" id="name-outlet-7616"/>
+                <outlet property="IsYorNetAvailableLabel" destination="16328" id="name-outlet-16328"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -133,12 +134,25 @@
                         <constraint id="7285" firstItem="7264" firstAttribute="bottom" secondItem="7033" secondAttribute="bottom"/>
                     </constraints>
                 </scrollView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your net is not available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="16328" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="0.0" y="538" width="320" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                    <constraints>
+                        <constraint id="17432" firstAttribute="height" constant="30"/>
+                    </constraints>
+                </label>
             </subviews>
             <constraints>
                 <constraint id="7034" firstItem="7033" firstAttribute="top" secondItem="1" secondAttribute="top"/>
                 <constraint id="7035" firstItem="7033" firstAttribute="leadingMargin" secondItem="1" secondAttribute="leadingMargin"/>
                 <constraint id="7036" firstAttribute="trailingMargin" secondItem="7033" secondAttribute="trailingMargin"/>
                 <constraint id="7037" firstItem="7033" firstAttribute="height" secondItem="1" secondAttribute="height"/>
+                <constraint id="17402" firstItem="16328" firstAttribute="trailing" secondItem="7033" secondAttribute="trailing"/>
+                <constraint id="17417" firstItem="16328" firstAttribute="leading" secondItem="7033" secondAttribute="leading"/>
+                <constraint id="17447" firstItem="16328" firstAttribute="bottom" secondItem="7033" secondAttribute="bottom"/>
             </constraints>
         </view>
     </objects>

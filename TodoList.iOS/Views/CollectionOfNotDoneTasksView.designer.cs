@@ -21,6 +21,10 @@ namespace TodoList.iOS.Views
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.NSLayoutConstraint CollectionOfNotDoneTasksTopConstraint { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel YourNetAvailableNotDoneLabel { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (CollectionOfNotDoneTasksTableView != null) {
@@ -31,6 +35,11 @@ namespace TodoList.iOS.Views
             if (CollectionOfNotDoneTasksTopConstraint != null) {
                 CollectionOfNotDoneTasksTopConstraint.Dispose ();
                 CollectionOfNotDoneTasksTopConstraint = null;
+            }
+
+            if (YourNetAvailableNotDoneLabel != null) {
+                YourNetAvailableNotDoneLabel.Dispose ();
+                YourNetAvailableNotDoneLabel = null;
             }
         }
     }

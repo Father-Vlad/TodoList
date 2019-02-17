@@ -39,10 +39,13 @@ namespace TodoList.iOS.Views
             set.Bind(StatusOfTaskSwitch).To(vm => vm.GoalStatus);
             set.Bind(SaveButton).To(vm => vm.SaveDataCommand);
             set.Bind(SaveButton).For(v => v.Enabled).To(vm => vm.SaveButtonEnableStatus);
+            set.Bind(SaveButton).For(v => v.Hidden).To(vm => vm.IsNetAvailable).WithConversion("Net"); ;
             set.Bind(DeleteButton).To(vm => vm.DeleteDataCommand);
+            set.Bind(DeleteButton).For(v => v.Hidden).To(vm => vm.IsNetAvailable).WithConversion("Net"); ;
             set.Bind(_buttonGoBack).To(vm => vm.SendBackCommand);
             set.Bind(StatusOfTaskLabel).To(vm => vm.GoalStatus).WithConversion("StatusOfTaskLabel");
-            set.Bind(DeleteButton).For("Title").To(vm => vm.DeleteCanselButtonText); 
+            set.Bind(DeleteButton).For("Title").To(vm => vm.DeleteCanselButtonText);
+            set.Bind(IsYorNetAvailableLabel).For(v => v.Hidden).To(vm => vm.IsNetAvailable);
             set.Apply();
             if (DescriptionOfTaskTextView.Text == _descriptionPlaceholder || string.IsNullOrEmpty(DescriptionOfTaskTextView.Text))
             {
