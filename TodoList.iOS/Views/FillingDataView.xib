@@ -38,7 +38,7 @@
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="7610" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Name of Task" textAlignment="justified">
                                     <rect key="frame" x="10" y="16" width="300" height="30"/>
                                     <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="PlayfairDisplay-BoldItalic" family="Playfair Display" pointSize="20"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <constraints>
                                         <constraint id="7611" firstAttribute="height" constant="30"/>
@@ -47,7 +47,7 @@
                                 <textView clipsSubviews="YES" contentMode="scaleToFill" id="7612" translatesAutoresizingMaskIntoConstraints="NO" text="Enter your Description" textAlignment="justified">
                                     <rect key="frame" x="5" y="66" width="310" height="136"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                    <fontDescription key="fontDescription" name="PlayfairDisplay-BoldItalic" family="Playfair Display" pointSize="20"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
@@ -63,7 +63,7 @@
                                 </switch>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Done" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7616" translatesAutoresizingMaskIntoConstraints="NO">
                                     <rect key="frame" x="71" y="244" width="76" height="21"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <constraints>

@@ -127,6 +127,10 @@
     <InterfaceDefinition Include="Views\SplachScreenAnimationView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
+    <BundleResource Include="Resources\base.ttf" />
+    <BundleResource Include="Resources\PlayfairDisplay-BlackItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BTProgressHUD, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">

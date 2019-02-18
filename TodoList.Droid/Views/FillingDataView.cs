@@ -33,7 +33,7 @@ namespace TodoList.Droid.Views
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             var editTextGoalName = view.FindViewById<EditText>(Resource.Id.edit_text_goal_name);
             var editTextGoalDescription = view.FindViewById<EditText>(Resource.Id.edit_text_goal_description);
-            Typeface newTypeface = Typeface.CreateFromAsset(view.Context.Assets, "Gothic.ttf");
+            Typeface newTypeface = Typeface.CreateFromAsset(view.Context.Assets, "PlayfairDisplay-BlackItalic.ttf");
             editTextGoalName.SetTypeface(newTypeface, TypefaceStyle.Normal);
             editTextGoalDescription.SetTypeface(newTypeface, TypefaceStyle.Normal);
             _linearLayoutMain = view.FindViewById<LinearLayout>(Resource.Id.filling_data_layout_main);

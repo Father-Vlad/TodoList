@@ -21,6 +21,11 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Splash</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>base.ttf</string>
+		<string>PlayfairDisplay-BlackItalic.ttf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

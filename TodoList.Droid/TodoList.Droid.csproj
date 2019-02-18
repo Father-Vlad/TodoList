@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Gothic.ttf" />
+    <AndroidAsset Include="Assets\PlayfairDisplay-BlackItalic.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
