@@ -13,7 +13,8 @@ namespace TodoList.Core.ViewModels
 {
     public class LoginViewModel : MvxViewModel
     {
-        private readonly string _strLoginWelcomeTextLoggedIn = "Please login to continue"; 
+        #region Variables
+        private readonly string _strLoginWelcomeTextLoggedIn = "Please login to continue";
         private readonly string _strLoginWelcomeTextLoggedOut = "Welcome";
         private readonly string _strLogInButtonText = "   Continue with Facebook   ";
         private readonly string _strLoggedOutButtonText = "   Logged out   ";
@@ -27,7 +28,9 @@ namespace TodoList.Core.ViewModels
         private readonly IMvxNavigationService _navigationService;
         private readonly IUserService _userService;
         private readonly ILoginService _loginService;
+        #endregion Variables
 
+        #region Constructors
         public LoginViewModel(IMvxNavigationService navigationService, IUserService userService, ILoginService loginService)
         {
             _loginService = loginService;
@@ -46,57 +49,18 @@ namespace TodoList.Core.ViewModels
             }
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         }
+        #endregion Constructors
 
+        #region Lifecycle
+        #endregion Lifecycle
+
+        #region Properties
         public IMvxCommand FillingLoginUserDataCommand { get; set; }
         public IMvxCommand DeleteLoginUserDataCommand { get; set; }
         public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
         public IMvxCommand LoginFacebookCommand { get; set; }
         public IMvxCommand LogoutFacebookCommand { get; set; }
         public MvxInteraction<CloseUIViewController> Interaction { get; set; } = new MvxInteraction<CloseUIViewController>();
-
-        public async Task LookAtCurrentGoals()
-        {
-            var result = await _navigationService.Navigate<ViewPagerViewModel>();
-            await _navigationService.Close(this);
-        }
-
-        private void LoginFacebook()
-        {
-            _loginService.LoginFacebook();
-        }
-
-        private void LogoutFacebook()
-        {
-            _loginService.LogoutFacebook();
-        }
-
-        public void FillingLoginUserData()
-        {
-            User user = _loginService.CurrentUser;
-            CreateNewUser(user);
-            UserId = user.UserId;
-            UserName = user.UserName;
-            var request = new CloseUIViewController();
-            Interaction.Raise(request);
-        }
-
-        public async Task DeleteLoginUserData()
-        {
-            await Task.Run(() =>
-            {
-                UserId = string.Empty;
-                UserName = string.Empty;
-            });
-        }
-
-        public void CreateNewUser(User user)
-        {
-            var findUser = _userService.GetUser(user.UserId);
-            if (findUser == null)
-            {
-                _userService.InsertUser(user);
-            }
-        }
 
         public string WelcomeText
         {
@@ -206,16 +170,6 @@ namespace TodoList.Core.ViewModels
             }
         }
 
-        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
-        {
-            if (e.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-                return;
-            }
-            IsNetAvailable = false;
-        }
-
         public bool IsNetAvailable
         {
             get
@@ -229,5 +183,65 @@ namespace TodoList.Core.ViewModels
                 RaisePropertyChanged(() => IsNetAvailable);
             }
         }
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        public async Task LookAtCurrentGoals()
+        {
+            var result = await _navigationService.Navigate<ViewPagerViewModel>();
+            await _navigationService.Close(this);
+        }
+
+        private void LoginFacebook()
+        {
+            _loginService.LoginFacebook();
+        }
+
+        private void LogoutFacebook()
+        {
+            _loginService.LogoutFacebook();
+        }
+
+        public void FillingLoginUserData()
+        {
+            User user = _loginService.CurrentUser;
+            CreateNewUser(user);
+            UserId = user.UserId;
+            UserName = user.UserName;
+            var request = new CloseUIViewController();
+            Interaction.Raise(request);
+        }
+
+        public async Task DeleteLoginUserData()
+        {
+            await Task.Run(() =>
+            {
+                UserId = string.Empty;
+                UserName = string.Empty;
+            });
+        }
+
+        public void CreateNewUser(User user)
+        {
+            var findUser = _userService.GetUser(user.UserId);
+            if (findUser == null)
+            {
+                _userService.InsertUser(user);
+            }
+        }
+
+        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.NetworkAccess == NetworkAccess.Internet)
+            {
+                IsNetAvailable = true;
+                return;
+            }
+            IsNetAvailable = false;
+        }
+        #endregion Methods
     }
 }

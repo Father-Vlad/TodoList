@@ -9,15 +9,22 @@ namespace TodoList.iOS.Views
     [MvxModalPresentation(WrapInNavigationController = false, Animated = false)]
     public class MainView : MvxViewController<MainViewModel>
     {
+        #region Variables
         private bool _firstTimePresented = true;
+        #endregion Variables
+
+        #region Constructors
         public MainView()
         {
         }
+        #endregion Constructors
 
+        #region Lifecycle
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
         }
+
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
@@ -26,7 +33,19 @@ namespace TodoList.iOS.Views
                 _firstTimePresented = false;
                 ViewModel.ShowCurrentViewModelCommand.Execute(null);
             }
-
         }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        #endregion Methods
+
+        #region Overrides
+        #endregion Overrides
     }
 }

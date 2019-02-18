@@ -10,6 +10,7 @@ namespace TodoList.Core.ViewModels
 {
     public class FillingGoalDataViewModel : MvxViewModel<Goal>
     {
+        #region Variables
         private string _goalName;
         private string _goalDescription;
         private bool _goalStatus = false;
@@ -22,7 +23,9 @@ namespace TodoList.Core.ViewModels
         private string _userId;
         private string _deleteCanselButtonText;
         private bool _isNetAvailable;
+        #endregion Variables
 
+        #region Constructors
         public FillingGoalDataViewModel(IMvxNavigationService navigationService, ILoginService loginService, IWebApiService webApiService)
         {
             _navigationService = navigationService;
@@ -34,17 +37,26 @@ namespace TodoList.Core.ViewModels
             }
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         }
+        #endregion Constructors
 
-        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        #region Lifecycle
+        public override void Prepare(Goal parameter)
         {
-            if (e.NetworkAccess == NetworkAccess.Internet)
+            if (parameter != null)
             {
-                IsNetAvailable = true;
+                GoalNameEnableStatus = false;
+                GoalId = parameter.Id;
+                GoalName = parameter.GoalName;
+                GoalDescription = parameter.GoalDescription;
+                GoalStatus = parameter.GoalStatus;
+                UserId = parameter.UserId;
                 return;
             }
-            IsNetAvailable = false;
+            GoalNameEnableStatus = true;
         }
+        #endregion Lifecycle
 
+        #region Properties
         public int GoalId
         {
             get
@@ -134,37 +146,6 @@ namespace TodoList.Core.ViewModels
             }
         }
 
-        public MvxAsyncCommand SendBackCommand
-        {
-            get
-            {
-                return new MvxAsyncCommand(NavigateToPreviousActivity);
-            }
-        }
-
-        private async Task NavigateToPreviousActivity()
-        {
-            await _navigationService.Close(this);
-        }
-
-        public MvxAsyncCommand SaveDataCommand
-        {
-            get
-            {
-                return new MvxAsyncCommand(SaveDataToDB);
-            }
-        }
-
-        private async Task SaveDataToDB()
-        {
-            if (IsNetAvailable)
-            {
-                Goal goal = new Goal(GoalId, GoalName.Trim(), GoalDescription, GoalStatus, UserId);
-                await _webApiService.InsertOrUpdateDataAsync(goal);
-                await _navigationService.Close(this);
-            }
-        }
-
         public string DeleteCanselButtonText
         {
             get
@@ -183,14 +164,6 @@ namespace TodoList.Core.ViewModels
             }
         }
 
-        public MvxAsyncCommand DeleteDataCommand
-        {
-            get
-            {
-                return new MvxAsyncCommand(DeleteDataFromDB);
-            }
-        }
-
         public string UserId
         {
             get
@@ -203,31 +176,6 @@ namespace TodoList.Core.ViewModels
                 _userId = value;
                 RaisePropertyChanged(() => UserId);
             }
-        }
-
-        private async Task DeleteDataFromDB()
-        {
-            if (IsNetAvailable)
-            {
-                var position = GoalId;
-                await _webApiService.DeleteDataAsync(position);
-                await _navigationService.Close(this);
-            }
-        }
-
-        public override void Prepare(Goal parameter)
-        {
-            if (parameter != null)
-            {
-                GoalNameEnableStatus = false;
-                GoalId = parameter.Id;
-                GoalName = parameter.GoalName;
-                GoalDescription = parameter.GoalDescription;
-                GoalStatus = parameter.GoalStatus;
-                UserId = parameter.UserId;
-                return;
-            }
-            GoalNameEnableStatus = true;
         }
 
         public bool IsNetAvailable
@@ -243,5 +191,69 @@ namespace TodoList.Core.ViewModels
                 RaisePropertyChanged(() => IsNetAvailable);
             }
         }
+        #endregion Properties
+
+        #region Commands
+        public MvxAsyncCommand SendBackCommand
+        {
+            get
+            {
+                return new MvxAsyncCommand(NavigateToPreviousActivity);
+            }
+        }
+
+        public MvxAsyncCommand SaveDataCommand
+        {
+            get
+            {
+                return new MvxAsyncCommand(SaveDataToDB);
+            }
+        }
+
+        public MvxAsyncCommand DeleteDataCommand
+        {
+            get
+            {
+                return new MvxAsyncCommand(DeleteDataFromDB);
+            }
+        }
+        #endregion Commands
+
+        #region Methods
+        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.NetworkAccess == NetworkAccess.Internet)
+            {
+                IsNetAvailable = true;
+                return;
+            }
+            IsNetAvailable = false;
+        }
+
+        private async Task NavigateToPreviousActivity()
+        {
+            await _navigationService.Close(this);
+        }
+
+        private async Task SaveDataToDB()
+        {
+            if (IsNetAvailable)
+            {
+                Goal goal = new Goal(GoalId, GoalName.Trim(), GoalDescription, GoalStatus, UserId);
+                await _webApiService.InsertOrUpdateDataAsync(goal);
+                await _navigationService.Close(this);
+            }
+        }
+
+        private async Task DeleteDataFromDB()
+        {
+            if (IsNetAvailable)
+            {
+                var position = GoalId;
+                await _webApiService.DeleteDataAsync(position);
+                await _navigationService.Close(this);
+            }
+        }
+        #endregion Methods
     }
 }

@@ -12,6 +12,7 @@ namespace TodoList.Core.ViewModels
 {
     public class CompletedGoalsViewModel : MvxViewModel<Action>
     {
+        #region Variables
         private bool _isRefreshLayoutRefreshing;
         private MvxObservableCollection<Goal> _goals;
         private MvxCommand _updateDataCommand;
@@ -34,7 +35,9 @@ namespace TodoList.Core.ViewModels
         private bool _platformName;
         private int _currentTaskId;
         private bool _isNetAvailable;
-
+        #endregion Variables
+        
+        #region Constructors
         public CompletedGoalsViewModel(IMvxNavigationService navigationService, IGoalService goalService, ILoginService loginService, ITelegramService telegramService, IWebApiService webApiService, IAlertService alertService)
         {
             _navigationService = navigationService;
@@ -52,17 +55,9 @@ namespace TodoList.Core.ViewModels
             }
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         }
+        #endregion Constructors
 
-        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
-        public IMvxCommand LogoutCommand => new MvxCommand(Logout);
-        public Action OnLoggedOutHandler { get; set; }
-        public IMvxCommand<int> ShareMessageCommand { get; set; }
-
-        private void Logout()
-        {
-            OnLoggedOutHandler();
-        }
-
+        #region Lifecycle
         public override void Prepare(Action action)
         {
             base.Prepare();
@@ -74,6 +69,13 @@ namespace TodoList.Core.ViewModels
             base.ViewAppearing();
             MakeListOfGoals();
         }
+        #endregion Lifecycle
+
+        #region Properties
+        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
+        public IMvxCommand LogoutCommand => new MvxCommand(Logout);
+        public Action OnLoggedOutHandler { get; set; }
+        public IMvxCommand<int> ShareMessageCommand { get; set; }
 
         public MvxObservableCollection<Goal> Goals
         {
@@ -86,48 +88,6 @@ namespace TodoList.Core.ViewModels
                 _goals = value;
                 RaisePropertyChanged(() => Goals);
             }
-        }
-
-        public async Task CreateNewGoal(Goal goal)
-        {
-            var result = await _navigationService.Navigate<FillingGoalDataViewModel, Goal>(goal);
-        }
-
-        public MvxCommand UpdateDataCommand
-        {
-            get
-            {
-                return _updateDataCommand = _updateDataCommand ?? new MvxCommand(UpdateDataFromDB);
-            }
-        }
-
-        private void UpdateDataFromDB()
-        {
-            MakeListOfGoals();
-        }
-
-        private void MakeListOfGoals()
-        {
-            IsRefreshLayoutRefreshing = true;
-            if (IsNetAvailable)
-            {
-                _webApiService.RefreshDataAsync(UploadNewData);
-                return;
-            }
-            LoadCacheData();
-        }
-
-        private void LoadCacheData()
-        {
-            User user = _loginService.CurrentUser;
-            var list = _goalService.GetDoneUserGoal(user.UserId);
-            Goals = new MvxObservableCollection<Goal>(list);
-            IsRefreshLayoutRefreshing = false;
-        }
-
-        private void UploadNewData(List<Goal> tasks)
-        {
-            LoadCacheData();
         }
 
         public bool IsRefreshLayoutRefreshing
@@ -200,6 +160,84 @@ namespace TodoList.Core.ViewModels
 
         private string ShareNewLine { get; set; }
 
+        private string ShareString
+        {
+            get
+            {
+                if (PlatformName)
+                {
+                    return string.Format(_shareWelcomeText + ShareNewLine + _shareForewordText + CurrentTaskName + ShareNewLine + ShareTaskStatus);
+                }
+                return GetIOSFormattingString(string.Format(_checkAppNameiOS + _shareWelcomeText + ShareNewLine + _shareForewordText + CurrentTaskName + ShareNewLine + ShareTaskStatus));
+            }
+        }
+
+        public bool IsNetAvailable
+        {
+            get
+            {
+                return _isNetAvailable;
+            }
+
+            set
+            {
+                _isNetAvailable = value;
+                RaisePropertyChanged(() => IsNetAvailable);
+            }
+        }
+        #endregion Properties
+
+        #region Commands
+
+        public MvxCommand UpdateDataCommand
+        {
+            get
+            {
+                return _updateDataCommand = _updateDataCommand ?? new MvxCommand(UpdateDataFromDB);
+            }
+        }
+        #endregion Commands
+
+        #region Methods
+        private void Logout()
+        {
+            OnLoggedOutHandler();
+        }
+
+        public async Task CreateNewGoal(Goal goal)
+        {
+            var result = await _navigationService.Navigate<FillingGoalDataViewModel, Goal>(goal);
+        }
+
+        private void UpdateDataFromDB()
+        {
+            MakeListOfGoals();
+        }
+
+        private void MakeListOfGoals()
+        {
+            IsRefreshLayoutRefreshing = true;
+            if (IsNetAvailable)
+            {
+                _webApiService.RefreshDataAsync(UploadNewData);
+                return;
+            }
+            LoadCacheData();
+        }
+
+        private void LoadCacheData()
+        {
+            User user = _loginService.CurrentUser;
+            var list = _goalService.GetDoneUserGoal(user.UserId);
+            Goals = new MvxObservableCollection<Goal>(list);
+            IsRefreshLayoutRefreshing = false;
+        }
+
+        private void UploadNewData(List<Goal> tasks)
+        {
+            LoadCacheData();
+        }
+
         private string GetIOSFormattingString(string stringToFormat)
         {
             string shareCurrentTaskName = string.Empty;
@@ -213,18 +251,6 @@ namespace TodoList.Core.ViewModels
                 shareCurrentTaskName += stringToFormat[i];
             }
             return shareCurrentTaskName;
-        }
-
-        private string ShareString
-        {
-            get
-            {
-                if (PlatformName)
-                {
-                    return string.Format(_shareWelcomeText + ShareNewLine + _shareForewordText + CurrentTaskName + ShareNewLine + ShareTaskStatus);
-                }
-                return GetIOSFormattingString(string.Format(_checkAppNameiOS + _shareWelcomeText + ShareNewLine + _shareForewordText + CurrentTaskName + ShareNewLine + ShareTaskStatus));
-            }
         }
 
         private void ShareMessege(int currentTaskId)
@@ -257,19 +283,6 @@ namespace TodoList.Core.ViewModels
             }
             IsNetAvailable = false;
         }
-
-        public bool IsNetAvailable
-        {
-            get
-            {
-                return _isNetAvailable;
-            }
-
-            set
-            {
-                _isNetAvailable = value;
-                RaisePropertyChanged(() => IsNetAvailable);
-            }
-        }
+        #endregion Methods
     }
 }

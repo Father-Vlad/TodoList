@@ -16,16 +16,14 @@ namespace TodoList.Droid.Views
     [Register("TodoList.Droid.Views.LoginView")]
     public class LoginView : BaseFragment<LoginViewModel>
     {
+        #region Variables
         private Button _facebookLoginButton;
+        #endregion Variables
 
-        protected override int FragmentId
-        {
-            get
-            {
-                return Resource.Layout.LoginLayout;
-            }
-        }
+        #region Constructors
+        #endregion Constructors
 
+        #region Lifecycle
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -34,28 +32,47 @@ namespace TodoList.Droid.Views
             return view;
         }
 
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
+        }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
         private async void LoggedInOrOutFacebook()
         {
             if (string.IsNullOrEmpty(this.ViewModel.UserId))
             {
                 this.ViewModel.LoginFacebookCommand.Execute();
                 await Task.Run(() =>
-                 {
-                     if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-                     {
-                         StartActivity(this.ViewModel.Authenticator.GetUI(View.Context));
-                         Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
-                     }
-                 });
+                {
+                    if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+                    {
+                        StartActivity(this.ViewModel.Authenticator.GetUI(View.Context));
+                        Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
+                    }
+                });
                 return;
             }
             this.ViewModel.LogoutFacebookCommand.Execute();
         }
+        #endregion Methods
 
-        public override void OnCreate(Bundle savedInstanceState)
+        #region Overrides
+        protected override int FragmentId
         {
-            base.OnCreate(savedInstanceState);
-            Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
+            get
+            {
+                return Resource.Layout.LoginLayout;
+            }
         }
+        #endregion Overrides
     }
 }

@@ -10,11 +10,17 @@ namespace TodoList.iOS.Views
     [MvxRootPresentation(WrapInNavigationController = false)]
     public class TabBarView : MvxTabBarViewController<ViewPagerViewModel>
     {
+        #region Variables
         private bool _firstTimePresented = true;
+        #endregion Variables
+
+        #region Constructors
         public TabBarView()
         {
         }
+        #endregion Constructors
 
+        #region Lifecycle
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -32,5 +38,18 @@ namespace TodoList.iOS.Views
                 _firstTimePresented = false;
             }
         }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        #endregion Methods
+
+        #region Overrides
+        #endregion Overrides
     }
 }

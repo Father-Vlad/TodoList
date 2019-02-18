@@ -14,19 +14,19 @@ namespace TodoList.iOS.Views
     [MvxModalPresentation(WrapInNavigationController = true, Animated = false)]
     public partial class LoginView : MvxViewController<LoginViewModel>
     {
+        #region Variables
         private UIButton _buttonContinue;
         private UIViewController _ui;
         private IMvxInteraction<CloseUIViewController> _interaction;
+        #endregion Variables
 
+        #region Constructors
         public LoginView() : base(nameof(LoginView), null)
         {
         }
+        #endregion Constructors
 
-        public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
-        {
-            return UIInterfaceOrientationMask.Portrait;
-        }
-
+        #region Lifecycle
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -45,12 +45,14 @@ namespace TodoList.iOS.Views
             set.Bind(UserImageView).For(v => v.Hidden).To(vm => vm.ProfilePictureViewVisibleStatus).WithConversion("ProfilePictureVisibleStatus");
             set.Bind(LoginToFacebookButton).For("Title").To(vm => vm.LoginButtonText);
             set.Bind(LoginToFacebookButton).For("Enabled").To(vm => vm.IsNetAvailable);
-            set.Bind(NavigationItem).For(v=>v.Title).To(vm => vm.WelcomeText);
+            set.Bind(NavigationItem).For(v => v.Title).To(vm => vm.WelcomeText);
             set.Bind(UserNameLabel).To(vm => vm.UserName);
             set.Bind(NetAvailableLabel).For(v => v.Hidden).To(vm => vm.IsNetAvailable);
             set.Apply();
         }
+        #endregion Lifecycle
 
+        #region Properties
         public IMvxInteraction<CloseUIViewController> Interaction
         {
             get => _interaction;
@@ -63,12 +65,12 @@ namespace TodoList.iOS.Views
                 _interaction.Requested += OnInteractionRequested;
             }
         }
+        #endregion Properties
 
-        private void OnInteractionRequested(object sender, MvxValueEventArgs<CloseUIViewController> eventArgs)
-        {
-            _ui.DismissViewController(true, null);
-        }
+        #region Commands
+        #endregion Commands
 
+        #region Methods
         partial void LoginButton_TouchUpInside(UIKit.UIButton sender)
         {
             if (string.IsNullOrEmpty(this.ViewModel.UserId))
@@ -83,5 +85,18 @@ namespace TodoList.iOS.Views
             }
             this.ViewModel.LogoutFacebookCommand.Execute();
         }
+
+        private void OnInteractionRequested(object sender, MvxValueEventArgs<CloseUIViewController> eventArgs)
+        {
+            _ui.DismissViewController(true, null);
+        }
+        #endregion Methods
+
+        #region Overrides
+        public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
+        {
+            return UIInterfaceOrientationMask.Portrait;
+        }
+        #endregion Overrides
     }
 }

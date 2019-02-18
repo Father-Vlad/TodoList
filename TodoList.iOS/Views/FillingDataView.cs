@@ -10,16 +10,21 @@ namespace TodoList.iOS.Views
     [MvxModalPresentation(WrapInNavigationController = true, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
     public partial class FillingDataView : MvxViewController<FillingGoalDataViewModel>
     {
+        #region Variables
         private UIButton _buttonGoBack;
         private UIColor _placeholderDescriptionColor;
         private readonly string _textTitle = "Write TODO sample...";
         private readonly string _namePlaceholder = "Enter your Goal Name";
         private readonly string _descriptionPlaceholder = "Enter your Description";
+        #endregion Variables
 
+        #region Constructors
         public FillingDataView() : base(nameof(FillingDataView), null)
         {
         }
+        #endregion Constructors
 
+        #region Lifecycle
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -34,7 +39,7 @@ namespace TodoList.iOS.Views
             //Binding
             var set = this.CreateBindingSet<FillingDataView, FillingGoalDataViewModel>();
             set.Bind(NameOfTaskTextField).To(vm => vm.GoalName);
-            set.Bind(NameOfTaskTextField).For(v=>v.Enabled).To(vm => vm.GoalNameEnableStatus);
+            set.Bind(NameOfTaskTextField).For(v => v.Enabled).To(vm => vm.GoalNameEnableStatus);
             set.Bind(DescriptionOfTaskTextView).To(vm => vm.GoalDescription);
             set.Bind(StatusOfTaskSwitch).To(vm => vm.GoalStatus);
             set.Bind(SaveButton).To(vm => vm.SaveDataCommand);
@@ -86,5 +91,18 @@ namespace TodoList.iOS.Views
             DeleteButton.Layer.BorderWidth = 1;
             DeleteButton.Layer.BorderColor = UIColor.Black.CGColor;
         }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        #endregion Methods
+
+        #region Overrides
+        #endregion Overrides
     }
 }

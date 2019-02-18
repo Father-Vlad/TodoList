@@ -12,10 +12,17 @@ namespace TodoList.Droid.Views
     [Activity(Label = "SplashScreenAnimationActivityView")]
     public class SplashScreenAnimationActivityView : MvxAppCompatActivity<SplachViewModel>
     {
+        #region Variables
         ImageView myImage;
         Animation myAnimation;
         TransitionDrawable transition;
         RelativeLayout myLayout;
+        #endregion Variables
+
+        #region Constructors
+        #endregion Constructors
+
+        #region Lifecycle
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -36,6 +43,18 @@ namespace TodoList.Droid.Views
                 };
             });
         }
+        #endregion Lifecycle
 
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        #endregion Methods
+
+        #region Overrides
+        #endregion Overrides
     }
 }

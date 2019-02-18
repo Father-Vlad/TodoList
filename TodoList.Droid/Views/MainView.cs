@@ -10,6 +10,13 @@ namespace TodoList.Droid.Views
     [Activity]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+        #endregion Constructors
+
+        #region Lifecycle
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -20,5 +27,18 @@ namespace TodoList.Droid.Views
                 ViewModel.ShowCurrentViewModelCommand.Execute(null);
             }
         }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        #endregion Methods
+
+        #region Overrides
+        #endregion Overrides
     }
 }

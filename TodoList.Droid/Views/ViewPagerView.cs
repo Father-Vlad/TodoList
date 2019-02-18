@@ -16,17 +16,15 @@ namespace TodoList.Droid.Views
     [Register("TodoList.Droid.Views.ViewPagerView")]
     public class ViewPagerView : BaseFragment<ViewPagerViewModel>
     {
+        #region Variables
         private ViewPager _viewPager;
         private TabLayout _tabLayout;
+        #endregion Variables
 
-        protected override int FragmentId
-        {
-            get
-            {
-                return Resource.Layout.ViewPagerLayout;
-            }
-        }
+        #region Constructors
+        #endregion Constructors
 
+        #region Lifecycle
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -60,5 +58,25 @@ namespace TodoList.Droid.Views
             base.OnCreate(savedInstanceState);
             Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
         }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        #endregion Methods
+
+        #region Overrides
+        protected override int FragmentId
+        {
+            get
+            {
+                return Resource.Layout.ViewPagerLayout;
+            }
+        }
+        #endregion Overrides
     }
 }

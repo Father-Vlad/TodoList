@@ -11,15 +11,20 @@ namespace TodoList.iOS.Views
     [MvxTabPresentation(WrapInNavigationController = true, TabName = "NOT DONE", TabIconName = "TabBarUnChecked")]
     public partial class CollectionOfNotDoneTasksView : MvxViewController<UncompletedGoalsViewModel>
     {
+        #region Variables
         private UIButton _buttonFillingData;
         private UIButton _buttonLogOut;
         private readonly string _textTitle = "To-do List";
         private MvxUIRefreshControl _refreshControl;
+        #endregion Variables
 
+        #region Constructors
         public CollectionOfNotDoneTasksView() : base(nameof(CollectionOfNotDoneTasksView), null)
         {
         }
+        #endregion Constructors
 
+        #region Lifecycle
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -55,5 +60,18 @@ namespace TodoList.iOS.Views
             set.Apply();
             CollectionOfNotDoneTasksTableView.ReloadData();
         }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        #endregion Methods
+
+        #region Overrides
+        #endregion Overrides
     }
 }

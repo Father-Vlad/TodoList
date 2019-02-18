@@ -13,18 +13,16 @@ namespace TodoList.Droid.Views
     [Register("TodoList.Droid.Views.CollectionOfDoneTasksView")]
     public class CollectionOfDoneTasksView : BaseFragment<CompletedGoalsViewModel>
     {
+        #region Variables
         private RecyclerAdapter _recyclerAdapter;
         private RecyclerView.LayoutManager _layoutManager;
         private MvxRecyclerView _recyclerView;
+        #endregion Variables
 
-        protected override int FragmentId
-        {
-            get
-            {
-                return Resource.Layout.CollectionLayout;
-            }
-        }
+        #region Constructors
+        #endregion Constructors
 
+        #region Lifecycle
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -41,5 +39,25 @@ namespace TodoList.Droid.Views
             _recyclerView.Adapter = _recyclerAdapter;
             return view;
         }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        #endregion Methods
+
+        #region Overrides
+        protected override int FragmentId
+        {
+            get
+            {
+                return Resource.Layout.CollectionLayout;
+            }
+        }
+        #endregion Overrides
     }
 }

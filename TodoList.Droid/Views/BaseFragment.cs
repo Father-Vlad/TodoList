@@ -5,12 +5,32 @@ using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.ViewModels;
-using static Android.Resource;
 
 namespace TodoList.Droid.Views
 {
     public abstract class BaseFragment : MvxFragment
     {
+        #region Variables
+        #endregion Variables
+
+        #region Constructors
+        #endregion Constructors
+
+        #region Lifecycle
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            base.OnCreateView(inflater, container, savedInstanceState);
+            var view = this.BindingInflate(FragmentId, null);
+            return view;
+        }
+
+        public override void OnActivityCreated(Bundle savedInstanceState)
+        {
+            base.OnActivityCreated(savedInstanceState);
+        }
+        #endregion Lifecycle
+
+        #region Properties
         public MvxAppCompatActivity ParentActivity
         {
             get
@@ -19,24 +39,21 @@ namespace TodoList.Droid.Views
             }
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(FragmentId, null);
-            return view;
-        }
-
         protected abstract int FragmentId { get; }
-       
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        #endregion Methods
+
+        #region Overrides
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
         }
-
-        public override void OnActivityCreated(Bundle savedInstanceState)
-        {
-            base.OnActivityCreated(savedInstanceState);
-        }
+        #endregion Overrides
     }
 
     public abstract class BaseFragment<TViewModel> : BaseFragment where TViewModel : class, IMvxViewModel

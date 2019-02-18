@@ -12,10 +12,13 @@ namespace TodoList.Core.ViewModels
 {
     public class ViewPagerViewModel : MvxViewModel
     {
+        #region Variables
         private readonly IMvxNavigationService _navigationService;
         private ILoginService _loginService;
         private bool _isNetAvailable;
+        #endregion Variables
 
+        #region Constructors
         public ViewPagerViewModel(IMvxNavigationService navigationService, ILoginService loginService)
         {
             _navigationService = navigationService;
@@ -32,7 +35,12 @@ namespace TodoList.Core.ViewModels
             }
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         }
+        #endregion Constructors
 
+        #region Lifecycle
+        #endregion Lifecycle
+
+        #region Properties
         public CompletedGoalsViewModel CompletedGoalsViewModel { get; set; }
         public UncompletedGoalsViewModel UncompletedGoalsViewModel { get; set; }
         public IMvxCommand LogoutCommand { get; set; }
@@ -40,6 +48,25 @@ namespace TodoList.Core.ViewModels
         public IMvxAsyncCommand<Action> ShowCompletedGoalsViewModelCommand { get; private set; }
         public IMvxAsyncCommand<Action> ShowUncompletedGoalsViewModelCommand { get; private set; }
 
+        public bool IsNetAvailable
+        {
+            get
+            {
+                return _isNetAvailable;
+            }
+
+            set
+            {
+                _isNetAvailable = value;
+                RaisePropertyChanged(() => IsNetAvailable);
+            }
+        }
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
         private async Task Logout()
         {
             _loginService.LogoutFacebook();
@@ -61,19 +88,6 @@ namespace TodoList.Core.ViewModels
             }
             IsNetAvailable = false;
         }
-
-        public bool IsNetAvailable
-        {
-            get
-            {
-                return _isNetAvailable;
-            }
-
-            set
-            {
-                _isNetAvailable = value;
-                RaisePropertyChanged(() => IsNetAvailable);
-            }
-        }
+        #endregion Methods
     }
 }

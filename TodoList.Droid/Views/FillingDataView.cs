@@ -16,19 +16,17 @@ namespace TodoList.Droid.Views
     [Register("TodoList.Droid.Views.FillingDataView")]
     public class FillingDataView : BaseFragment<FillingGoalDataViewModel>
     {
+        #region Variables
         private LinearLayout _linearLayoutMain;
         private LinearLayout _linearLayoutToggle;
         private LinearLayout _linearLayoutBottom;
         private Toolbar _toolBar;
+        #endregion Variables
 
-        protected override int FragmentId
-        {
-            get
-            {
-                return Resource.Layout.FillingDataLayout;
-            }
-        }
+        #region Constructors
+        #endregion Constructors
 
+        #region Lifecycle
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -41,25 +39,11 @@ namespace TodoList.Droid.Views
             _linearLayoutToggle = view.FindViewById<LinearLayout>(Resource.Id.filling_data_layout_toggle);
             _linearLayoutBottom = view.FindViewById<LinearLayout>(Resource.Id.filling_data_layout_bottom);
             _toolBar = view.FindViewById<Toolbar>(Resource.Id.toolbar_fillind_data);
-            _linearLayoutMain.Click += OnHideKeyboard; 
-            _linearLayoutToggle.Click += OnHideKeyboard; 
+            _linearLayoutMain.Click += OnHideKeyboard;
+            _linearLayoutToggle.Click += OnHideKeyboard;
             _linearLayoutBottom.Click += OnHideKeyboard;
             _toolBar.Click += OnHideKeyboard;
             return view;
-        }
-
-        private void OnHideKeyboard(object sender, EventArgs e)
-        {
-            HideKeyboard();
-        }
-
-        private void HideKeyboard()
-        {
-            if (Activity.CurrentFocus != null)
-            {
-                InputMethodManager imm = (InputMethodManager)Activity.GetSystemService(Context.InputMethodService);
-                imm.HideSoftInputFromWindow(Activity.CurrentFocus.WindowToken, 0);
-            }
         }
 
         public override void OnDestroyView()
@@ -77,5 +61,38 @@ namespace TodoList.Droid.Views
             base.OnCreate(savedInstanceState);
             Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
         }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        private void OnHideKeyboard(object sender, EventArgs e)
+        {
+            HideKeyboard();
+        }
+
+        private void HideKeyboard()
+        {
+            if (Activity.CurrentFocus != null)
+            {
+                InputMethodManager imm = (InputMethodManager)Activity.GetSystemService(Context.InputMethodService);
+                imm.HideSoftInputFromWindow(Activity.CurrentFocus.WindowToken, 0);
+            }
+        }
+        #endregion Methods
+
+        #region Overrides
+        protected override int FragmentId
+        {
+            get
+            {
+                return Resource.Layout.FillingDataLayout;
+            }
+        }
+        #endregion Overrides
     }
 }
