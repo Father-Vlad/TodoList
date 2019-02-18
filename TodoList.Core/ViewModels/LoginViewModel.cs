@@ -26,15 +26,17 @@ namespace TodoList.Core.ViewModels
         private bool _isNetAvailable;
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _taskService;
+        private readonly IUserService _userService;
         private readonly ILoginService _loginService;
 
-        public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService)
+        public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService, IUserService userService, ILoginService loginService)
         {
             _loginService = loginService;
             _loginService.OnLoggedInHandler = new Action(() => FillingLoginUserDataCommand.Execute());
             _loginService.OnLoggedOutHandler = new Action(() => DeleteLoginUserDataCommand.Execute());
             _navigationService = navigationService;
             _taskService = taskService;
+            _userService = userService;
             NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
             FillingLoginUserDataCommand = new MvxCommand(FillingLoginUserData);
             DeleteLoginUserDataCommand = new MvxAsyncCommand(DeleteLoginUserData);
@@ -73,7 +75,6 @@ namespace TodoList.Core.ViewModels
         public void FillingLoginUserData()
         {
             User user = _loginService.CurrentUser;
-            var list = _taskService.GetAllUsers();
             CreateNewUser(user);
             UserId = user.UserId;
             UserName = user.UserName;
@@ -92,10 +93,10 @@ namespace TodoList.Core.ViewModels
 
         public void CreateNewUser(User user)
         {
-            var findUser = _taskService.GetUser(user.UserId);
+            var findUser = _userService.GetUser(user.UserId);
             if (findUser == null)
             {
-                _taskService.InsertUser(user);
+                _userService.InsertUser(user);
             }
         }
 

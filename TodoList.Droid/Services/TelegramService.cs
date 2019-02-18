@@ -6,7 +6,7 @@ using TodoList.Core.Interfaces;
 
 namespace TodoList.Droid.Services
 {
-    class ShareTextToTelegramService : IShareTextToTelegramService
+    class TelegramService : ITelegramService
     {
         private readonly string _dataMIMEType = "text/plain";
         private readonly string _titleOfChooserIntent = "Share with";

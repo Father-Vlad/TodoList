@@ -5,7 +5,7 @@ using UIKit;
 
 namespace TodoList.iOS.Services
 {
-    public class ShareTextToTelegramService : IShareTextToTelegramService
+    public class TelegramService : ITelegramService
     {
         public void ShareText(string shareText)
         {

@@ -5,7 +5,6 @@ namespace TodoList.Core.Interfaces
 {
     public interface ITaskService
     {
-        //For Goals
         List<Goal> GetAllGoals();
         void InsertGoal(Goal goal);
         void DeleteGoal(int goalId);
@@ -15,10 +14,5 @@ namespace TodoList.Core.Interfaces
         List<Goal> GetNotDoneUserGoal(string currentUserId);
         void InsertAllUserGoals(List<Goal> goals);
         void DeleteAllUserGoals(string user);
-
-        //For Users
-        List<User> GetAllUsers();
-        User GetUser(string currentUserId);
-        void InsertUser(User user);
     }
 }

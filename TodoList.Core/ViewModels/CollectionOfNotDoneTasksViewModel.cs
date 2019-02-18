@@ -17,7 +17,7 @@ namespace TodoList.Core.ViewModels
         private ITaskService _taskService;
         private ILoginService _loginService;
         private IMvxNavigationService _navigationService;
-        private IShareTextToTelegramService _shareTextToTelegramService;
+        private ITelegramService _telegramService;
         private IWebApiService _webApiService;
         private readonly string _toastMessage = "Telegram is not installed";
         private readonly string _checkAppNameiOS = "tg://msg?text=";
@@ -32,12 +32,12 @@ namespace TodoList.Core.ViewModels
         private int _currentTaskId;
         private bool _isNetAvailable;
 
-        public CollectionOfNotDoneTasksViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, IShareTextToTelegramService shareTextToTelegramService, IWebApiService webApiService)
+        public CollectionOfNotDoneTasksViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, ITelegramService shareTextToTelegramService, IWebApiService webApiService)
         {
             _navigationService = navigationService;
             _taskService = taskService;
             _loginService = loginService;
-            _shareTextToTelegramService = shareTextToTelegramService;
+            _telegramService = shareTextToTelegramService;
             _webApiService = webApiService;
             Goals = new MvxObservableCollection<Goal>();
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
@@ -227,12 +227,12 @@ namespace TodoList.Core.ViewModels
             CurrentTaskId = currentGoal.Id;
             CurrentTaskName = currentGoal.GoalName;
             CurrentTaskStatus = currentGoal.GoalStatus;
-            if (_shareTextToTelegramService.IsTheAppInstalled(CurrentPlatformName) == false)
+            if (_telegramService.IsTheAppInstalled(CurrentPlatformName) == false)
             {
-                _shareTextToTelegramService.ShowToastMessage(_toastMessage);
+                _telegramService.ShowToastMessage(_toastMessage);
                 return;
             }
-            _shareTextToTelegramService.ShareText(ShareString);
+            _telegramService.ShareText(ShareString);
         }
 
         private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
