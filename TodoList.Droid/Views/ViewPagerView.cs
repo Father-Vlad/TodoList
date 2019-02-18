@@ -38,14 +38,14 @@ namespace TodoList.Droid.Views
                 {
                     FragmentType = typeof(CollectionOfDoneTasksView),
                     Title = "Done",
-                    ViewModel = ViewModel.CollectionOfDoneTasksViewModelCommand
+                    ViewModel = ViewModel.CompletedGoalsViewModel
                 },
 
                 new MvxFragmentStatePagerAdapter.FragmentInfo
                 {
                     FragmentType = typeof(CollectionOfNotDoneTasksView),
                     Title = "Not Done",
-                    ViewModel = ViewModel.CollectionOfNotDoneTasksViewModelCommand
+                    ViewModel = ViewModel.UncompletedGoalsViewModel
                 }
             };
             _viewPager.Adapter = new MvxFragmentStatePagerAdapter(Activity, ChildFragmentManager, fragments);

@@ -2,6 +2,7 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
@@ -9,17 +10,19 @@ using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
-    public class CollectionOfNotDoneTasksViewModel : MvxViewModel<Action>
+    public class CompletedGoalsViewModel : MvxViewModel<Action>
     {
         private bool _isRefreshLayoutRefreshing;
         private MvxObservableCollection<Goal> _goals;
         private MvxCommand _updateDataCommand;
-        private ITaskService _taskService;
+        private IGoalService _goalService;
         private ILoginService _loginService;
         private IMvxNavigationService _navigationService;
         private ITelegramService _telegramService;
         private IWebApiService _webApiService;
-        private readonly string _toastMessage = "Telegram is not installed";
+        private IAlertService _alertService;
+        private readonly string _alertErorMessage = "Something went wrong";
+        private readonly string _alertMessage = "Telegram is not installed";
         private readonly string _checkAppNameiOS = "tg://msg?text=";
         private readonly string _checkAppNameDroid = "org.telegram.messenger";
         private readonly string _newLineDroid = "\n";
@@ -32,13 +35,14 @@ namespace TodoList.Core.ViewModels
         private int _currentTaskId;
         private bool _isNetAvailable;
 
-        public CollectionOfNotDoneTasksViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, ITelegramService shareTextToTelegramService, IWebApiService webApiService)
+        public CompletedGoalsViewModel(IMvxNavigationService navigationService, IGoalService goalService, ILoginService loginService, ITelegramService telegramService, IWebApiService webApiService, IAlertService alertService)
         {
             _navigationService = navigationService;
-            _taskService = taskService;
+            _goalService = goalService;
             _loginService = loginService;
-            _telegramService = shareTextToTelegramService;
+            _telegramService = telegramService;
             _webApiService = webApiService;
+            _alertService = alertService;
             Goals = new MvxObservableCollection<Goal>();
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
             ShareMessageCommand = new MvxCommand<int>(ShareMessege);
@@ -47,10 +51,6 @@ namespace TodoList.Core.ViewModels
                 IsNetAvailable = true;
             }
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
-            _webApiService.OnRefreshNotDoneGoalsHandler = new Action(() =>
-            {
-                UploadNewORLoadCacheData();
-            });
         }
 
         public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
@@ -61,6 +61,12 @@ namespace TodoList.Core.ViewModels
         private void Logout()
         {
             OnLoggedOutHandler();
+        }
+
+        public override void Prepare(Action action)
+        {
+            base.Prepare();
+            OnLoggedOutHandler = action;
         }
 
         public override void ViewAppearing()
@@ -84,7 +90,7 @@ namespace TodoList.Core.ViewModels
 
         public async Task CreateNewGoal(Goal goal)
         {
-            var result = await _navigationService.Navigate<FillingDataViewModel, Goal>(goal);
+            var result = await _navigationService.Navigate<FillingGoalDataViewModel, Goal>(goal);
         }
 
         public MvxCommand UpdateDataCommand
@@ -105,18 +111,23 @@ namespace TodoList.Core.ViewModels
             IsRefreshLayoutRefreshing = true;
             if (IsNetAvailable)
             {
-                _webApiService.RefreshDataAsync();
+                _webApiService.RefreshDataAsync(UploadNewData);
                 return;
             }
-            UploadNewORLoadCacheData();
+            LoadCacheData();
         }
-        
-        private void UploadNewORLoadCacheData()
+
+        private void LoadCacheData()
         {
             User user = _loginService.CurrentUser;
-            var list = _taskService.GetNotDoneUserGoal(user.UserId);
+            var list = _goalService.GetDoneUserGoal(user.UserId);
             Goals = new MvxObservableCollection<Goal>(list);
             IsRefreshLayoutRefreshing = false;
+        }
+
+        private void UploadNewData(List<Goal> tasks)
+        {
+            LoadCacheData();
         }
 
         public bool IsRefreshLayoutRefreshing
@@ -131,11 +142,6 @@ namespace TodoList.Core.ViewModels
                 _isRefreshLayoutRefreshing = value;
                 RaisePropertyChanged(() => IsRefreshLayoutRefreshing);
             }
-        }
-
-        public override void Prepare(Action parameter)
-        {
-            OnLoggedOutHandler = parameter;
         }
 
         private int CurrentTaskId
@@ -223,16 +229,23 @@ namespace TodoList.Core.ViewModels
 
         private void ShareMessege(int currentTaskId)
         {
-            Goal currentGoal = _taskService.GetCurrentGoal(currentTaskId);
+            Goal currentGoal = _goalService.GetCurrentGoal(currentTaskId);
             CurrentTaskId = currentGoal.Id;
             CurrentTaskName = currentGoal.GoalName;
             CurrentTaskStatus = currentGoal.GoalStatus;
             if (_telegramService.IsTheAppInstalled(CurrentPlatformName) == false)
             {
-                _telegramService.ShowToastMessage(_toastMessage);
+                _alertService.ShowToast(_alertMessage);
                 return;
             }
-            _telegramService.ShareText(ShareString);
+            try
+            {
+                _telegramService.ShareText(ShareString);
+            }
+            catch
+            {
+                _alertService.ShowToast(_alertErorMessage);
+            }
         }
 
         private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)

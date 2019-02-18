@@ -1,6 +1,5 @@
 ﻿using Foundation;
 using TodoList.Core.Interfaces;
-using TodoList.iOS.Helper;
 using UIKit;
 
 namespace TodoList.iOS.Services
@@ -9,25 +8,12 @@ namespace TodoList.iOS.Services
     {
         public void ShareText(string shareText)
         {
-            try
-            {
-                UIApplication.SharedApplication.OpenUrl(new NSUrl(shareText));
-            }
-            catch
-            {
-                ShowToastMessage("Something went wrong");
-            }
-            
+            UIApplication.SharedApplication.OpenUrl(new NSUrl(shareText));
         }
 
         public bool IsTheAppInstalled(string appName)
         {
             return UIApplication.SharedApplication.CanOpenUrl(new NSUrl(appName));
-        }
-
-        public void ShowToastMessage(string toastMessage)
-        {
-            ToastClass.ShowToast(toastMessage);
         }
     }
 }

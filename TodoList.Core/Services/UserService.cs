@@ -10,7 +10,7 @@ namespace TodoList.Core.Services
     {
         private SQLiteConnection _sqlConnection;
 
-        public UserService(IDataBaseConnectionService connection)
+        public UserService(IDBConnectionService connection)
         {
             _sqlConnection = connection.GetDataBaseConnection();
             _sqlConnection.CreateTable<User>();

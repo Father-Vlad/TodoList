@@ -2,7 +2,7 @@
 
 namespace TodoList.Core.Interfaces
 {
-    public interface IDataBaseConnectionService
+    public interface IDBConnectionService
     {
         SQLiteConnection GetDataBaseConnection();
     }

@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Widget;
 using TodoList.Core.Interfaces;
 
 namespace TodoList.Droid.Services
@@ -39,11 +38,6 @@ namespace TodoList.Droid.Services
                 _chooserIntent = Intent.CreateChooser(_actionSendIntent, _titleOfChooserIntent);
                 Application.Context.StartActivity(_chooserIntent);
             }
-        }
-
-        public void ShowToastMessage(string toastMessage)
-        {
-            Toast.MakeText(Application.Context, toastMessage, ToastLength.Short).Show();
         }
     }
 }

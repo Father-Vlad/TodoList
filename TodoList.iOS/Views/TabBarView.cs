@@ -27,8 +27,8 @@ namespace TodoList.iOS.Views
             var logOutHandler = new Action(() => ViewModel.LogoutCommand.Execute());
             if (_firstTimePresented)
             {
-                ViewModel.ShowCollectionOfDoneTasksViewModelCommand.Execute(logOutHandler);
-                ViewModel.ShowCollectionOfNotDoneTasksViewModelCommand.Execute(logOutHandler);
+                ViewModel.ShowCompletedGoalsViewModelCommand.Execute(logOutHandler);
+                ViewModel.ShowUncompletedGoalsViewModelCommand.Execute(logOutHandler);
                 _firstTimePresented = false;
             }
         }

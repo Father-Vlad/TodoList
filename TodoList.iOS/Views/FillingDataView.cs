@@ -8,7 +8,7 @@ using UIKit;
 namespace TodoList.iOS.Views
 {
     [MvxModalPresentation(WrapInNavigationController = true, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
-    public partial class FillingDataView : MvxViewController<FillingDataViewModel>
+    public partial class FillingDataView : MvxViewController<FillingGoalDataViewModel>
     {
         private UIButton _buttonGoBack;
         private UIColor _placeholderDescriptionColor;
@@ -32,16 +32,16 @@ namespace TodoList.iOS.Views
             NavigationController.NavigationBar.BarTintColor = new UIColor(0.17f, 0.24f, 0.31f, 1.0f);
             _placeholderDescriptionColor = new UIColor(0.78f, 0.78f, 0.8f, 1.0f);
             //Binding
-            var set = this.CreateBindingSet<FillingDataView, FillingDataViewModel>();
+            var set = this.CreateBindingSet<FillingDataView, FillingGoalDataViewModel>();
             set.Bind(NameOfTaskTextField).To(vm => vm.GoalName);
             set.Bind(NameOfTaskTextField).For(v=>v.Enabled).To(vm => vm.GoalNameEnableStatus);
             set.Bind(DescriptionOfTaskTextView).To(vm => vm.GoalDescription);
             set.Bind(StatusOfTaskSwitch).To(vm => vm.GoalStatus);
             set.Bind(SaveButton).To(vm => vm.SaveDataCommand);
             set.Bind(SaveButton).For(v => v.Enabled).To(vm => vm.SaveButtonEnableStatus);
-            set.Bind(SaveButton).For(v => v.Hidden).To(vm => vm.IsNetAvailable).WithConversion("Net"); ;
+            set.Bind(SaveButton).For(v => v.Hidden).To(vm => vm.IsNetAvailable).WithConversion("InvertBool"); ;
             set.Bind(DeleteButton).To(vm => vm.DeleteDataCommand);
-            set.Bind(DeleteButton).For(v => v.Hidden).To(vm => vm.IsNetAvailable).WithConversion("Net"); ;
+            set.Bind(DeleteButton).For(v => v.Hidden).To(vm => vm.IsNetAvailable).WithConversion("InvertBool"); ;
             set.Bind(_buttonGoBack).To(vm => vm.SendBackCommand);
             set.Bind(StatusOfTaskLabel).To(vm => vm.GoalStatus).WithConversion("StatusOfTaskLabel");
             set.Bind(DeleteButton).For("Title").To(vm => vm.DeleteCanselButtonText);

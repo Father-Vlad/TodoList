@@ -10,7 +10,7 @@ using TodoList.Core.ViewModels;
 namespace TodoList.Droid.Views
 {
     [Activity(Label = "SplashScreenAnimationActivityView")]
-    public class SplashScreenAnimationActivityView : MvxAppCompatActivity<SplachScreenAnimationViewModel>
+    public class SplashScreenAnimationActivityView : MvxAppCompatActivity<SplachViewModel>
     {
         ImageView myImage;
         Animation myAnimation;

@@ -6,11 +6,11 @@ using TodoList.Core.Models;
 
 namespace TodoList.Core.Services
 {
-    public class TaskService : ITaskService
+    public class GoalService : IGoalService
     {
         private SQLiteConnection _sqlConnection;
 
-        public TaskService(IDataBaseConnectionService connection)
+        public GoalService(IDBConnectionService connection)
         {
             _sqlConnection = connection.GetDataBaseConnection();
             _sqlConnection.CreateTable<Goal>();

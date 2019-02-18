@@ -3,7 +3,7 @@ using TodoList.Core.Models;
 
 namespace TodoList.Core.Interfaces
 {
-    public interface ITaskService
+    public interface IGoalService
     {
         List<Goal> GetAllGoals();
         void InsertGoal(Goal goal);

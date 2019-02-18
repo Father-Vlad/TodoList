@@ -98,6 +98,6 @@
 		android:textColor="@android:color/black"
 		android:background="@android:color/white"
 		android:layout_alignParentBottom ="true"
-		local:MvxBind="Visible Net(IsNetAvailable)"
+		local:MvxBind="Visible InvertBool(IsNetAvailable)"
 	/>
 </RelativeLayout>

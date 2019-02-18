@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace TodoList.iOS.Converters
 {
-    public class NetValueConverter : MvxValueConverter<bool>
+    public class InvertBoolValueConverter : MvxValueConverter<bool>
     {
         protected override object Convert(bool value, Type targetType, object parameter, CultureInfo culture)
         {

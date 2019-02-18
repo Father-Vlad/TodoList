@@ -11,7 +11,7 @@ namespace TodoList.Droid.Views
 {
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, false)]
     [Register("TodoList.Droid.Views.CollectionOfDoneTasksView")]
-    public class CollectionOfDoneTasksView : BaseFragment<CollectionOfDoneTasksViewModel>
+    public class CollectionOfDoneTasksView : BaseFragment<CompletedGoalsViewModel>
     {
         private RecyclerAdapter _recyclerAdapter;
         private RecyclerView.LayoutManager _layoutManager;

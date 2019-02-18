@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace TodoList.Core.ViewModels
 {
-    public class SplachScreenAnimationViewModel : MvxViewModel
+    public class SplachViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService _navigationService;
 
-        public SplachScreenAnimationViewModel(IMvxNavigationService navigationService)
+        public SplachViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
             FinishAnimationCommand = new MvxAsyncCommand(() => FinishAnimation());

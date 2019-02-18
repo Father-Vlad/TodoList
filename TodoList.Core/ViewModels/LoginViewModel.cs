@@ -25,17 +25,15 @@ namespace TodoList.Core.ViewModels
         private bool _ProfilePictureViewVisibleStatus = false;
         private bool _isNetAvailable;
         private readonly IMvxNavigationService _navigationService;
-        private readonly ITaskService _taskService;
         private readonly IUserService _userService;
         private readonly ILoginService _loginService;
 
-        public LoginViewModel(IMvxNavigationService navigationService, ITaskService taskService, IUserService userService, ILoginService loginService)
+        public LoginViewModel(IMvxNavigationService navigationService, IUserService userService, ILoginService loginService)
         {
             _loginService = loginService;
             _loginService.OnLoggedInHandler = new Action(() => FillingLoginUserDataCommand.Execute());
             _loginService.OnLoggedOutHandler = new Action(() => DeleteLoginUserDataCommand.Execute());
             _navigationService = navigationService;
-            _taskService = taskService;
             _userService = userService;
             NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
             FillingLoginUserDataCommand = new MvxCommand(FillingLoginUserData);

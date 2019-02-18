@@ -1,17 +1,18 @@
 ﻿using Foundation;
+using TodoList.Core.Interfaces;
 using UIKit;
 
-namespace TodoList.iOS.Helper
+namespace TodoList.iOS.Services
 {
-    public class ToastClass
+    public class AlertService : IAlertService
     {
-        public static void ShowToast(string toastMessage)
+        public void ShowToast(string message)
         {
             UIApplication.SharedApplication.InvokeOnMainThread(() =>
             {
                 UIAlertView alert = new UIAlertView()
                 {
-                    Message = toastMessage,
+                    Message = message,
                     Alpha = 1.0f
                 };
 

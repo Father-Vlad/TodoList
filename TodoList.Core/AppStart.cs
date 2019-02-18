@@ -14,7 +14,7 @@ namespace TodoList.Core
 
         protected override Task NavigateToFirstViewModel(object hint = null)
         {
-            return NavigationService.Navigate<SplachScreenAnimationViewModel>();
+            return NavigationService.Navigate<SplachViewModel>();
         }
     }
 }

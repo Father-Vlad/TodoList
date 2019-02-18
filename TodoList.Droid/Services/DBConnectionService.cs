@@ -2,11 +2,11 @@
 using System.IO;
 using TodoList.Core.Interfaces;
 
-namespace TodoList.iOS.Services
+namespace TodoList.Droid.Services
 {
-    public class DataBaseConnectionService : IDataBaseConnectionService
+    public class DBConnectionService : IDBConnectionService
     {
-        public DataBaseConnectionService()
+        public DBConnectionService()
         {
             var connection = GetDataBaseConnection();
         }
@@ -17,4 +17,4 @@ namespace TodoList.iOS.Services
             return new SQLiteConnection(path);
         }
     }
-}
+}   

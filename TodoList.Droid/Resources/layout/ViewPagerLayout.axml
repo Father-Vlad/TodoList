@@ -37,7 +37,7 @@
 				android:gravity="center"
 				android:textColor="@android:color/white"
 				android:background="@color/colorBackground"
-				app:MvxBind="Visible Net(IsNetAvailable)"
+				app:MvxBind="Visible InvertBool(IsNetAvailable)"
 			/>
 			<android.support.design.widget.TabLayout
 				android:id="@+id/tab_layout_main"

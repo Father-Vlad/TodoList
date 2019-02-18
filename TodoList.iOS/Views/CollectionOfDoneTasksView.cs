@@ -9,7 +9,7 @@ using UIKit;
 namespace TodoList.iOS.Views
 {
     [MvxTabPresentation(WrapInNavigationController = true, TabName = "DONE", TabIconName = "TabBarChecked")]
-    public partial class CollectionOfDoneTasksView : MvxViewController<CollectionOfDoneTasksViewModel>
+    public partial class CollectionOfDoneTasksView : MvxViewController<CompletedGoalsViewModel>
     {
         private UIButton _buttonFillingData;
         private UIButton _buttonLogOut;
@@ -45,7 +45,7 @@ namespace TodoList.iOS.Views
                 this.ViewModel.PlatformName = false; //if false -> iOS, if true -> Android
                 this.ViewModel.ShareMessageCommand.Execute(currentTask);
             };
-            var set = this.CreateBindingSet<CollectionOfDoneTasksView, CollectionOfDoneTasksViewModel>();
+            var set = this.CreateBindingSet<CollectionOfDoneTasksView, CompletedGoalsViewModel>();
             set.Bind(source).To(vm => vm.Goals);
             set.Bind(source).For(v => v.SelectionChangedCommand).To(vm => vm.FillingDataActivityCommand);
             set.Bind(_buttonFillingData).To(vm => vm.FillingDataActivityCommand);

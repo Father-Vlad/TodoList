@@ -10,7 +10,7 @@ using UIKit;
 namespace TodoList.iOS
 {
     [MvxRootPresentation(WrapInNavigationController = false)]
-    public partial class SplachScreenAnimationView : MvxViewController<SplachScreenAnimationViewModel>
+    public partial class SplachScreenAnimationView : MvxViewController<SplachViewModel>
     {
         private Action OnFinishedAnimation { get; set; }
         private nfloat minAlpha = 0.0f;

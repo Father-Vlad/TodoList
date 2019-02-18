@@ -7,13 +7,14 @@ using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using System;
 using TodoList.Core.ViewModels;
 
 namespace TodoList.Droid.Views
 {
     [MvxFragmentPresentation(typeof(MainViewModel),Resource.Id.content_frame, true)]
     [Register("TodoList.Droid.Views.FillingDataView")]
-    public class FillingDataView : BaseFragment<FillingDataViewModel>
+    public class FillingDataView : BaseFragment<FillingGoalDataViewModel>
     {
         private LinearLayout _linearLayoutMain;
         private LinearLayout _linearLayoutToggle;
@@ -40,11 +41,16 @@ namespace TodoList.Droid.Views
             _linearLayoutToggle = view.FindViewById<LinearLayout>(Resource.Id.filling_data_layout_toggle);
             _linearLayoutBottom = view.FindViewById<LinearLayout>(Resource.Id.filling_data_layout_bottom);
             _toolBar = view.FindViewById<Toolbar>(Resource.Id.toolbar_fillind_data);
-            _linearLayoutMain.Click += delegate { HideKeyboard(); }; 
-            _linearLayoutToggle.Click += delegate { HideKeyboard(); };
-            _linearLayoutBottom.Click += delegate { HideKeyboard(); };
-            _toolBar.Click += delegate { HideKeyboard(); };
+            _linearLayoutMain.Click += OnHideKeyboard; 
+            _linearLayoutToggle.Click += OnHideKeyboard; 
+            _linearLayoutBottom.Click += OnHideKeyboard;
+            _toolBar.Click += OnHideKeyboard;
             return view;
+        }
+
+        private void OnHideKeyboard(object sender, EventArgs e)
+        {
+            HideKeyboard();
         }
 
         private void HideKeyboard()
@@ -55,10 +61,15 @@ namespace TodoList.Droid.Views
                 imm.HideSoftInputFromWindow(Activity.CurrentFocus.WindowToken, 0);
             }
         }
+
         public override void OnDestroyView()
         {
             base.OnDestroyView();
             HideKeyboard();
+            _linearLayoutMain.Click -= OnHideKeyboard;
+            _linearLayoutToggle.Click -= OnHideKeyboard;
+            _linearLayoutBottom.Click -= OnHideKeyboard;
+            _toolBar.Click -= OnHideKeyboard;
         }
 
         public override void OnCreate(Bundle savedInstanceState)

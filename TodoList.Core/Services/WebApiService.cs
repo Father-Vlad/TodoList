@@ -11,42 +11,16 @@ namespace TodoList.Core.Services
 {
     public class WebApiService : IWebApiService
     {
-        private ITaskService _taskService;
+        private IGoalService _goalService;
         private HttpClient _client;
         private ILoginService _loginService;
         private readonly string _addressURL = "http://10.10.3.207:49780/api/values/";
-        public Action OnRefreshDoneGoalsHandler { get; set; }
-        public Action OnRefreshNotDoneGoalsHandler { get; set; }
 
-        public WebApiService(ITaskService taskService, ILoginService loginService)
+        public WebApiService(IGoalService goalService, ILoginService loginService)
         {
             _client = new HttpClient();
-            _taskService = taskService;
+            _goalService = goalService;
             _loginService = loginService;
-        }
-
-        public async Task<bool> RefreshDataAsync()
-        {
-            try
-            {
-                var currentUserId = _loginService.CurrentUserId;
-                var uri = new Uri(string.Format(_addressURL + currentUserId));
-                var response = await _client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var goals = JsonConvert.DeserializeObject<List<Goal>>(content);
-                    _taskService.DeleteAllUserGoals(currentUserId);
-                    _taskService.InsertAllUserGoals(goals);
-                    OnRefreshDoneGoalsHandler();
-                    OnRefreshNotDoneGoalsHandler();
-                }
-                return response.IsSuccessStatusCode;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
         }
 
         public async Task InsertOrUpdateDataAsync(Goal goal)
@@ -67,7 +41,7 @@ namespace TodoList.Core.Services
                 }
                 if (response.IsSuccessStatusCode)
                 {
-                    _taskService.InsertGoal(goal);
+                    _goalService.InsertGoal(goal);
                 }
             }
             catch (Exception ex)
@@ -84,12 +58,39 @@ namespace TodoList.Core.Services
                 var response = await _client.DeleteAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    _taskService.DeleteGoal(id);
+                    _goalService.DeleteGoal(id);
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<Goal>> RefreshDataAsync(Action<List<Goal>> OnRefreshGoalsHandler)
+        {
+            List<Goal> goals = null;
+            try
+            {
+                var currentUserId = _loginService.CurrentUserId;
+                var uri = new Uri(string.Format(_addressURL + currentUserId));
+                var response = await _client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    goals = JsonConvert.DeserializeObject<List<Goal>>(content);
+                    _goalService.DeleteAllUserGoals(currentUserId);
+                    _goalService.InsertAllUserGoals(goals);
+                }
+                return goals;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                OnRefreshGoalsHandler?.Invoke(goals);
             }
         }
     }

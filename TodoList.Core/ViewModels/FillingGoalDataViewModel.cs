@@ -8,14 +8,13 @@ using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
-    public class FillingDataViewModel : MvxViewModel<Goal>
+    public class FillingGoalDataViewModel : MvxViewModel<Goal>
     {
         private string _goalName;
         private string _goalDescription;
         private bool _goalStatus = false;
         private bool _goalNameEnableStatus;
         private readonly IMvxNavigationService _navigationService;
-        private ITaskService _taskService;
         private ILoginService _loginService;
         private IWebApiService _webApiService;
         private int _goalId;
@@ -24,10 +23,9 @@ namespace TodoList.Core.ViewModels
         private string _deleteCanselButtonText;
         private bool _isNetAvailable;
 
-        public FillingDataViewModel(IMvxNavigationService navigationService, ITaskService taskService, ILoginService loginService, IWebApiService webApiService)
+        public FillingGoalDataViewModel(IMvxNavigationService navigationService, ILoginService loginService, IWebApiService webApiService)
         {
             _navigationService = navigationService;
-            _taskService = taskService;
             _loginService = loginService;
             _webApiService = webApiService;
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
