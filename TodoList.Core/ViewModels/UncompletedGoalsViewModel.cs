@@ -222,12 +222,13 @@ namespace TodoList.Core.ViewModels
         private void MakeListOfGoals()
         {
             IsRefreshLayoutRefreshing = true;
+            LoadCacheData();
             if (IsNetAvailable)
             {
                 _webApiService.RefreshDataAsync(UploadNewData);
                 return;
             }
-            LoadCacheData();
+            IsRefreshLayoutRefreshing = false;
         }
 
         private void LoadCacheData()
@@ -235,12 +236,12 @@ namespace TodoList.Core.ViewModels
             User user = _loginService.CurrentUser;
             var list = _goalService.GetNotDoneUserGoal(user.UserId);
             Goals = new MvxObservableCollection<Goal>(list);
-            IsRefreshLayoutRefreshing = false;
         }
 
         private void UploadNewData(List<Goal> tasks)
         {
             LoadCacheData();
+            IsRefreshLayoutRefreshing = false;
         }
 
         private string GetIOSFormattingString(string stringToFormat)
