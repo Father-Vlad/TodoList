@@ -23,6 +23,9 @@ namespace TodoList.Core.ViewModels
         }
         #endregion Constructors
 
+        #region Finaliser
+        #endregion Finaliser
+
         #region Lifecycle
         #endregion Lifecycle
 

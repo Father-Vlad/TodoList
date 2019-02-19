@@ -35,10 +35,16 @@ namespace TodoList.Core.ViewModels
             {
                 IsNetAvailable = true;
             }
-            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         }
         #endregion Constructors
+
+        #region Finaliser
+        ~FillingGoalDataViewModel()
+        {
+            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+        }
+        #endregion Finaliser
 
         #region Lifecycle
         public override void Prepare(Goal parameter)

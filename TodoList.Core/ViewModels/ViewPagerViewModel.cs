@@ -33,10 +33,16 @@ namespace TodoList.Core.ViewModels
             {
                 IsNetAvailable = true;
             }
-            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         }
         #endregion Constructors
+        
+        #region Finalisers
+        ~ViewPagerViewModel()
+        {
+            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+        }
+        #endregion Finalisers
 
         #region Lifecycle
         #endregion Lifecycle
