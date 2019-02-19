@@ -28,6 +28,29 @@ namespace TodoList.iOS.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            SetupNavigationBar();
+            _placeholderDescriptionColor = new UIColor(0.78f, 0.78f, 0.8f, 1.0f);
+            SetupBinding();
+            if (DescriptionOfTaskTextView.Text == _descriptionPlaceholder || string.IsNullOrEmpty(DescriptionOfTaskTextView.Text))
+            {
+                DescriptionOfTaskTextView.Text = _descriptionPlaceholder;
+                DescriptionOfTaskTextView.TextColor = _placeholderDescriptionColor;
+            }
+            SetupTextFields();
+            HideKeyboard();
+            SetupButtonsStyle();
+        }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        private void SetupNavigationBar()
+        {
             Title = _textTitle;
             _buttonGoBack = new UIButton(UIButtonType.Custom);
             _buttonGoBack.Frame = new CGRect(0, 0, 40, 40);
@@ -35,8 +58,10 @@ namespace TodoList.iOS.Views
             this.NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_buttonGoBack), false);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
             NavigationController.NavigationBar.BarTintColor = new UIColor(0.17f, 0.24f, 0.31f, 1.0f);
-            _placeholderDescriptionColor = new UIColor(0.78f, 0.78f, 0.8f, 1.0f);
-            //Binding
+        }
+
+        private void SetupBinding()
+        {
             var set = this.CreateBindingSet<FillingDataView, FillingGoalDataViewModel>();
             set.Bind(NameOfTaskTextField).To(vm => vm.GoalName);
             set.Bind(NameOfTaskTextField).For(v => v.Enabled).To(vm => vm.GoalNameEnableStatus);
@@ -52,12 +77,10 @@ namespace TodoList.iOS.Views
             set.Bind(DeleteButton).For("Title").To(vm => vm.DeleteCanselButtonText);
             set.Bind(IsYorNetAvailableLabel).For(v => v.Hidden).To(vm => vm.IsNetAvailable);
             set.Apply();
-            if (DescriptionOfTaskTextView.Text == _descriptionPlaceholder || string.IsNullOrEmpty(DescriptionOfTaskTextView.Text))
-            {
-                DescriptionOfTaskTextView.Text = _descriptionPlaceholder;
-                DescriptionOfTaskTextView.TextColor = _placeholderDescriptionColor;
-            }
-            //The string that is displayed when there is no other text in the text field.
+        }
+
+        private void SetupTextFields()
+        {
             NameOfTaskTextField.Placeholder = _namePlaceholder;
             DescriptionOfTaskTextView.ShouldBeginEditing = textView =>
             {
@@ -77,7 +100,10 @@ namespace TodoList.iOS.Views
                 }
                 return true;
             };
-            //Hide the keyboard after using it for entering data in a text field
+        }
+
+        private void HideKeyboard()
+        {
             NameOfTaskTextField.ShouldReturn = (textField) => {
                 textField.ResignFirstResponder();
                 return true;
@@ -85,21 +111,15 @@ namespace TodoList.iOS.Views
             var endEditing = new UITapGestureRecognizer(() => View.EndEditing(true));
             endEditing.CancelsTouchesInView = false;
             View.AddGestureRecognizer(endEditing);
-            //Buttons Border Width & Color
+        }
+
+        private void SetupButtonsStyle()
+        {
             SaveButton.Layer.BorderWidth = 1;
             SaveButton.Layer.BorderColor = UIColor.Black.CGColor;
             DeleteButton.Layer.BorderWidth = 1;
             DeleteButton.Layer.BorderColor = UIColor.Black.CGColor;
         }
-        #endregion Lifecycle
-
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
-        #region Methods
         #endregion Methods
 
         #region Overrides

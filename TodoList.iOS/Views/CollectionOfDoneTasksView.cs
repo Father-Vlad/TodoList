@@ -1,4 +1,5 @@
-﻿using CoreGraphics;
+﻿using System;
+using CoreGraphics;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
@@ -28,6 +29,30 @@ namespace TodoList.iOS.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            SetupNavigationBar();
+            _refreshControl = new MvxUIRefreshControl();
+            CollectionOfDoneTasksTableView.AddSubview(_refreshControl);
+            var source = new TodoTasksTableViewSource(CollectionOfDoneTasksTableView);
+            CollectionOfDoneTasksTableView.Source = source;
+            source.OnShareHandlerSource = (currentTask) =>
+            {
+                this.ViewModel.PlatformName = false; //if false -> iOS, if true -> Android
+                this.ViewModel.ShareMessageCommand.Execute(currentTask);
+            };
+            SetupBinding(source);
+            CollectionOfDoneTasksTableView.ReloadData();
+        }
+        #endregion Lifecycle
+
+        #region Properties
+        #endregion Properties
+
+        #region Commands
+        #endregion Commands
+
+        #region Methods
+        private void SetupNavigationBar()
+        {
             NavigationItem.Title = _textTitle;
             var titleTextAttributes = new UIStringAttributes() { ForegroundColor = UIColor.White };
             NavigationController.NavigationBar.TitleTextAttributes = titleTextAttributes;
@@ -41,15 +66,10 @@ namespace TodoList.iOS.Views
             this.NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_buttonLogOut), false);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
             NavigationController.NavigationBar.BarTintColor = new UIColor(0.17f, 0.24f, 0.31f, 1.0f);
-            _refreshControl = new MvxUIRefreshControl();
-            CollectionOfDoneTasksTableView.AddSubview(_refreshControl);
-            var source = new TodoTasksTableViewSource(CollectionOfDoneTasksTableView);
-            CollectionOfDoneTasksTableView.Source = source;
-            source.OnShareHandlerSource = (currentTask) =>
-            {
-                this.ViewModel.PlatformName = false; //if false -> iOS, if true -> Android
-                this.ViewModel.ShareMessageCommand.Execute(currentTask);
-            };
+        }
+
+        private void SetupBinding(TodoTasksTableViewSource source)
+        {
             var set = this.CreateBindingSet<CollectionOfDoneTasksView, CompletedGoalsViewModel>();
             set.Bind(source).To(vm => vm.Goals);
             set.Bind(source).For(v => v.SelectionChangedCommand).To(vm => vm.FillingDataActivityCommand);
@@ -60,17 +80,7 @@ namespace TodoList.iOS.Views
             set.Bind(_refreshControl).For(v => v.RefreshCommand).To(vm => vm.UpdateDataCommand);
             set.Bind(YourNetAvailableDoneLabel).For(v => v.Hidden).To(vm => vm.IsNetAvailable);
             set.Apply();
-            CollectionOfDoneTasksTableView.ReloadData();
         }
-        #endregion Lifecycle
-
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
-        #region Methods
         #endregion Methods
 
         #region Overrides

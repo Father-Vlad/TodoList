@@ -28,17 +28,7 @@ namespace TodoList.iOS.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            NavigationItem.Title = _textTitle;
-            _buttonFillingData = new UIButton(UIButtonType.Custom);
-            _buttonFillingData.Frame = new CGRect(0, 0, 40, 40);
-            _buttonFillingData.SetImage(UIImage.FromBundle("TabBarFillingDataIcon"), UIControlState.Normal);
-            this.NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(_buttonFillingData), false);
-            _buttonLogOut = new UIButton(UIButtonType.Custom);
-            _buttonLogOut.Frame = new CGRect(0, 0, 40, 40);
-            _buttonLogOut.SetImage(UIImage.FromBundle("TabBarLogOutIcon"), UIControlState.Normal);
-            this.NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_buttonLogOut), false);
-            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
-            NavigationController.NavigationBar.BarTintColor = new UIColor(0.17f, 0.24f, 0.31f, 1.0f);
+            SetupNavigationBar();
             _refreshControl = new MvxUIRefreshControl();
             CollectionOfNotDoneTasksTableView.AddSubview(_refreshControl);
             var source = new TodoTasksTableViewSource(CollectionOfNotDoneTasksTableView);
@@ -48,16 +38,7 @@ namespace TodoList.iOS.Views
                 this.ViewModel.PlatformName = false; //if false -> iOS, if true -> Android
                 this.ViewModel.ShareMessageCommand.Execute(currentTask);
             };
-            var set = this.CreateBindingSet<CollectionOfNotDoneTasksView, UncompletedGoalsViewModel>();
-            set.Bind(source).To(vm => vm.Goals);
-            set.Bind(source).For(v => v.SelectionChangedCommand).To(vm => vm.FillingDataActivityCommand);
-            set.Bind(_buttonFillingData).To(vm => vm.FillingDataActivityCommand);
-            set.Bind(_buttonFillingData).For("Enabled").To(vm => vm.IsNetAvailable);
-            set.Bind(_buttonLogOut).To(vm => vm.LogoutCommand);
-            set.Bind(_refreshControl).For(v => v.IsRefreshing).To(vm => vm.IsRefreshLayoutRefreshing);
-            set.Bind(_refreshControl).For(v => v.RefreshCommand).To(vm => vm.UpdateDataCommand);
-            set.Bind(YourNetAvailableNotDoneLabel).For(v => v.Hidden).To(vm => vm.IsNetAvailable);
-            set.Apply();
+            SetupBinding(source);
             CollectionOfNotDoneTasksTableView.ReloadData();
         }
         #endregion Lifecycle
@@ -69,9 +50,37 @@ namespace TodoList.iOS.Views
         #endregion Commands
 
         #region Methods
-        #endregion Methods
+        private void SetupNavigationBar()
+        {
+            NavigationItem.Title = _textTitle;
+            _buttonFillingData = new UIButton(UIButtonType.Custom);
+            _buttonFillingData.Frame = new CGRect(0, 0, 40, 40);
+            _buttonFillingData.SetImage(UIImage.FromBundle("TabBarFillingDataIcon"), UIControlState.Normal);
+            this.NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(_buttonFillingData), false);
+            _buttonLogOut = new UIButton(UIButtonType.Custom);
+            _buttonLogOut.Frame = new CGRect(0, 0, 40, 40);
+            _buttonLogOut.SetImage(UIImage.FromBundle("TabBarLogOutIcon"), UIControlState.Normal);
+            this.NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_buttonLogOut), false);
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
+            NavigationController.NavigationBar.BarTintColor = new UIColor(0.17f, 0.24f, 0.31f, 1.0f);
+        }
 
+        private void SetupBinding(TodoTasksTableViewSource source)
+        {
+            var set = this.CreateBindingSet<CollectionOfNotDoneTasksView, UncompletedGoalsViewModel>();
+            set.Bind(source).To(vm => vm.Goals);
+            set.Bind(source).For(v => v.SelectionChangedCommand).To(vm => vm.FillingDataActivityCommand);
+            set.Bind(_buttonFillingData).To(vm => vm.FillingDataActivityCommand);
+            set.Bind(_buttonFillingData).For("Enabled").To(vm => vm.IsNetAvailable);
+            set.Bind(_buttonLogOut).To(vm => vm.LogoutCommand);
+            set.Bind(_refreshControl).For(v => v.IsRefreshing).To(vm => vm.IsRefreshLayoutRefreshing);
+            set.Bind(_refreshControl).For(v => v.RefreshCommand).To(vm => vm.UpdateDataCommand);
+            set.Bind(YourNetAvailableNotDoneLabel).For(v => v.Hidden).To(vm => vm.IsNetAvailable);
+            set.Apply();
+        }
+        #endregion Methods
+        
         #region Overrides
-        #endregion Overrides
-    }
+            #endregion Overrides
+        }
 }
