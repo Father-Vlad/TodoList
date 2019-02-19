@@ -25,12 +25,6 @@ namespace TodoList.Droid.Views
             _facebookLoginButton.Click += delegate { LoggedInOrOutFacebook(); };
             return view;
         }
-
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-            Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
-        }
         #endregion Lifecycle
 
         #region Methods

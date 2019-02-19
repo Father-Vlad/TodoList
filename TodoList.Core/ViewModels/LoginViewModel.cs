@@ -11,7 +11,7 @@ using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
-    public class LoginViewModel : MvxViewModel
+    public class LoginViewModel : BaseViewModel<Action>
     {
         #region Variables
         private readonly string _strLoginWelcomeTextLoggedIn = "Please login to continue";
@@ -43,20 +43,16 @@ namespace TodoList.Core.ViewModels
             DeleteLoginUserDataCommand = new MvxAsyncCommand(DeleteLoginUserData);
             LoginFacebookCommand = new MvxCommand(LoginFacebook);
             LogoutFacebookCommand = new MvxCommand(LogoutFacebook);
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-            }
-            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            Connectivity_ConnectivityChanged();
+            Connectivity.ConnectivityChanged += delegate { Connectivity_ConnectivityChanged(); };
         }
         #endregion Constructors
 
-        #region Finaliser
-        ~LoginViewModel()
+        #region Lifecycle
+        public override void Prepare(Action parameter)
         {
-            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
         }
-        #endregion Finaliser
+        #endregion Lifecycle
 
         #region Properties
         public MvxInteraction<CloseUIViewController> Interaction { get; set; } = new MvxInteraction<CloseUIViewController>();
@@ -168,20 +164,6 @@ namespace TodoList.Core.ViewModels
                 return _loginService.Authenticator();
             }
         }
-
-        public bool IsNetAvailable
-        {
-            get
-            {
-                return _isNetAvailable;
-            }
-
-            set
-            {
-                _isNetAvailable = value;
-                RaisePropertyChanged(() => IsNetAvailable);
-            }
-        }
         #endregion Properties
 
         #region Commands
@@ -235,16 +217,6 @@ namespace TodoList.Core.ViewModels
             {
                 _userService.InsertUser(user);
             }
-        }
-
-        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
-        {
-            if (e.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-                return;
-            }
-            IsNetAvailable = false;
         }
         #endregion Methods
     }

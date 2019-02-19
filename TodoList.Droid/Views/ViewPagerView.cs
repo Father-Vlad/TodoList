@@ -47,12 +47,6 @@ namespace TodoList.Droid.Views
             _tabLayout.GetTabAt(1).SetIcon(Resource.Drawable.checkbox_unchecked_20);
             return view;
         }
-
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-            Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
-        }
         #endregion Lifecycle
 
         #region Properties

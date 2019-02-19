@@ -1,6 +1,5 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
@@ -8,7 +7,7 @@ using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
-    public class FillingGoalDataViewModel : MvxViewModel<Goal>
+    public class FillingGoalDataViewModel : BaseViewModel<Goal>
     {
         #region Variables
         private string _goalName;
@@ -31,20 +30,10 @@ namespace TodoList.Core.ViewModels
             _navigationService = navigationService;
             _loginService = loginService;
             _webApiService = webApiService;
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-            }
-            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            Connectivity_ConnectivityChanged();
+            Connectivity.ConnectivityChanged += delegate { Connectivity_ConnectivityChanged(); };
         }
         #endregion Constructors
-
-        #region Finaliser
-        ~FillingGoalDataViewModel()
-        {
-            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
-        }
-        #endregion Finaliser
 
         #region Lifecycle
         public override void Prepare(Goal parameter)
@@ -184,20 +173,6 @@ namespace TodoList.Core.ViewModels
                 RaisePropertyChanged(() => UserId);
             }
         }
-
-        public bool IsNetAvailable
-        {
-            get
-            {
-                return _isNetAvailable;
-            }
-
-            set
-            {
-                _isNetAvailable = value;
-                RaisePropertyChanged(() => IsNetAvailable);
-            }
-        }
         #endregion Properties
 
         #region Commands
@@ -227,16 +202,6 @@ namespace TodoList.Core.ViewModels
         #endregion Commands
 
         #region Methods
-        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
-        {
-            if (e.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-                return;
-            }
-            IsNetAvailable = false;
-        }
-
         private async Task NavigateToPreviousActivity()
         {
             await _navigationService.Close(this);

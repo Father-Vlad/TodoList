@@ -2,7 +2,7 @@
 using System;
 using System.Globalization;
 
-namespace TodoList.iOS.Converters
+namespace TodoList.Core.Converters
 {
     public class StatusOfTaskLabelValueConverter : MvxValueConverter<bool>
     {

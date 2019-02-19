@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,85 +25,48 @@ namespace TodoList.Core.Services
 
         public async Task InsertOrUpdateDataAsync(Goal goal)
         {
-            try
+            var uri = new Uri(string.Format(_addressURL));
+            var json = JsonConvert.SerializeObject(goal);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = null;
+            if (goal.Id != 0)
             {
-                var uri = new Uri(string.Format(_addressURL));
-                var json = JsonConvert.SerializeObject(goal);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = null;
-                if (goal.Id != 0)
-                {
-                    response = await _client.PutAsync(uri, content);
-                }
-                if (goal.Id == 0)
-                {
-                    response = await _client.PostAsync(uri, content);
-                }
-                if (response.IsSuccessStatusCode)
-                {
-                    _goalService.InsertGoal(goal);
-                }
+                response = await _client.PutAsync(uri, content);
             }
-            catch (WebException ex)
+            if (goal.Id == 0)
             {
-                throw new Exception(ex.Message);
+                response = await _client.PostAsync(uri, content);
             }
-            catch (TaskCanceledException ex)
+            if (response.IsSuccessStatusCode)
             {
-                throw new TaskCanceledException(ex.Message);
+                _goalService.InsertGoal(goal);
             }
         }
 
         public async Task DeleteDataAsync(int id)
         {
-            try
+            var uri = new Uri(string.Format(_addressURL + id.ToString()));
+            var response = await _client.DeleteAsync(uri);
+            if (response.IsSuccessStatusCode)
             {
-                var uri = new Uri(string.Format(_addressURL + id.ToString()));
-                var response = await _client.DeleteAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    _goalService.DeleteGoal(id);
-                }
-            }
-            catch (WebException ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            catch (TaskCanceledException ex)
-            {
-                throw new TaskCanceledException(ex.Message);
+                _goalService.DeleteGoal(id);
             }
         }
 
-        public async Task<List<Goal>> RefreshDataAsync(Action<List<Goal>> OnRefreshGoalsHandler)
+        public async Task<List<Goal>> RefreshDataAsync()
         {
             List<Goal> goals = null;
-            try
+            var currentUserId = _loginService.CurrentUserId;
+            var uri = new Uri(string.Format(_addressURL + currentUserId));
+            var response = await _client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
             {
-                var currentUserId = _loginService.CurrentUserId;
-                var uri = new Uri(string.Format(_addressURL + currentUserId));
-                var response = await _client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    goals = JsonConvert.DeserializeObject<List<Goal>>(content);
-                    _goalService.DeleteAllUserGoals(currentUserId);
-                    _goalService.InsertAllUserGoals(goals);
-                }
-                return goals;
+                var content = await response.Content.ReadAsStringAsync();
+                goals = JsonConvert.DeserializeObject<List<Goal>>(content);
+                _goalService.DeleteAllUserGoals(currentUserId);
+                _goalService.InsertAllUserGoals(goals);
             }
-            catch (WebException ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            catch (TaskCanceledException ex)
-            {
-                throw new TaskCanceledException(ex.Message);
-            }
-            finally
-            {
-                OnRefreshGoalsHandler?.Invoke(goals);
-            }
+            return goals;
         }
     }
 }

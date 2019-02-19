@@ -2,7 +2,7 @@
 using System;
 using System.Globalization;
 
-namespace TodoList.Droid.Converters
+namespace TodoList.Core.Converters
 {
     public class InvertBoolValueConverter : MvxValueConverter<bool>
     {

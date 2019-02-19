@@ -2,7 +2,6 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
@@ -10,7 +9,7 @@ using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
-    public class UncompletedGoalsViewModel : MvxViewModel<Action>
+    public class UncompletedGoalsViewModel : BaseViewModel<Action>
     {
         #region Variables
         private bool _isRefreshLayoutRefreshing;
@@ -49,26 +48,16 @@ namespace TodoList.Core.ViewModels
             Goals = new MvxObservableCollection<Goal>();
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
             ShareMessageCommand = new MvxCommand<int>(ShareMessege);
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-            }
-            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            Connectivity_ConnectivityChanged();
+            Connectivity.ConnectivityChanged += delegate { Connectivity_ConnectivityChanged(); };
         }
         #endregion Constructors
-
-        #region Finalisers
-        ~UncompletedGoalsViewModel()
-        {
-            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
-        }
-        #endregion Finalisers
 
         #region Lifecycle
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-            MakeListOfGoals();
+            Task.Run(MakeListOfGoals);
         }
 
         public override void Prepare(Action parameter)
@@ -172,20 +161,6 @@ namespace TodoList.Core.ViewModels
                 return GetIOSFormattingString(string.Format(_checkAppNameiOS + _shareWelcomeText + ShareNewLine + _shareForewordText + CurrentTaskName + ShareNewLine + ShareTaskStatus));
             }
         }
-
-        public bool IsNetAvailable
-        {
-            get
-            {
-                return _isNetAvailable;
-            }
-
-            set
-            {
-                _isNetAvailable = value;
-                RaisePropertyChanged(() => IsNetAvailable);
-            }
-        }
         #endregion Properties
 
         #region Commands
@@ -216,31 +191,25 @@ namespace TodoList.Core.ViewModels
 
         private void UpdateDataFromDB()
         {
-            MakeListOfGoals();
+            Task.Run(MakeListOfGoals);
         }
 
-        private void MakeListOfGoals()
+        private async Task MakeListOfGoals()
         {
-            IsRefreshLayoutRefreshing = true;
-            LoadCacheData();
+            LoadCacheOrUploadNewData();
             if (IsNetAvailable)
             {
-                _webApiService.RefreshDataAsync(UploadNewData);
-                return;
+                await _webApiService.RefreshDataAsync();
+                LoadCacheOrUploadNewData();
             }
-            IsRefreshLayoutRefreshing = false;
         }
 
-        private void LoadCacheData()
+        private void LoadCacheOrUploadNewData()
         {
+            IsRefreshLayoutRefreshing = true;
             User user = _loginService.CurrentUser;
             var list = _goalService.GetNotDoneUserGoal(user.UserId);
             Goals = new MvxObservableCollection<Goal>(list);
-        }
-
-        private void UploadNewData(List<Goal> tasks)
-        {
-            LoadCacheData();
             IsRefreshLayoutRefreshing = false;
         }
 
@@ -279,16 +248,6 @@ namespace TodoList.Core.ViewModels
                 _alertService.ShowToast(_alertErorMessage);
             }
 
-        }
-
-        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
-        {
-            if (e.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-                return;
-            }
-            IsNetAvailable = false;
         }
         #endregion Methods
     }

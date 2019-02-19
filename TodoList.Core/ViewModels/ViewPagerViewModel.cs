@@ -1,7 +1,6 @@
 ﻿using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
@@ -10,7 +9,7 @@ using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
-    public class ViewPagerViewModel : MvxViewModel
+    public class ViewPagerViewModel : BaseViewModel<Action>
     {
         #region Variables
         private readonly IMvxNavigationService _navigationService;
@@ -29,38 +28,20 @@ namespace TodoList.Core.ViewModels
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
             ShowCompletedGoalsViewModelCommand = new MvxAsyncCommand<Action>(async (logoutHandler) => await _navigationService.Navigate<CompletedGoalsViewModel, Action>(logoutHandler));
             ShowUncompletedGoalsViewModelCommand = new MvxAsyncCommand<Action>(async (logoutHandler) => await _navigationService.Navigate<UncompletedGoalsViewModel, Action>(logoutHandler));
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-            }
-            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            Connectivity_ConnectivityChanged();
+            Connectivity.ConnectivityChanged += delegate { Connectivity_ConnectivityChanged(); };
         }
         #endregion Constructors
-        
-        #region Finalisers
-        ~ViewPagerViewModel()
+
+        #region Lifecycle
+        public override void Prepare(Action parameter)
         {
-            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
         }
-        #endregion Finalisers
+        #endregion Lifecycle
 
         #region Properties
         public CompletedGoalsViewModel CompletedGoalsViewModel { get; set; }
         public UncompletedGoalsViewModel UncompletedGoalsViewModel { get; set; }
-        
-        public bool IsNetAvailable
-        {
-            get
-            {
-                return _isNetAvailable;
-            }
-
-            set
-            {
-                _isNetAvailable = value;
-                RaisePropertyChanged(() => IsNetAvailable);
-            }
-        }
         #endregion Properties
 
         #region Commands
@@ -81,16 +62,6 @@ namespace TodoList.Core.ViewModels
         public async Task CreateNewGoal(Goal goal)
         {
             var result = await _navigationService.Navigate<FillingGoalDataViewModel, Goal>(goal);
-        }
-
-        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
-        {
-            if (e.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-                return;
-            }
-            IsNetAvailable = false;
         }
         #endregion Methods
     }

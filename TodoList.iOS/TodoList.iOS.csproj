@@ -64,10 +64,8 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Converters\InvertBoolValueConverter.cs" />
     <Compile Include="Converters\ProfilePictureVisibleStatusValueConverter.cs" />
     <Compile Include="Converters\StatusImageValueConverter.cs" />
-    <Compile Include="Converters\StatusOfTaskLabelValueConverter.cs" />
     <Compile Include="Converters\UrlPictureStringValueConverter.cs" />
     <Compile Include="Services\AlertService.cs" />
     <Compile Include="Views\SplachScreenAnimationView.cs" />

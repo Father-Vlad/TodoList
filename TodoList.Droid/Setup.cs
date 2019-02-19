@@ -38,8 +38,6 @@ namespace TestProject.Droid
         protected override void FillValueConverters(IMvxValueConverterRegistry registry)
         {
             base.FillValueConverters(registry);
-            registry.AddOrOverwrite("StatusOfTaskLabel", new StatusOfTaskLabelValueConverter());
-            registry.AddOrOverwrite("InvertBool", new InvertBoolValueConverter());
         }
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()

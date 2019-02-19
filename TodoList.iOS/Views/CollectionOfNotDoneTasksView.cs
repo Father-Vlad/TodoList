@@ -49,6 +49,8 @@ namespace TodoList.iOS.Views
             NavigationItem.Title = _textTitle;
             _buttonFillingData = new UIButton(UIButtonType.Custom);
             _buttonFillingData.Frame = new CGRect(0, 0, 40, 40);
+            var titleTextAttributes = new UIStringAttributes() { ForegroundColor = UIColor.White };
+            NavigationController.NavigationBar.TitleTextAttributes = titleTextAttributes;
             _buttonFillingData.SetImage(UIImage.FromBundle("TabBarFillingDataIcon"), UIControlState.Normal);
             this.NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(_buttonFillingData), false);
             _buttonLogOut = new UIButton(UIButtonType.Custom);
