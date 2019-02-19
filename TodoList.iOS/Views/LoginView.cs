@@ -2,7 +2,6 @@ using CoreGraphics;
 using MvvmCross.Base;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.ViewModels;
 using TodoList.Core.MvxInteraction;
 using TodoList.Core.ViewModels;
@@ -12,7 +11,7 @@ using Xamarin.Essentials;
 namespace TodoList.iOS.Views
 {
     [MvxModalPresentation(WrapInNavigationController = true, Animated = false)]
-    public partial class LoginView : MvxViewController<LoginViewModel>
+    public partial class LoginView : BaseViewController<LoginViewModel>
     {
         #region Variables
         private UIButton _buttonContinue;
@@ -20,17 +19,11 @@ namespace TodoList.iOS.Views
         private IMvxInteraction<CloseUIViewController> _interaction;
         #endregion Variables
 
-        #region Constructors
-        public LoginView() : base(nameof(LoginView), null)
-        {
-        }
-        #endregion Constructors
-
         #region Lifecycle
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            SetupNavigationBar();
+            SetupLoginNavigationBar();
             SetupBinding();
         }
         #endregion Lifecycle
@@ -51,7 +44,7 @@ namespace TodoList.iOS.Views
         #endregion Properties
 
         #region Methods
-        private void SetupNavigationBar()
+        private void SetupLoginNavigationBar()
         {
             this.NavigationItem.HidesBackButton = true;
             _buttonContinue = new UIButton(UIButtonType.Custom);

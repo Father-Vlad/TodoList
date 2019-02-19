@@ -1,28 +1,17 @@
-﻿using CoreGraphics;
-using MvvmCross.Binding.BindingContext;
+﻿using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
 using TodoList.Core.ViewModels;
 using TodoList.iOS.Sources;
-using UIKit;
 
 namespace TodoList.iOS.Views
 {
     [MvxTabPresentation(WrapInNavigationController = true, TabName = "DONE", TabIconName = "TabBarChecked")]
-    public partial class CollectionOfDoneTasksView : MvxViewController<CompletedGoalsViewModel>
+    public partial class CollectionOfDoneTasksView : BaseViewController<CompletedGoalsViewModel>
     {
         #region Variables
-        private UIButton _buttonFillingData;
-        private UIButton _buttonLogOut;
-        private readonly string _textTitle = "To-do List";
         private MvxUIRefreshControl _refreshControl;
         #endregion Variables
-
-        #region Constructors
-        public CollectionOfDoneTasksView() : base(nameof(CollectionOfDoneTasksView), null)
-        {
-        }
-        #endregion Constructors
 
         #region Lifecycle
         public override void ViewDidLoad()
@@ -44,23 +33,6 @@ namespace TodoList.iOS.Views
         #endregion Lifecycle
 
         #region Methods
-        private void SetupNavigationBar()
-        {
-            NavigationItem.Title = _textTitle;
-            var titleTextAttributes = new UIStringAttributes() { ForegroundColor = UIColor.White };
-            NavigationController.NavigationBar.TitleTextAttributes = titleTextAttributes;
-            _buttonFillingData = new UIButton(UIButtonType.Custom);
-            _buttonFillingData.Frame = new CGRect(0, 0, 40, 40);
-            _buttonFillingData.SetImage(UIImage.FromBundle("TabBarFillingDataIcon"), UIControlState.Normal);
-            this.NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(_buttonFillingData), false);
-            _buttonLogOut = new UIButton(UIButtonType.Custom);
-            _buttonLogOut.Frame = new CGRect(0, 0, 40, 40);
-            _buttonLogOut.SetImage(UIImage.FromBundle("TabBarLogOutIcon"), UIControlState.Normal);
-            this.NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_buttonLogOut), false);
-            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
-            NavigationController.NavigationBar.BarTintColor = new UIColor(0.17f, 0.24f, 0.31f, 1.0f);
-        }
-
         private void SetupBinding(TodoTasksTableViewSource source)
         {
             var set = this.CreateBindingSet<CollectionOfDoneTasksView, CompletedGoalsViewModel>();

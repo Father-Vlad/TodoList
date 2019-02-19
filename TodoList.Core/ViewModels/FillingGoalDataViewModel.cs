@@ -21,7 +21,6 @@ namespace TodoList.Core.ViewModels
         private bool _saveButtonEnableStatus = false;
         private string _userId;
         private string _deleteCanselButtonText;
-        private bool _isNetAvailable;
         #endregion Variables
 
         #region Constructors

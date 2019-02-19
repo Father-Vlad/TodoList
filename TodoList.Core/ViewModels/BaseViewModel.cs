@@ -5,18 +5,17 @@ namespace TodoList.Core.ViewModels
 {
     public abstract class BaseViewModel<T> : MvxViewModel<T>
     {
+        #region Variables
         private bool _isNetAvailable;
+        #endregion Variables
 
-        public void Connectivity_ConnectivityChanged()
+        #region Lifecycle
+        public override void Prepare(T parameter)
         {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsNetAvailable = true;
-                return;
-            }
-            IsNetAvailable = false;
         }
+        #endregion Lifecycle
 
+        #region Properties
         public bool IsNetAvailable
         {
             get
@@ -30,9 +29,18 @@ namespace TodoList.Core.ViewModels
                 RaisePropertyChanged(() => IsNetAvailable);
             }
         }
+        #endregion Properties
 
-        public override void Prepare(T parameter)
+        #region Methods
+        protected void Connectivity_ConnectivityChanged()
         {
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                IsNetAvailable = true;
+                return;
+            }
+            IsNetAvailable = false;
         }
+        #endregion Methods
     }
 }

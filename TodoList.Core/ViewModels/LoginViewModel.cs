@@ -24,7 +24,6 @@ namespace TodoList.Core.ViewModels
         private string _welcomeText;
         private string _loginButtonText;
         private bool _ProfilePictureViewVisibleStatus = false;
-        private bool _isNetAvailable;
         private readonly IMvxNavigationService _navigationService;
         private readonly IUserService _userService;
         private readonly ILoginService _loginService;

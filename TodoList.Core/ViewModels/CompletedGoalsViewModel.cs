@@ -33,7 +33,6 @@ namespace TodoList.Core.ViewModels
         private readonly string _goalNotDone = "It's not done yet :(";
         private bool _platformName;
         private int _currentTaskId;
-        private bool _isNetAvailable;
         #endregion Variables
         
         #region Constructors

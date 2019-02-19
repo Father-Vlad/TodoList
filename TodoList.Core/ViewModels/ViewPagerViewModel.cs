@@ -14,7 +14,6 @@ namespace TodoList.Core.ViewModels
         #region Variables
         private readonly IMvxNavigationService _navigationService;
         private ILoginService _loginService;
-        private bool _isNetAvailable;
         #endregion Variables
 
         #region Constructors

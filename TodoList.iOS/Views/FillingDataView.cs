@@ -1,34 +1,24 @@
-using CoreGraphics;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
 using TodoList.Core.ViewModels;
 using UIKit;
 
 namespace TodoList.iOS.Views
 {
     [MvxModalPresentation(WrapInNavigationController = true, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
-    public partial class FillingDataView : MvxViewController<FillingGoalDataViewModel>
+    public partial class FillingDataView : BaseViewController<FillingGoalDataViewModel>
     {
         #region Variables
-        private UIButton _buttonGoBack;
         private UIColor _placeholderDescriptionColor;
-        private readonly string _textTitle = "Write TODO sample...";
         private readonly string _namePlaceholder = "Enter your Goal Name";
         private readonly string _descriptionPlaceholder = "Enter your Description";
         #endregion Variables
-
-        #region Constructors
-        public FillingDataView() : base(nameof(FillingDataView), null)
-        {
-        }
-        #endregion Constructors
 
         #region Lifecycle
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            SetupNavigationBar();
+            SetupBackNavigationBar();
             _placeholderDescriptionColor = new UIColor(0.78f, 0.78f, 0.8f, 1.0f);
             SetupBinding();
             if (DescriptionOfTaskTextView.Text == _descriptionPlaceholder || string.IsNullOrEmpty(DescriptionOfTaskTextView.Text))
@@ -43,17 +33,6 @@ namespace TodoList.iOS.Views
         #endregion Lifecycle
 
         #region Methods
-        private void SetupNavigationBar()
-        {
-            Title = _textTitle;
-            _buttonGoBack = new UIButton(UIButtonType.Custom);
-            _buttonGoBack.Frame = new CGRect(0, 0, 40, 40);
-            _buttonGoBack.SetImage(UIImage.FromBundle("FillingDataBackIcon"), UIControlState.Normal);
-            this.NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_buttonGoBack), false);
-            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
-            NavigationController.NavigationBar.BarTintColor = new UIColor(0.17f, 0.24f, 0.31f, 1.0f);
-        }
-
         private void SetupBinding()
         {
             var set = this.CreateBindingSet<FillingDataView, FillingGoalDataViewModel>();

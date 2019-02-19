@@ -68,6 +68,7 @@
     <Compile Include="Converters\StatusImageValueConverter.cs" />
     <Compile Include="Converters\UrlPictureStringValueConverter.cs" />
     <Compile Include="Services\AlertService.cs" />
+    <Compile Include="Views\BaseViewController.cs" />
     <Compile Include="Views\SplachScreenAnimationView.cs" />
     <Compile Include="Views\SplachScreenAnimationView.designer.cs">
       <DependentUpon>SplachScreenAnimationView.cs</DependentUpon>
