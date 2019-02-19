@@ -10,7 +10,6 @@ using MvvmCross.Platforms.Android.Presenters;
 using MvvmCross.ViewModels;
 using System.Collections.Generic;
 using System.Reflection;
-using TodoList.Droid.Converters;
 
 namespace TestProject.Droid
 {

@@ -195,21 +195,21 @@ namespace TodoList.Core.ViewModels
 
         private async void MakeListOfGoals()
         {
+            IsRefreshLayoutRefreshing = true;
             LoadCacheOrUploadNewData();
             if (IsNetAvailable)
             {
                 await _webApiService.RefreshDataAsync();
                 LoadCacheOrUploadNewData();
             }
+            IsRefreshLayoutRefreshing = false;
         }
 
         private void LoadCacheOrUploadNewData()
         {
-            IsRefreshLayoutRefreshing = true;
             User user = _loginService.CurrentUser;
             var list = _goalService.GetNotDoneUserGoal(user.UserId);
             Goals = new MvxObservableCollection<Goal>(list);
-            IsRefreshLayoutRefreshing = false;
         }
 
         private string GetIOSFormattingString(string stringToFormat)
