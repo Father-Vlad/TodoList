@@ -56,7 +56,7 @@ namespace TodoList.Core.ViewModels
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-            Task.Run(MakeListOfGoals);
+            MakeListOfGoals();
         }
 
         public override void Prepare(Action parameter)
@@ -190,10 +190,10 @@ namespace TodoList.Core.ViewModels
 
         private void UpdateDataFromDB()
         {
-            Task.Run(MakeListOfGoals);
+            MakeListOfGoals();
         }
 
-        private async Task MakeListOfGoals()
+        private async void MakeListOfGoals()
         {
             LoadCacheOrUploadNewData();
             if (IsNetAvailable)
