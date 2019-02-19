@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,9 +45,13 @@ namespace TodoList.Core.Services
                     _goalService.InsertGoal(goal);
                 }
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
                 throw new Exception(ex.Message);
+            }
+            catch (TaskCanceledException ex)
+            {
+                throw new TaskCanceledException(ex.Message);
             }
         }
 
@@ -61,9 +66,13 @@ namespace TodoList.Core.Services
                     _goalService.DeleteGoal(id);
                 }
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
                 throw new Exception(ex.Message);
+            }
+            catch (TaskCanceledException ex)
+            {
+                throw new TaskCanceledException(ex.Message);
             }
         }
 
@@ -84,9 +93,13 @@ namespace TodoList.Core.Services
                 }
                 return goals;
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
                 throw new Exception(ex.Message);
+            }
+            catch (TaskCanceledException ex)
+            {
+                throw new TaskCanceledException(ex.Message);
             }
             finally
             {
