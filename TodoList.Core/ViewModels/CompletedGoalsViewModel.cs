@@ -234,7 +234,7 @@ namespace TodoList.Core.ViewModels
             IsRefreshLayoutRefreshing = false;
         }
 
-        private void UploadNewData(List<Goal> tasks)
+        private void UploadNewData(List<Goal> goals)
         {
             LoadCacheData();
         }
