@@ -23,9 +23,6 @@ namespace TodoList.Droid.Views
         private Toolbar _toolBar;
         #endregion Variables
 
-        #region Constructors
-        #endregion Constructors
-
         #region Lifecycle
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -62,12 +59,6 @@ namespace TodoList.Droid.Views
             Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
         }
         #endregion Lifecycle
-
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
 
         #region Methods
         private void OnHideKeyboard(object sender, EventArgs e)

@@ -50,9 +50,6 @@ namespace TodoList.iOS.Views
         }
         #endregion Properties
 
-        #region Commands
-        #endregion Commands
-
         #region Methods
         private void SetupNavigationBar()
         {

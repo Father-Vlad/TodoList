@@ -39,17 +39,5 @@ namespace TodoList.iOS.Views
             }
         }
         #endregion Lifecycle
-
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
-        #region Methods
-        #endregion Methods
-
-        #region Overrides
-        #endregion Overrides
     }
 }

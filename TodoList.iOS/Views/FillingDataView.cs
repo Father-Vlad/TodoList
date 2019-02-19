@@ -42,12 +42,6 @@ namespace TodoList.iOS.Views
         }
         #endregion Lifecycle
 
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
         #region Methods
         private void SetupNavigationBar()
         {
@@ -121,8 +115,5 @@ namespace TodoList.iOS.Views
             DeleteButton.Layer.BorderColor = UIColor.Black.CGColor;
         }
         #endregion Methods
-
-        #region Overrides
-        #endregion Overrides
     }
 }

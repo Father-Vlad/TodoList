@@ -79,11 +79,8 @@ namespace TodoList.Core.ViewModels
         #endregion Lifecycle
 
         #region Properties
-        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
-        public IMvxCommand LogoutCommand => new MvxCommand(Logout);
         public Action OnLoggedOutHandler { get; set; }
-        public IMvxCommand<int> ShareMessageCommand { get; set; }
-
+        
         public MvxObservableCollection<Goal> Goals
         {
             get
@@ -195,6 +192,9 @@ namespace TodoList.Core.ViewModels
         #endregion Properties
 
         #region Commands
+        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
+        public IMvxCommand LogoutCommand => new MvxCommand(Logout);
+        public IMvxCommand<int> ShareMessageCommand { get; set; }
 
         public MvxCommand UpdateDataCommand
         {

@@ -44,17 +44,10 @@ namespace TodoList.Core.ViewModels
         }
         #endregion Finalisers
 
-        #region Lifecycle
-        #endregion Lifecycle
-
         #region Properties
         public CompletedGoalsViewModel CompletedGoalsViewModel { get; set; }
         public UncompletedGoalsViewModel UncompletedGoalsViewModel { get; set; }
-        public IMvxCommand LogoutCommand { get; set; }
-        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
-        public IMvxAsyncCommand<Action> ShowCompletedGoalsViewModelCommand { get; private set; }
-        public IMvxAsyncCommand<Action> ShowUncompletedGoalsViewModelCommand { get; private set; }
-
+        
         public bool IsNetAvailable
         {
             get
@@ -71,6 +64,10 @@ namespace TodoList.Core.ViewModels
         #endregion Properties
 
         #region Commands
+        public IMvxCommand LogoutCommand { get; set; }
+        public IMvxCommand<Goal> FillingDataActivityCommand { get; set; }
+        public IMvxAsyncCommand<Action> ShowCompletedGoalsViewModelCommand { get; private set; }
+        public IMvxAsyncCommand<Action> ShowUncompletedGoalsViewModelCommand { get; private set; }
         #endregion Commands
 
         #region Methods

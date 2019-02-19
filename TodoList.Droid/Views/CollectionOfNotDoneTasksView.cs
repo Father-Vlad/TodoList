@@ -19,9 +19,6 @@ namespace TodoList.Droid.Views
         private MvxRecyclerView _recyclerView;
         #endregion Variables
 
-        #region Constructors
-        #endregion Constructors
-
         #region Lifecycle
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -39,15 +36,6 @@ namespace TodoList.Droid.Views
             return view;
         }
         #endregion Lifecycle
-
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
-        #region Methods
-        #endregion Methods
 
         #region Overrides
         protected override int FragmentId

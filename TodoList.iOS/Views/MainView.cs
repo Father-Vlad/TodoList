@@ -1,7 +1,5 @@
 ﻿using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
-using MvvmCross.Plugin.Color.Platforms.Ios;
-using TodoList.Core;
 using TodoList.Core.ViewModels;
 
 namespace TodoList.iOS.Views
@@ -35,17 +33,5 @@ namespace TodoList.iOS.Views
             }
         }
         #endregion Lifecycle
-
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
-        #region Methods
-        #endregion Methods
-
-        #region Overrides
-        #endregion Overrides
     }
 }

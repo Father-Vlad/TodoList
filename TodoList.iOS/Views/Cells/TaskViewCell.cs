@@ -27,15 +27,9 @@ namespace TodoList.iOS.Views.Cells
         }
         #endregion Constructors
 
-        #region Lifecycle
-        #endregion Lifecycle
-
         #region Properties
         public Action OnShareHandlerCell { get; set; }
         #endregion Properties
-
-        #region Commands
-        #endregion Commands
 
         #region Methods
         public static TaskViewCell Create()
@@ -48,8 +42,5 @@ namespace TodoList.iOS.Views.Cells
             OnShareHandlerCell?.Invoke();
         }
         #endregion Methods
-
-        #region Overrides
-        #endregion Overrides
     }
 }

@@ -58,15 +58,7 @@ namespace TodoList.Core.ViewModels
         }
         #endregion Finaliser
 
-        #region Lifecycle
-        #endregion Lifecycle
-
         #region Properties
-        public IMvxCommand FillingLoginUserDataCommand { get; set; }
-        public IMvxCommand DeleteLoginUserDataCommand { get; set; }
-        public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
-        public IMvxCommand LoginFacebookCommand { get; set; }
-        public IMvxCommand LogoutFacebookCommand { get; set; }
         public MvxInteraction<CloseUIViewController> Interaction { get; set; } = new MvxInteraction<CloseUIViewController>();
 
         public string WelcomeText
@@ -193,6 +185,11 @@ namespace TodoList.Core.ViewModels
         #endregion Properties
 
         #region Commands
+        public IMvxCommand FillingLoginUserDataCommand { get; set; }
+        public IMvxCommand DeleteLoginUserDataCommand { get; set; }
+        public IMvxCommand NavigateToCollectionFragmentCommand { get; set; }
+        public IMvxCommand LoginFacebookCommand { get; set; }
+        public IMvxCommand LogoutFacebookCommand { get; set; }
         #endregion Commands
 
         #region Methods

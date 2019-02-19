@@ -1,9 +1,7 @@
 using CoreGraphics;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
-using MvvmCross.Plugin.Color.Platforms.Ios;
 using System;
-using TodoList.Core;
 using TodoList.Core.ViewModels;
 using UIKit;
 
@@ -49,12 +47,6 @@ namespace TodoList.iOS
         }
         #endregion Lifecycle
 
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
         #region Methods
         public void Scale(UIView view, bool isIn, double duration, Action onFinished)
         {
@@ -67,8 +59,5 @@ namespace TodoList.iOS
             }, onFinished);
         }
         #endregion Methods
-
-        #region Overrides
-        #endregion Overrides
     }
 }

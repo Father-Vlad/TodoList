@@ -1,5 +1,4 @@
-﻿using System;
-using CoreGraphics;
+﻿using CoreGraphics;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
@@ -44,12 +43,6 @@ namespace TodoList.iOS.Views
         }
         #endregion Lifecycle
 
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
         #region Methods
         private void SetupNavigationBar()
         {
@@ -82,8 +75,5 @@ namespace TodoList.iOS.Views
             set.Apply();
         }
         #endregion Methods
-
-        #region Overrides
-        #endregion Overrides
     }
 }

@@ -1,10 +1,8 @@
 ﻿using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Support.Transitions;
 using Android.Support.V4.View;
 using Android.Views;
-using Java.Lang;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using System.Collections.Generic;
 using TodoList.Core.ViewModels;
@@ -20,9 +18,6 @@ namespace TodoList.Droid.Views
         private ViewPager _viewPager;
         private TabLayout _tabLayout;
         #endregion Variables
-
-        #region Constructors
-        #endregion Constructors
 
         #region Lifecycle
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -62,12 +57,6 @@ namespace TodoList.Droid.Views
 
         #region Properties
         #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
-        #region Methods
-        #endregion Methods
 
         #region Overrides
         protected override int FragmentId

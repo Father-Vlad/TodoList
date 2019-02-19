@@ -23,19 +23,10 @@ namespace TodoList.Core.ViewModels
         }
         #endregion Constructors
 
-        #region Finaliser
-        #endregion Finaliser
-
-        #region Lifecycle
-        #endregion Lifecycle
-
-        #region Properties
+        #region Commands
         public IMvxCommand ShowCurrentViewModelCommand { get; set; }
         public IMvxAsyncCommand ShowLoginViewModelCommand { get; set; }
         public IMvxAsyncCommand ShowViewPagerViewModelCommand { get; set; }
-        #endregion Properties
-
-        #region Commands
         #endregion Commands
 
         #region Methods

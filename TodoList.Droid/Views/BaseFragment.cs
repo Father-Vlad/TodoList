@@ -10,12 +10,6 @@ namespace TodoList.Droid.Views
 {
     public abstract class BaseFragment : MvxFragment
     {
-        #region Variables
-        #endregion Variables
-
-        #region Constructors
-        #endregion Constructors
-
         #region Lifecycle
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -41,12 +35,6 @@ namespace TodoList.Droid.Views
 
         protected abstract int FragmentId { get; }
         #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
-        #region Methods
-        #endregion Methods
 
         #region Overrides
         public override void OnConfigurationChanged(Configuration newConfig)

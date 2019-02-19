@@ -1,6 +1,4 @@
-﻿using Android.Content;
-using Android.Graphics;
-using Android.OS;
+﻿using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -8,7 +6,6 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 using System.Threading.Tasks;
 using TodoList.Core.ViewModels;
 using Xamarin.Essentials;
-using Xamarin.Facebook;
 
 namespace TodoList.Droid.Views
 {
@@ -19,9 +16,6 @@ namespace TodoList.Droid.Views
         #region Variables
         private Button _facebookLoginButton;
         #endregion Variables
-
-        #region Constructors
-        #endregion Constructors
 
         #region Lifecycle
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -38,12 +32,6 @@ namespace TodoList.Droid.Views
             Activity.OverridePendingTransition(Android.Resource.Animation.FadeIn, Android.Resource.Animation.FadeOut);
         }
         #endregion Lifecycle
-
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
 
         #region Methods
         private async void LoggedInOrOutFacebook()

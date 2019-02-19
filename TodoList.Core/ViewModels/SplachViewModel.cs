@@ -19,17 +19,8 @@ namespace TodoList.Core.ViewModels
         }
         #endregion Constructors
 
-        #region Finalisers
-        #endregion Finalisers
-
-        #region Lifecycle
-        #endregion Lifecycle
-
-        #region Properties
-        public IMvxAsyncCommand FinishAnimationCommand { get; set; }
-        #endregion Properties
-
         #region Commands
+        public IMvxAsyncCommand FinishAnimationCommand { get; set; }
         #endregion Commands
 
         #region Methods

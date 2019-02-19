@@ -19,9 +19,6 @@ namespace TodoList.Droid.Views
         RelativeLayout myLayout;
         #endregion Variables
 
-        #region Constructors
-        #endregion Constructors
-
         #region Lifecycle
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -44,17 +41,5 @@ namespace TodoList.Droid.Views
             });
         }
         #endregion Lifecycle
-
-        #region Properties
-        #endregion Properties
-
-        #region Commands
-        #endregion Commands
-
-        #region Methods
-        #endregion Methods
-
-        #region Overrides
-        #endregion Overrides
     }
 }
