@@ -14,59 +14,85 @@ namespace TodoList.Core.Services
         private IGoalService _goalService;
         private HttpClient _client;
         private ILoginService _loginService;
+        private IAlertService _alertService;
+        private readonly string _messageError = "Error: Server is Unavailable";
         private readonly string _addressURL = "http://10.10.3.207:49780/api/values/";
 
-        public WebApiService(IGoalService goalService, ILoginService loginService)
+        public WebApiService(IGoalService goalService, ILoginService loginService, IAlertService alertService)
         {
             _client = new HttpClient();
             _goalService = goalService;
             _loginService = loginService;
+            _alertService = alertService;
         }
 
         public async Task InsertOrUpdateDataAsync(Goal goal)
         {
-            var uri = new Uri(string.Format(_addressURL));
-            var json = JsonConvert.SerializeObject(goal);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = null;
-            if (goal.Id != 0)
+            try
             {
-                response = await _client.PutAsync(uri, content);
+                var uri = new Uri(string.Format(_addressURL));
+                var json = JsonConvert.SerializeObject(goal);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = null;
+                if (goal.Id != 0)
+                {
+                    response = await _client.PutAsync(uri, content);
+                }
+                if (goal.Id == 0)
+                {
+                    response = await _client.PostAsync(uri, content);
+                }
+                if (response.IsSuccessStatusCode)
+                {
+                    _goalService.InsertGoal(goal);
+                }
             }
-            if (goal.Id == 0)
+            catch
             {
-                response = await _client.PostAsync(uri, content);
-            }
-            if (response.IsSuccessStatusCode)
-            {
-                _goalService.InsertGoal(goal);
+                _alertService.ShowToast(_messageError);
             }
         }
 
         public async Task DeleteDataAsync(int id)
         {
-            var uri = new Uri(string.Format(_addressURL + id.ToString()));
-            var response = await _client.DeleteAsync(uri);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                _goalService.DeleteGoal(id);
+
+                var uri = new Uri(string.Format(_addressURL + id.ToString()));
+                var response = await _client.DeleteAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    _goalService.DeleteGoal(id);
+                }
+            }
+            catch
+            {
+                _alertService.ShowToast(_messageError);
             }
         }
 
         public async Task<List<Goal>> RefreshDataAsync()
         {
             List<Goal> goals = null;
-            var currentUserId = _loginService.CurrentUserId;
-            var uri = new Uri(string.Format(_addressURL + currentUserId));
-            var response = await _client.GetAsync(uri);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var content = await response.Content.ReadAsStringAsync();
-                goals = JsonConvert.DeserializeObject<List<Goal>>(content);
-                _goalService.DeleteAllUserGoals(currentUserId);
-                _goalService.InsertAllUserGoals(goals);
+                var currentUserId = _loginService.CurrentUserId;
+                var uri = new Uri(string.Format(_addressURL + currentUserId));
+                var response = await _client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    goals = JsonConvert.DeserializeObject<List<Goal>>(content);
+                    _goalService.DeleteAllUserGoals(currentUserId);
+                    _goalService.InsertAllUserGoals(goals);
+                }
+                return goals;
             }
-            return goals;
+            catch 
+            {
+                _alertService.ShowToast(_messageError);
+                return goals;
+            }
         }
     }
 }
