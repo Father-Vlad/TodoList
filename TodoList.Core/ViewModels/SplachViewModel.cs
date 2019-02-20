@@ -1,20 +1,14 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 
 namespace TodoList.Core.ViewModels
 {
-    public class SplachViewModel : MvxViewModel
+    public class SplachViewModel : BaseViewModel<object>
     {
-        #region Variables
-        private readonly IMvxNavigationService _navigationService;
-        #endregion Variables
-
         #region Constructors
-        public SplachViewModel(IMvxNavigationService navigationService)
+        public SplachViewModel(IMvxNavigationService navigationService) : base(navigationService)
         {
-            _navigationService = navigationService;
             FinishAnimationCommand = new MvxAsyncCommand(() => FinishAnimation());
         }
         #endregion Constructors

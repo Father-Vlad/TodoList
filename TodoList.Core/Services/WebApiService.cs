@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using TodoList.Core.Helper;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
 
@@ -13,16 +14,14 @@ namespace TodoList.Core.Services
     {
         private IGoalService _goalService;
         private HttpClient _client;
-        private ILoginService _loginService;
         private IAlertService _alertService;
         private readonly string _messageError = "Error: Server is Unavailable";
         private readonly string _addressURL = "http://10.10.3.207:49780/api/values/";
 
-        public WebApiService(IGoalService goalService, ILoginService loginService, IAlertService alertService)
+        public WebApiService(IGoalService goalService, IAlertService alertService)
         {
             _client = new HttpClient();
             _goalService = goalService;
-            _loginService = loginService;
             _alertService = alertService;
         }
 
@@ -76,7 +75,7 @@ namespace TodoList.Core.Services
             List<Goal> goals = null;
             try
             {
-                var currentUserId = _loginService.CurrentUserId;
+                var currentUserId = CurrentUser.GetCurrentUserId();
                 var uri = new Uri(string.Format(_addressURL + currentUserId));
                 var response = await _client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)

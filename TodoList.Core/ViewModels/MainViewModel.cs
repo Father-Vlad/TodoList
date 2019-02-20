@@ -1,22 +1,14 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using TodoList.Core.Interfaces;
+using TodoList.Core.Helper;
 
 namespace TodoList.Core.ViewModels
 {
-    public class MainViewModel : MvxViewModel
+    public class MainViewModel : BaseViewModel<object>
     {
-        #region Variables
-        private readonly IMvxNavigationService _navigationService;
-        private readonly ILoginService _loginService;
-        #endregion Variables
-
         #region Constructors
-        public MainViewModel(IMvxNavigationService navigationService, ILoginService loginService)
+        public MainViewModel(IMvxNavigationService navigationService) : base(navigationService)
         {
-            _navigationService = navigationService;
-            _loginService = loginService;
             ShowCurrentViewModelCommand = new MvxCommand(ShowCurrentViewModel);
             ShowLoginViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
             ShowViewPagerViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<ViewPagerViewModel>());
@@ -32,7 +24,7 @@ namespace TodoList.Core.ViewModels
         #region Methods
         private void ShowCurrentViewModel()
         {
-            if (_loginService.CurrentUserId == string.Empty)
+            if (CurrentUser.GetCurrentUserId() == string.Empty)
             {
                 ShowLoginViewModelCommand.Execute();
                 return;

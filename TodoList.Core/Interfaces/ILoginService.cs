@@ -1,5 +1,4 @@
 ﻿using System;
-using TodoList.Core.Models;
 using Xamarin.Auth;
 
 namespace TodoList.Core.Interfaces
@@ -10,9 +9,6 @@ namespace TodoList.Core.Interfaces
         Action OnLoggedOutHandler { get; set; }
         void LoginFacebook();
         void LogoutFacebook();
-        string CurrentUserId { get;}
-        string CurrentUserName { get; }
         OAuth2Authenticator Authenticator();
-        User CurrentUser { get; set; }
     }
 }

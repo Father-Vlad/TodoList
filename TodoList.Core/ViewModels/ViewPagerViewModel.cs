@@ -5,38 +5,22 @@ using System;
 using System.Threading.Tasks;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
-using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
-    public class ViewPagerViewModel : BaseViewModel<Action>
+    public class ViewPagerViewModel : BaseViewModel<object>
     {
-        #region Variables
-        private readonly IMvxNavigationService _navigationService;
-        private ILoginService _loginService;
-        #endregion Variables
-
         #region Constructors
-        public ViewPagerViewModel(IMvxNavigationService navigationService, ILoginService loginService)
+        public ViewPagerViewModel(IMvxNavigationService navigationService, ILoginService loginService) : base(navigationService, loginService)
         {
-            _navigationService = navigationService;
-            _loginService = loginService;
             CompletedGoalsViewModel = Mvx.IoCProvider.IoCConstruct<CompletedGoalsViewModel>();
             UncompletedGoalsViewModel = Mvx.IoCProvider.IoCConstruct<UncompletedGoalsViewModel>();
             LogoutCommand = new MvxAsyncCommand(Logout);
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
             ShowCompletedGoalsViewModelCommand = new MvxAsyncCommand<Action>(async (logoutHandler) => await _navigationService.Navigate<CompletedGoalsViewModel, Action>(logoutHandler));
             ShowUncompletedGoalsViewModelCommand = new MvxAsyncCommand<Action>(async (logoutHandler) => await _navigationService.Navigate<UncompletedGoalsViewModel, Action>(logoutHandler));
-            Connectivity_ConnectivityChanged();
-            Connectivity.ConnectivityChanged += delegate { Connectivity_ConnectivityChanged(); };
         }
         #endregion Constructors
-
-        #region Lifecycle
-        public override void Prepare(Action parameter)
-        {
-        }
-        #endregion Lifecycle
 
         #region Properties
         public CompletedGoalsViewModel CompletedGoalsViewModel { get; set; }

@@ -3,9 +3,9 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Threading.Tasks;
+using TodoList.Core.Helper;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
-using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
@@ -15,12 +15,6 @@ namespace TodoList.Core.ViewModels
         private bool _isRefreshLayoutRefreshing;
         private MvxObservableCollection<Goal> _goals;
         private MvxCommand _updateDataCommand;
-        private IGoalService _goalService;
-        private ILoginService _loginService;
-        private IMvxNavigationService _navigationService;
-        private ITelegramService _telegramService;
-        private IWebApiService _webApiService;
-        private IAlertService _alertService;
         private readonly string _alertErorMessage = "Something went wrong";
         private readonly string _alertMessage = "Telegram is not installed";
         private readonly string _checkAppNameiOS = "tg://msg?text=";
@@ -36,19 +30,12 @@ namespace TodoList.Core.ViewModels
         #endregion Variables
 
         #region Constructors
-        public UncompletedGoalsViewModel(IMvxNavigationService navigationService, IGoalService goalService, ILoginService loginService, ITelegramService telegramService, IWebApiService webApiService, IAlertService alertService)
+        public UncompletedGoalsViewModel(IMvxNavigationService navigationService, ILoginService loginService, IWebApiService webApiService, ITelegramService telegramService, IGoalService goalService, IAlertService alertService)
+            : base(navigationService, loginService, webApiService, telegramService, goalService, alertService)
         {
-            _navigationService = navigationService;
-            _goalService = goalService;
-            _loginService = loginService;
-            _telegramService = telegramService;
-            _webApiService = webApiService;
-            _alertService = alertService;
             Goals = new MvxObservableCollection<Goal>();
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
             ShareMessageCommand = new MvxCommand<int>(ShareMessege);
-            Connectivity_ConnectivityChanged();
-            Connectivity.ConnectivityChanged += delegate { Connectivity_ConnectivityChanged(); };
         }
         #endregion Constructors
 
@@ -207,8 +194,7 @@ namespace TodoList.Core.ViewModels
 
         private void LoadCacheOrUploadNewData()
         {
-            User user = _loginService.CurrentUser;
-            var list = _goalService.GetNotDoneUserGoal(user.UserId);
+            var list = _goalService.GetNotDoneUserGoal(CurrentUser.GetCurrentUserId());
             Goals = new MvxObservableCollection<Goal>(list);
         }
 

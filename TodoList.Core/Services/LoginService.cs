@@ -1,10 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
-using Plugin.Settings;
 using System;
-using System.Linq;
 using System.Net;
+using TodoList.Core.Helper;
 using TodoList.Core.Interfaces;
-using TodoList.Core.Models;
 using Xamarin.Auth;
 
 namespace TodoList.Core.Services
@@ -15,12 +13,7 @@ namespace TodoList.Core.Services
         private readonly string _facebookAuthorizeUrl = "https://m.facebook.com/dialog/oauth/";
         private readonly string _facebookRedirectUrl = "https://www.facebook.com/connect/login_success.html";
         private readonly string _facebookRequestUrl = "https://graph.facebook.com/me?fields=id,name,picture,email";
-        private readonly string _keyForSettingId = "LastUserId";
-        private readonly string _keyForSettingName = "LastUserName";
         private OAuth2Authenticator _auth;
-        private string _currentUserId;
-        private string _currentUserName;
-        private User _currentUser;
 
         public Action OnLoggedInHandler { get; set; }
         public Action OnLoggedOutHandler { get; set; }
@@ -45,14 +38,10 @@ namespace TodoList.Core.Services
 
         public void LogoutFacebook()
         {
-            var data = CrossSettings.Current.GetValueOrDefault(_keyForSettingId, string.Empty).ToString(); AccountStore.Create().FindAccountsForService(_keyForSettingId).FirstOrDefault();
-            if (CrossSettings.Current.Contains(_keyForSettingId, string.Empty))
+            if (CurrentUser.IsCurrentUserIdExist())
             {
-                CrossSettings.Current.Clear();
-                if (OnLoggedOutHandler != null)
-                {
-                    OnLoggedOutHandler();
-                }
+                CurrentUser.DropCurrentUser();
+                OnLoggedOutHandler?.Invoke();
             }
         }
 
@@ -60,61 +49,22 @@ namespace TodoList.Core.Services
         {
             if (e.IsAuthenticated)
             {
-                Account loggedInAccount = e.Account;
                 var request = new OAuth2Request("GET", new Uri(_facebookRequestUrl), null, e.Account);
                 var response = await request.GetResponseAsync();
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     var userJson = response.GetResponseText();
                     var jobject = JObject.Parse(userJson);
-                    var userId = jobject["id"]?.ToString();
-                    var userName = jobject["name"]?.ToString();
-                    loggedInAccount.Username = userId;
-                    CurrentUser = new User(userId, userName);
-                    OnLoggedInHandler();
+                    CurrentUser.SetCurrentUserId(jobject["id"]?.ToString());
+                    CurrentUser.SetCurrentUserName(jobject["name"]?.ToString());
+                    OnLoggedInHandler?.Invoke();
                 }
-                CrossSettings.Current.AddOrUpdateValue(_keyForSettingId, CurrentUser.UserId);
-                CrossSettings.Current.AddOrUpdateValue(_keyForSettingName, CurrentUser.UserName);
-            }
-        }
-
-        public string CurrentUserId
-        {
-            get
-            {
-                return _currentUserId = CrossSettings.Current.GetValueOrDefault(_keyForSettingId, string.Empty).ToString();
-            }
-        }
-
-        public string CurrentUserName
-        {
-            get
-            {
-                return _currentUserName = CrossSettings.Current.GetValueOrDefault(_keyForSettingName, string.Empty).ToString();
             }
         }
 
         public OAuth2Authenticator Authenticator()
         {
             return _auth;
-        }
-        
-        public User CurrentUser
-        {
-            get
-            {
-                if (_currentUser == null)
-                {
-                    User user = new User(CurrentUserId, CurrentUserName);
-                    _currentUser = user;
-                }
-                return _currentUser;
-            }
-
-            set
-            {
-                _currentUser = value;
-            }
         }
     }
 }

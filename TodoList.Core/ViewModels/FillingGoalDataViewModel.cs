@@ -1,9 +1,9 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using System.Threading.Tasks;
+using TodoList.Core.Helper;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
-using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
@@ -14,9 +14,6 @@ namespace TodoList.Core.ViewModels
         private string _goalDescription;
         private bool _goalStatus = false;
         private bool _goalNameEnableStatus;
-        private readonly IMvxNavigationService _navigationService;
-        private ILoginService _loginService;
-        private IWebApiService _webApiService;
         private int _goalId;
         private bool _saveButtonEnableStatus = false;
         private string _userId;
@@ -24,13 +21,8 @@ namespace TodoList.Core.ViewModels
         #endregion Variables
 
         #region Constructors
-        public FillingGoalDataViewModel(IMvxNavigationService navigationService, ILoginService loginService, IWebApiService webApiService)
+        public FillingGoalDataViewModel(IMvxNavigationService navigationService, ILoginService loginService, IWebApiService webApiService) : base(navigationService, loginService, webApiService)
         {
-            _navigationService = navigationService;
-            _loginService = loginService;
-            _webApiService = webApiService;
-            Connectivity_ConnectivityChanged();
-            Connectivity.ConnectivityChanged += delegate { Connectivity_ConnectivityChanged(); };
         }
         #endregion Constructors
 
@@ -163,7 +155,7 @@ namespace TodoList.Core.ViewModels
         {
             get
             {
-                return _userId = _loginService.CurrentUser.UserId;
+                return _userId = CurrentUser.GetCurrentUserId();
             }
 
             set

@@ -3,15 +3,15 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Threading.Tasks;
+using TodoList.Core.Helper;
 using TodoList.Core.Interfaces;
 using TodoList.Core.Models;
 using TodoList.Core.MvxInteraction;
 using Xamarin.Auth;
-using Xamarin.Essentials;
 
 namespace TodoList.Core.ViewModels
 {
-    public class LoginViewModel : BaseViewModel<Action>
+    public class LoginViewModel : BaseViewModel<object>
     {
         #region Variables
         private readonly string _strLoginWelcomeTextLoggedIn = "Please login to continue";
@@ -24,34 +24,22 @@ namespace TodoList.Core.ViewModels
         private string _welcomeText;
         private string _loginButtonText;
         private bool _ProfilePictureViewVisibleStatus = false;
-        private readonly IMvxNavigationService _navigationService;
         private readonly IUserService _userService;
-        private readonly ILoginService _loginService;
         #endregion Variables
 
         #region Constructors
-        public LoginViewModel(IMvxNavigationService navigationService, IUserService userService, ILoginService loginService)
+        public LoginViewModel(IMvxNavigationService navigationService, ILoginService loginService, IUserService userService) : base(navigationService, loginService)
         {
-            _loginService = loginService;
             _loginService.OnLoggedInHandler = new Action(() => FillingLoginUserDataCommand.Execute());
             _loginService.OnLoggedOutHandler = new Action(() => DeleteLoginUserDataCommand.Execute());
-            _navigationService = navigationService;
             _userService = userService;
             NavigateToCollectionFragmentCommand = new MvxAsyncCommand(LookAtCurrentGoals);
             FillingLoginUserDataCommand = new MvxCommand(FillingLoginUserData);
             DeleteLoginUserDataCommand = new MvxAsyncCommand(DeleteLoginUserData);
             LoginFacebookCommand = new MvxCommand(LoginFacebook);
             LogoutFacebookCommand = new MvxCommand(LogoutFacebook);
-            Connectivity_ConnectivityChanged();
-            Connectivity.ConnectivityChanged += delegate { Connectivity_ConnectivityChanged(); };
         }
         #endregion Constructors
-
-        #region Lifecycle
-        public override void Prepare(Action parameter)
-        {
-        }
-        #endregion Lifecycle
 
         #region Properties
         public MvxInteraction<CloseUIViewController> Interaction { get; set; } = new MvxInteraction<CloseUIViewController>();
@@ -192,7 +180,7 @@ namespace TodoList.Core.ViewModels
 
         public void FillingLoginUserData()
         {
-            User user = _loginService.CurrentUser;
+            User user = new User { UserId = CurrentUser.GetCurrentUserId(), UserName = CurrentUser.GetCurrentUserName() };
             CreateNewUser(user);
             UserId = user.UserId;
             UserName = user.UserName;
