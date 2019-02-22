@@ -10,9 +10,13 @@ namespace TodoList.Core.ViewModels
 {
     public class ViewPagerViewModel : BaseViewModel<object>
     {
+        #region Variables
+        ILoginService _loginService;
+        #endregion Variables
         #region Constructors
-        public ViewPagerViewModel(IMvxNavigationService navigationService, ILoginService loginService) : base(navigationService, loginService)
+        public ViewPagerViewModel(IMvxNavigationService navigationService, ILoginService loginService) : base(navigationService)
         {
+            _loginService = loginService;
             CompletedGoalsViewModel = Mvx.IoCProvider.IoCConstruct<CompletedGoalsViewModel>();
             UncompletedGoalsViewModel = Mvx.IoCProvider.IoCConstruct<UncompletedGoalsViewModel>();
             LogoutCommand = new MvxAsyncCommand(Logout);

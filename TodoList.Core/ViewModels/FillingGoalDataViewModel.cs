@@ -10,6 +10,8 @@ namespace TodoList.Core.ViewModels
     public class FillingGoalDataViewModel : BaseViewModel<Goal>
     {
         #region Variables
+        ILoginService _loginService;
+        IWebApiService _webApiService;
         private string _goalName;
         private string _goalDescription;
         private bool _goalStatus = false;
@@ -21,8 +23,10 @@ namespace TodoList.Core.ViewModels
         #endregion Variables
 
         #region Constructors
-        public FillingGoalDataViewModel(IMvxNavigationService navigationService, ILoginService loginService, IWebApiService webApiService) : base(navigationService, loginService, webApiService)
+        public FillingGoalDataViewModel(IMvxNavigationService navigationService, ILoginService loginService, IWebApiService webApiService) : base(navigationService)
         {
+            _loginService = loginService;
+            _webApiService = webApiService;
         }
         #endregion Constructors
 

@@ -12,6 +12,11 @@ namespace TodoList.Core.ViewModels
     public class UncompletedGoalsViewModel : BaseViewModel<Action>
     {
         #region Variables
+        ILoginService _loginService;
+        IWebApiService _webApiService;
+        ITelegramService _telegramService;
+        IGoalService _goalService;
+        IAlertService _alertService;
         private bool _isRefreshLayoutRefreshing;
         private MvxObservableCollection<Goal> _goals;
         private MvxCommand _updateDataCommand;
@@ -31,8 +36,13 @@ namespace TodoList.Core.ViewModels
 
         #region Constructors
         public UncompletedGoalsViewModel(IMvxNavigationService navigationService, ILoginService loginService, IWebApiService webApiService, ITelegramService telegramService, IGoalService goalService, IAlertService alertService)
-            : base(navigationService, loginService, webApiService, telegramService, goalService, alertService)
+            : base(navigationService)
         {
+            _loginService = loginService;
+            _webApiService = webApiService;
+            _telegramService = telegramService;
+            _goalService = goalService;
+            _alertService = alertService;
             Goals = new MvxObservableCollection<Goal>();
             FillingDataActivityCommand = new MvxAsyncCommand<Goal>(CreateNewGoal);
             ShareMessageCommand = new MvxCommand<int>(ShareMessege);

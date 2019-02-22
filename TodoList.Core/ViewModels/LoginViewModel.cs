@@ -14,6 +14,7 @@ namespace TodoList.Core.ViewModels
     public class LoginViewModel : BaseViewModel<object>
     {
         #region Variables
+        ILoginService _loginService;
         private readonly string _strLoginWelcomeTextLoggedIn = "Please login to continue";
         private readonly string _strLoginWelcomeTextLoggedOut = "Welcome";
         private readonly string _strLogInButtonText = "   Continue with Facebook   ";
@@ -28,8 +29,9 @@ namespace TodoList.Core.ViewModels
         #endregion Variables
 
         #region Constructors
-        public LoginViewModel(IMvxNavigationService navigationService, ILoginService loginService, IUserService userService) : base(navigationService, loginService)
+        public LoginViewModel(IMvxNavigationService navigationService, ILoginService loginService, IUserService userService) : base(navigationService)
         {
+            _loginService = loginService;
             _loginService.OnLoggedInHandler = new Action(() => FillingLoginUserDataCommand.Execute());
             _loginService.OnLoggedOutHandler = new Action(() => DeleteLoginUserDataCommand.Execute());
             _userService = userService;
