@@ -16,7 +16,7 @@ namespace TodoList.Core.Services
         private HttpClient _client;
         private IAlertService _alertService;
         private readonly string _messageError = "Error: Server is Unavailable";
-        private readonly string _addressURL = "http://10.10.3.207:49780/api/values/";
+        private readonly string _addressURL = "http://10.10.3.207:49780/api/goals/";
 
         public WebApiService(IGoalService goalService, IAlertService alertService)
         {
